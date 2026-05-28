@@ -1173,6 +1173,48 @@ body.date-list-mode .date-list-clear-btn{display:inline-flex;align-items:center;
     width:100% !important;
   }
 }
+
+/* final patch 2: PC favorite heart + PC card-view action buttons in one row */
+@media(min-width:981px){
+  .card .favorite-toggle{
+    display:flex !important;
+    position:absolute !important;
+    top:10px !important;
+    right:124px !important;
+    z-index:2 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:34px !important;
+    min-height:34px !important;
+    height:34px !important;
+    border-radius:4px !important;
+    background:#fff !important;
+    color:#98717C !important;
+    border:1px solid #DED6D2 !important;
+    box-shadow:none !important;
+    font-size:18px !important;
+    padding:0 !important;
+  }
+  .card .favorite-toggle.is-on{
+    background:#F1E6E9 !important;
+    color:#9B6F7B !important;
+    border-color:#DED6D2 !important;
+  }
+  body.view-card .card.with-cover .favorite-toggle{
+    right:10px !important;
+  }
+  body.view-card .card.with-cover .card-actions.two-actions{
+    grid-column:1 / -1 !important;
+    grid-template-columns:1fr 1fr !important;
+    width:100% !important;
+    min-width:0 !important;
+    gap:8px !important;
+  }
+  body.view-card .card.with-cover .card-actions.two-actions .history-btn,
+  body.view-card .card.with-cover .card-actions.two-actions .cart-btn{
+    width:100% !important;
+  }
+}
 </style></head><body><div class="top-link-row"><div class="top-actions"><a class="ridi-top-btn" href="https://ridibooks.com/bl/ebook" target="_blank" rel="noopener noreferrer">리디로</a><button class="heart-top-btn small" id="tasteTopBtn" type="button" aria-label="찜 목록">💚</button></div></div><main class="page" id="top"><header><h1 class="title">재정가검색 🌱</h1><p class="desc">※전적으로 저를 믿으시면 안됩니다. <br>누락 및 오기입 노정에서 더블체크하세요</p></header><div id="installBanner" class="install-banner hidden"><span>📱 홈화면에 추가하면 앱처럼 사용할 수 있어요</span><button id="installHowBtn" type="button">방법</button><button id="installDismissBtn" type="button" aria-label="닫기">×</button></div><section class="panel" aria-label="검색 및 필터"><div class="search-row"><div><label for="q">통합검색</label><input id="q" type="search" placeholder="제목 또는 작가 검색" autocomplete="off"></div><div><label>&nbsp;</label><button id="searchBtn" type="button">검색</button></div></div><div class="quick-row"><div><label for="sortBy">정렬</label><select id="sortBy"><option value="default">기본순</option><option value="titleAsc">제목 가나다순</option><option value="authorAsc">작가 가나다순</option><option value="priceAsc">판매가 낮은순</option><option value="priceDesc">판매가 높은순</option><option value="discountDesc">할인율 높은순</option><option value="underRemainAsc">목표금액 이하 + 낮은순</option><option value="underRemainDesc">목표금액 이하 + 높은순</option></select></div><div><label>&nbsp;</label><button id="resetBtn" class="secondary" type="button">초기화</button></div><div class="detail-toggle-cell"><label>&nbsp;</label><button id="detailToggleBtn" class="secondary detail-toggle-btn is-collapsed" type="button" aria-expanded="false" aria-controls="detailRow" title="상세검색 펼치기"><span class="detail-toggle-icon" aria-hidden="true"></span></button></div><div class="view-mode-row" aria-label="보기 방식"><label>&nbsp;</label><div class="view-mode-buttons"><button id="viewCardBtn" class="view-mode-btn" type="button" aria-label="카드형"><span class="card-view-icon" aria-hidden="true"></span></button><button id="viewListBtn" class="view-mode-btn" type="button" aria-label="리스트형"><span class="list-view-icon" aria-hidden="true"></span></button></div></div></div><div class="detail-row mobile-collapsed" id="detailRow"><div><label for="titleOnly">제목만 검색</label><input id="titleOnly" type="search" placeholder="제목에 포함될 단어" autocomplete="off"></div><div><label for="authorOnly">작가만 검색</label><input id="authorOnly" type="search" placeholder="작가명" autocomplete="off"></div><div><label for="discountRate">할인율</label><select id="discountRate"><option value="">전체 할인율</option></select></div><div><label for="pricePreset">금액대</label><select id="pricePreset"><option value="">전체 금액</option><option value="0-10000">10,000원 이하</option><option value="0-20000">20,000원 이하</option><option value="0-30000">30,000원 이하</option><option value="0-40000">40,000원 이하</option><option value="0-50000">50,000원 이하</option></select></div><div><label for="typeFilter">구매유형</label><select id="typeFilter"><option value="">전체 유형</option></select></div><div><label for="exclude">제외어</label><input id="exclude" type="search" placeholder="제목/작가에서 제외" autocomplete="off"></div></div></section><section class="summary"><div class="count">검색 결과 <strong id="resultCount">0</strong>개</div><div class="summary-right"><div id="activeSummary" class="active-summary">필터 없음</div></div></section><section id="cartView" class="cart-view" aria-label="장바구니"><div id="cartMount" class="cart-panel-inline"></div></section><section id="list" class="list" aria-label="작품 목록"></section><div id="empty" class="empty prompt hidden">검색값을 입력하세요</div><div id="error" class="error hidden"></div><div id="loadMoreWrap" class="load-more-wrap hidden"><button id="loadMoreBtn" type="button">더보기</button></div><div id="bottomAnchor"></div></main><aside id="desktopCartDock" class="pc-cart-dock" aria-label="PC 장바구니"><div id="desktopCartMount" class="cart-panel-inline"><div class="cart-title-row"><h2>장바구니</h2><span class="cart-mini-count">0개</span></div><div class="target-row"><label for="desktopTargetPriceInput">목표금액</label><input id="desktopTargetPriceInput" inputmode="numeric" placeholder="예: 20000" value=""></div><div class="cart-stats"><div class="stat"><span class="stat-label">총액</span><span class="stat-value">0원</span></div><div class="stat"><span class="stat-label">목표까지</span><span class="stat-value">목표금액 없음</span></div></div><div class="cart-tools"><button type="button" class="cart-clear-btn" data-action="clear">장바구니 비우기</button></div><div class="cart-list"><div class="cart-empty">담은 작품이 없습니다.</div></div></div></aside><div id="historyModalBackdrop" class="history-modal-backdrop" aria-hidden="true"><section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle"><div class="history-head"><h2 id="historyModalTitle">과거 할인율</h2><button id="historyModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p id="historyModalMeta" class="history-meta"></p><div id="historyModalBody" class="history-list"></div></section></div><nav class="mobile-tabbar" aria-label="모바일 탭"><button id="tabSearchBtn" type="button" class="mobile-tab active"><span>⌕</span><em>검색</em></button><button id="tabFavBtn" type="button" class="mobile-tab"><span>♡</span><em>찜</em></button><button id="tabCartBtn" type="button" class="mobile-tab"><span>🛒</span><em>장바구니</em></button></nav><div class="float-nav" aria-label="페이지 이동"><button id="goTopBtn" type="button" aria-label="맨 위로">↑</button><button id="goBottomBtn" type="button" aria-label="맨 아래로">↓</button></div><div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div><script>
 
 const PAGE_SIZE=100;
