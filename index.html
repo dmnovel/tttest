@@ -1,1111 +1,1064 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8" /><meta name="robots" content="noindex,nofollow,noarchive" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-title" content="재정가검색 🌱" /><meta name="apple-mobile-web-app-status-bar-style" content="default" /><meta name="theme-color" content="#FAF9F7" /><link rel="manifest" href="./manifest.webmanifest" /><title>재정가검색 🌱</title><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"><style>
-:root{
---bg:#FAF9F7;--card:#FFFFFF;--text:#2B2927;--muted:#77706A;--line:#E3DED8;
---accent:#B78A96;--accent-dark:#98717C;--rose:#F1E6E9;--brown:#6A625C;--brown-dark:#4E4843;
---shadow:0 1px 4px rgba(45,42,38,.035);--radius:4px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:-.01em}
-body.modal-open{overflow:hidden}
-a{color:inherit;text-decoration:none}
-.top-link-row{width:min(720px,calc(100% - 40px));max-width:720px;margin:12px auto 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.back-to-main{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 14px;background:var(--brown);color:#fff;border:1px solid var(--brown);border-radius:9px;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;box-shadow:0 1px 5px rgba(80,55,45,.045)}
-.back-to-main:hover{background:var(--brown-dark);border-color:var(--brown-dark)}
-.top-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
-.blank-top-btn{display:inline-flex;align-items:center;justify-content:center;width:86px;min-height:36px;border:1px solid #DED6D2;border-radius:9px;background:#fff;color:transparent;pointer-events:none;cursor:default;box-shadow:0 1px 5px rgba(80,55,45,.035)}
-.top-menu-btn{display:inline-flex;align-items:center;justify-content:center;width:86px;min-height:36px;border:1px solid #DED6D2;border-radius:9px;background:#fff;color:var(--brown);cursor:pointer;font-weight:900;font-size:13px;box-shadow:0 1px 5px rgba(80,55,45,.035)}
-.top-menu-btn:hover{background:#F7F5F2;border-color:#CDC3BF}
-.blank-top-btn.small{width:48px;border-radius:999px}.heart-top-btn{display:inline-flex;align-items:center;justify-content:center;width:86px;min-height:36px;border:1px solid #DED6D2;border-radius:9px;background:#fff;color:var(--brown);cursor:pointer;font-weight:900;font-size:16px;box-shadow:0 1px 5px rgba(80,55,45,.035)}.heart-top-btn:hover{background:#F7F5F2;border-color:#CDC3BF}.heart-top-btn.small{width:48px;border-radius:999px;padding:0}
-.page{width:min(720px,calc(100% - 40px));max-width:720px;margin:0 auto;padding:14px 0 56px}
-header{margin-bottom:12px}.title{margin:0 0 6px;font-size:clamp(24px,5vw,34px);letter-spacing:-.04em}.desc{margin:0;color:var(--muted);font-size:14px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;margin-bottom:10px}
-.search-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:10px}
-.quick-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}
-.detail-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
-.detail-toggle-btn{display:none}
-label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:850}
-input,select,button{width:100%;min-height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);font:inherit;padding:0 12px}
-input:focus,select:focus,button:focus{outline:none;border-color:#B78A96;box-shadow:0 0 0 3px rgba(183,132,143,.16)}
-button{cursor:pointer;font-weight:900;background:var(--accent);color:#fff;border-color:var(--accent);white-space:nowrap}
-button.secondary{background:#fff;color:var(--brown);border-color:#D8D1CC}
-button.ghost{background:#F1E6E9;color:#6d5058;border-color:#DED6D2}
-.summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 8px;color:var(--muted);font-size:14px}.summary strong{color:var(--text);font-size:18px}
-.active-summary{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;text-align:right}
-.list{display:grid;gap:10px}.card{background:var(--card);border:1px solid #E3DED8;border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto 96px;gap:16px;align-items:center}.card-info{min-width:0;padding-right:0}
-.book-title{display:block;margin:0 0 7px;color:#242220;font-size:17px;font-weight:950;line-height:1.35;letter-spacing:-.015em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.book-title:hover{color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px}.book-title.no-link:hover{text-decoration:none;color:#2B2927}
-.book-meta{margin:0;color:#5D5752;font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.card-middle{position:static;transform:none;width:max-content;max-width:260px;text-align:center;pointer-events:auto;justify-self:center}.book-history-inline{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:nowrap}.history-pill{display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:0 12px;border-radius:999px;background:#F1E6E9;border:1px solid #DED6D2;color:#9B6F7B;font-size:13px;font-weight:900;line-height:1;white-space:nowrap;letter-spacing:-.02em}.history-pill.recent{background:#F7F5F2;border-color:#E3DED8;color:#6A625C}
-.card-actions{display:grid;grid-template-columns:1fr;gap:9px;width:96px;min-width:96px;justify-self:start}
-.history-btn,.move-btn{width:96px;min-height:40px;border-radius:12px;font-size:14px;font-weight:950;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;text-align:center}
-.history-btn{background:var(--brown);border-color:var(--brown);color:#fff}.history-btn:hover{background:var(--brown-dark);border-color:var(--brown-dark)}.history-btn.disabled{opacity:.45;cursor:not-allowed;filter:none;pointer-events:none}
-.move-btn{background:#fff;color:var(--brown);border:1px solid #D8D1CC}.move-btn:hover{background:#F7F5F2}
-.empty,.error{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 18px;text-align:center;color:var(--muted)}.empty.prompt{min-height:280px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#77706A;background:transparent;border:1px dashed var(--line);box-shadow:none}.error{color:#9b3b35}.hidden{display:none!important}.load-more-wrap{margin-top:18px;display:flex;justify-content:center}.load-more-wrap button{width:min(280px,100%);min-height:46px}
-.float-nav{position:fixed;right:16px;bottom:18px;z-index:25;display:grid;gap:8px}.float-nav button{width:44px;height:44px;min-height:44px;border-radius:999px;padding:0;box-shadow:0 8px 20px rgba(70,55,48,.12);background:#fff;color:var(--brown);border-color:var(--line);font-size:18px}
-.history-modal-backdrop,.date-index-backdrop,.taste-modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:80;padding:18px;align-items:center;justify-content:center}.history-modal-backdrop.open,.date-index-backdrop.open,.taste-modal-backdrop.open{display:flex}.history-modal,.date-index-modal,.taste-modal{width:min(460px,100%);max-height:82vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 24px rgba(70,55,48,.14);padding:20px}.date-index-modal{width:min(560px,100%)}.history-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.history-head h2{margin:0;font-size:17px;font-weight:950;letter-spacing:-.03em;line-height:1.45;color:#2B2927}.history-close{width:34px!important;min-height:34px!important;padding:0!important;border-radius:999px!important;background:#F3EEEE!important;color:var(--brown)!important;border:1px solid #DED6D2!important;flex:0 0 auto}.history-meta{margin:0 0 15px;color:#4E4843;font-size:13px;font-weight:800;line-height:1.45}.history-list{display:grid;gap:9px}.history-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #DED6D2;background:#FAF9F7;border-radius:13px;padding:11px 12px}.history-date{font-weight:950;color:#4E4843;font-size:15px}.history-rate{font-weight:950;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;min-width:58px;text-align:center;box-shadow:0 2px 8px rgba(169,120,130,.18)}.history-empty{padding:18px 12px;text-align:center;color:var(--muted);border:1px dashed #DED6D2;border-radius:13px;background:#FAF9F7}.date-index-desc{margin:0 0 12px;color:var(--muted);font-size:13px;font-weight:700}.date-index-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(124px,1fr));gap:8px}.date-chip{min-height:40px;border-radius:999px;background:#FAF9F7;color:var(--brown);border:1px solid #DED6D2;font-size:13px;font-weight:950}.date-chip:hover{background:#F1E6E9}.date-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}.clear-date-btn{width:auto!important;min-height:34px!important;padding:0 12px!important;background:#fff!important;color:var(--brown)!important;border-color:#D8D1CC!important;border-radius:999px!important;font-size:12px!important}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>202605 이벤트 장바구니</title>
+  <style>
+    :root {
+      --bg:#f7f4ef; --card:#ffffff; --text:#302a27; --muted:#7c706b; --line:#e8dfda;
+      --accent:#9f757e; --accent-weak:#f4eeee; --danger:#9b3b35; --ok:#3f6d4a;
+      --shadow:0 8px 24px rgba(70,55,48,.07); --radius:16px; --mobile-cart-height:68px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    .page{width:min(1280px,calc(100% - 32px));margin:0 auto;padding:28px 0 48px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+    header{margin-bottom:18px}
+    .title{margin:0 0 6px;font-size:clamp(24px,5vw,36px);letter-spacing:-.04em}
+    .desc{margin:0;color:var(--muted);font-size:14px}
+    .panel{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px)}
+    .search-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:12px}
+    .quick-row{display:grid;grid-template-columns:1fr 1fr 1.25fr auto;gap:10px;align-items:center}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:800}
+    input,select,button{width:100%;min-height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);font:inherit;padding:0 12px}
+    input:focus,select:focus,button:focus{outline:2px solid rgba(159,117,126,.18);border-color:var(--accent)}
+    button{cursor:pointer;font-weight:900;background:var(--accent);color:#fff;border-color:var(--accent);white-space:nowrap}
+    button.secondary{background:#fff;color:var(--accent)}
+    button.ghost{background:var(--accent-weak);color:var(--accent);border-color:transparent}
+    button.danger{background:#fff;color:var(--danger);border-color:#e5c8c4}
+    .detail-toggle{margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .detail-toggle button{width:auto;padding:0 14px}
+    .active-summary{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+    .detail{display:none;border-top:1px dashed var(--line);margin-top:14px;padding-top:14px}
+    .detail.open{display:block}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr .8fr;gap:10px}
+    .price-range{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end}
+    .tilde{color:var(--muted);padding-bottom:10px;font-weight:900}
+    .actions{display:flex;gap:10px;margin-top:12px;justify-content:flex-end}
+    .actions button{width:auto;padding:0 14px}
+    .meta-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 10px;color:var(--muted);font-size:14px}
+    .count strong{color:var(--text);font-size:18px}
+    .list{display:grid;gap:10px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:0 4px 14px rgba(70,55,48,.045);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    .book-title{font-weight:950;font-size:16px;letter-spacing:-.03em;margin:0 0 3px;display:inline-block}
+    .book-title:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+    .book-meta{color:var(--muted);font-size:13px;margin:0}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .badge{display:inline-flex;align-items:center;min-height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:900;background:var(--accent-weak);color:var(--accent)}
+    .badge.price{background:#f2f2f2;color:#3d3935}.badge.type{background:#f4eee8;color:#6f5a50}
+    .card-actions{display:grid;gap:8px;min-width:96px}
+    .go,.cart-btn{min-height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-size:13px;font-weight:950;border:1px solid transparent;padding:0 12px}
+    .go{background:var(--text);color:#fff}.go:hover{background:var(--accent)}
+    .cart-btn{background:#fff;color:var(--accent);border-color:var(--line)}
+    .cart-btn.added{background:var(--accent-weak);color:var(--accent);border-color:var(--accent-weak)}
+    .empty,.error{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 18px;text-align:center;color:var(--muted)}
+    .error{color:var(--danger)}
+    .load-more-wrap{margin-top:18px;display:flex;justify-content:center}
+    .load-more-wrap button{width:min(280px,100%);min-height:46px}
+    .cart-panel{position:sticky;top:0;max-height:calc(100vh - 20px);overflow:auto;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px;backdrop-filter:blur(10px)}
+    .cart-title-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+    .cart-title-row h2{margin:0;font-size:18px;letter-spacing:-.03em}
+    .cart-mini-count{font-weight:950;color:var(--accent);background:var(--accent-weak);padding:4px 9px;border-radius:999px;font-size:12px}
+    .target-row{margin-bottom:12px}
+    .cart-stats{display:grid;gap:8px;margin:12px 0}
+    .stat{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px}
+    .stat-label{display:block;color:var(--muted);font-size:12px;font-weight:900;margin-bottom:2px}
+    .stat-value{font-size:18px;font-weight:950;letter-spacing:-.03em}.stat-value.ok{color:var(--ok)}.stat-value.danger{color:var(--danger)}
+    .cart-tools{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}
+    .cart-list{display:grid;gap:8px;margin-top:12px}
+    .cart-empty{color:var(--muted);font-size:13px;text-align:center;padding:20px 8px;border:1px dashed var(--line);border-radius:12px;background:#fff}
+    .cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px}
+    .cart-item-title{font-size:13px;font-weight:950;margin:0;line-height:1.35}.cart-item-meta{margin:3px 0 0;color:var(--muted);font-size:12px}
+    .remove-btn{min-height:32px;padding:0 10px;border-radius:10px;font-size:12px;background:#fff;color:var(--danger);border-color:#e5c8c4}
+    .mobile-cart-bar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:30;min-height:56px;border-radius:16px;box-shadow:0 10px 28px rgba(70,55,48,.14);background:var(--text);color:#fff;border:0;padding:8px 10px 8px 14px;align-items:center;justify-content:space-between;gap:10px}
+    .mobile-cart-text{min-width:0;text-align:left}.mobile-cart-text strong{display:block;font-size:14px}.mobile-cart-text span{display:block;font-size:12px;color:rgba(255,255,255,.72)}
+    .mobile-cart-open{width:auto;min-height:38px;padding:0 13px;background:#fff;color:var(--text);border:0}
+    .cart-sheet-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.36);z-index:40}.cart-sheet-backdrop.open{display:block}
+    .cart-sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:min(82vh,720px);overflow:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:16px 14px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -10px 34px rgba(0,0,0,.22);transform:translateY(110%);transition:transform .22s ease}
+    .cart-sheet.open{transform:translateY(0)}.sheet-handle{width:44px;height:5px;border-radius:999px;background:#d6cbc0;margin:0 auto 12px}.sheet-close{margin-top:10px}
+    .float-nav{position:fixed;right:16px;bottom:18px;z-index:25;display:grid;gap:8px}
+    .float-nav button{width:44px;height:44px;min-height:44px;border-radius:999px;padding:0;box-shadow:0 8px 20px rgba(70,55,48,.12);background:#fff;color:var(--accent);border-color:var(--line);font-size:18px}
+    .hidden{display:none!important}
+    @media(max-width:980px){
+      body{padding-bottom:calc(var(--mobile-cart-height) + env(safe-area-inset-bottom))}
+      .page{width:min(100% - 24px,1120px);padding-top:18px}.layout{display:block}.desktop-cart{display:none}
+      .panel{padding:13px;border-radius:15px}.search-row,.quick-row,.detail-grid{grid-template-columns:1fr}
+      .detail-toggle{align-items:stretch;flex-direction:column}.detail-toggle button{width:100%}.active-summary{white-space:normal}
+      .card{grid-template-columns:1fr}.card-actions{grid-template-columns:1fr 1fr;min-width:0}.go,.cart-btn{width:100%}
+      .meta-bar{align-items:flex-start;flex-direction:column}.actions{flex-direction:column}.actions button{width:100%}
+      .mobile-cart-bar{display:flex}.float-nav{right:16px;bottom:calc(var(--mobile-cart-height) + 24px + env(safe-area-inset-bottom))}
+    }
+    @media(max-width:420px){.card-actions{grid-template-columns:1fr}.float-nav button{width:40px;height:40px;min-height:40px}}
+  
+    .mobile-filter-toggle{display:none;margin:10px 0 0}
+    .mobile-filter-body{display:block}
+    @media(max-width:980px){
+      .panel{position:sticky;top:8px;padding:12px}
+      .mobile-filter-toggle{display:block;width:100%;min-height:44px}
+      .mobile-filter-body{display:none;margin-top:10px}
+      .mobile-filter-body.open{display:block}
+      .search-row{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:0}
+      .search-row button{min-height:44px}
+      .quick-row{grid-template-columns:1fr}
+      .detail-toggle{margin-top:10px}
+    }
 
-.taste-card-list{display:grid;gap:10px;margin-top:12px}
-.taste-card{background:#FAF9F7;border:1px solid var(--line);border-radius:14px;padding:13px 14px;box-shadow:0 2px 10px rgba(80,55,45,.035)}
-.taste-card-title{margin:0 0 5px;color:#2B2927;font-size:15px;font-weight:950;letter-spacing:-.03em;line-height:1.35}
-.taste-card-desc{margin:0;color:var(--muted);font-size:13px;font-weight:700;line-height:1.5}
-@media(max-width:980px){.top-link-row,.page{width:min(100% - 24px,720px)}.top-link-row{margin-top:12px}.blank-top-btn,.top-menu-btn,.heart-top-btn{width:62px;min-height:34px}.blank-top-btn.small,.heart-top-btn.small{width:38px}.search-row,.detail-row{grid-template-columns:1fr}.quick-row{grid-template-columns:minmax(120px,1fr) auto auto;gap:8px}.quick-row>div:nth-child(2){width:72px}.detail-toggle-btn{display:block;width:42px;min-height:44px;border-radius:14px;padding:0;font-size:18px;line-height:1}.detail-row.mobile-collapsed{display:none}.summary{align-items:flex-start;flex-direction:column}.active-summary{text-align:left;white-space:normal}.card{grid-template-columns:1fr;gap:12px;padding:16px}.card-info{padding-right:0}.book-title{white-space:normal;font-size:16px}.book-meta{white-space:normal}.card-middle{width:auto;max-width:none;text-align:left;justify-self:start}.book-history-inline{justify-content:flex-start;flex-wrap:wrap}.card-actions{grid-template-columns:1fr 1fr;width:100%;min-width:0}.history-btn,.move-btn{width:100%}.float-nav button{width:40px;height:40px;min-height:40px}}
+  
+    .desktop-side{position:sticky;top:0;display:grid;gap:12px;max-height:calc(100vh - 20px)}
+    .side-search-panel{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;backdrop-filter:blur(10px)}
+    .side-search-panel .search-row{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:0}
+    .side-search-panel .search-row input{min-height:40px}
+    .side-search-panel .search-row button{min-height:40px}
+    .side-search-panel .search-row label{margin-bottom:5px}
+    .desktop-cart-toggle{width:100%;min-height:42px;margin-bottom:10px}
+    .compact-cart.collapsed .desktop-cart-body{display:none}
+    .desktop-side .cart-panel{position:static;max-height:calc(100vh - 170px)}
+    @media(min-width:981px){
+      .main-col .search-row{display:none}
+      .main-col #mainSearchSlot + .search-row{display:none}
+    }
+    @media(max-width:980px){
+      .desktop-side{display:none}
+      .main-col .search-row{display:grid}
+    }
 
-@media (max-width:980px){
-.detail-toggle-btn{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-}
-.detail-toggle-icon{
-  width:14px;
-  height:14px;
-  border-right:4px solid currentColor;
-  border-bottom:4px solid currentColor;
-  transform:rotate(45deg) translateY(-2px);
-  border-radius:2px;
-  display:inline-block;
-}
-.detail-toggle-btn:not(.is-collapsed) .detail-toggle-icon{
-  transform:rotate(225deg) translateY(-2px);
-}
-}
+  
+    .back-to-main-wrap{width:min(1280px,calc(100% - 32px));margin:14px auto 0;display:flex;justify-content:flex-start}
+    .back-to-main{display:inline-block;padding:9px 14px;background:#f4eeee;color:#6f5a50;border:1px solid #ddcaca;border-radius:9px;font-weight:700;font-size:13px;text-decoration:none}
+    .back-to-main:hover{background:#eadede}
+    @media(max-width:980px){.back-to-main-wrap{width:min(100% - 24px,1120px);margin-top:12px}}
 
+  
+    /* Indie pink / brown / beige tuning */
+    body{background:#faf7f5;color:#302a27}
+    button{background:#b98a92;border-color:#b98a92;color:#fff}
+    button:hover{filter:brightness(.98)}
+    button.secondary{background:#ffffff;color:#6f5a50;border-color:#e8dfda}
+    button.ghost{background:#f4eeee;color:#6f5a50;border-color:#e8dfda}
+    .go{background:#6f5a50;color:#fff}
+    .go:hover{background:#5f4c43}
+    .cart-btn{background:#fff;color:#9f757e;border-color:#ddcaca}
+    .cart-btn.added{background:#fff7f3;color:#6f5a50;border-color:#b98a92}
+    .badge{background:#f2ebe4;color:#6f5a50}
+    .badge.price{background:#f7f1eb;color:#5f4c43}
+    .badge.type{background:#f4eeee;color:#6f5a50}
+    .panel,.cart-panel,.side-search-panel,.card,.stat,.cart-item{background:rgba(255,250,247,.92);border-color:#e8dfda}
+    .book-title:hover{color:#9f757e}
+    .back-to-main{background:#6f5a50!important;color:#fff!important;border-color:#6f5a50!important}
+    .back-to-main:hover{background:#5f4c43!important}
+    .mobile-cart-bar{background:#6f5a50}
+    .mobile-cart-open{background:#ffffff;color:#6f5a50}
+    .float-nav button{background:#ffffff;color:#6f5a50;border-color:#e8dfda}
 
-.card{position:relative}
-.book-cover{display:none}.favorite-toggle{display:none}.view-mode-row{display:none}.install-banner{display:none}.mobile-tabbar{display:none}
-@media(max-width:980px){
-  .top-link-row{display:none}.page{padding-bottom:112px}header{margin:14px 0 10px}.title{font-size:25px;letter-spacing:-.04em}.desc{display:none}
-  .install-banner{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:10px 11px;margin:0 0 10px;color:#6A625C;font-size:12px;font-weight:800;line-height:1.35}.install-banner.hidden{display:none!important}.install-banner span{min-width:0;flex:1}.install-banner button{width:auto;min-height:30px;border-radius:999px;padding:0 10px;font-size:12px;background:#fff;color:var(--brown);border-color:#D8D1CC}.install-banner button#installDismissBtn{width:30px;padding:0;font-size:16px}
-  .view-mode-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}.view-mode-label{font-size:12px;color:var(--muted);font-weight:850}.view-mode-buttons{display:inline-flex;gap:6px;background:#FAF9F7;border:1px solid var(--line);border-radius:999px;padding:3px}.view-mode-btn{width:38px;min-height:32px;border-radius:999px;padding:0;background:transparent;border:0;color:var(--brown);font-size:17px;line-height:1}.view-mode-btn.active{background:var(--accent);color:#fff}
-  .mobile-tabbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,253,249,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 22px rgba(70,55,48,.13);padding:7px;backdrop-filter:blur(10px)}.mobile-tab{min-height:46px;border-radius:14px;background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;font-weight:900}.mobile-tab span{font-size:18px;line-height:1}.mobile-tab em{font-style:normal;font-size:11px;line-height:1}.mobile-tab.active{background:#F1E6E9;color:#9B6F7B}
-  .float-nav{bottom:88px}.float-nav button{box-shadow:0 4px 12px rgba(70,55,48,.11)}.favorite-toggle{display:flex;position:absolute;top:10px;right:10px;z-index:2;align-items:center;justify-content:center;width:34px;min-height:34px;height:34px;border-radius:999px;background:#fff;color:#B78A96;border:1px solid #DED6D2;box-shadow:0 2px 8px rgba(80,55,45,.06);font-size:18px;padding:0}.favorite-toggle.is-on{background:#F1E6E9;color:#9B6F7B;border-color:#DED6D2}.card{padding-right:48px}
-  body.view-card .card.with-cover{grid-template-columns:72px minmax(0,1fr);align-items:start;gap:12px;padding:13px 48px 13px 13px}body.view-card .card.with-cover .book-cover{display:block;width:72px;height:104px;border-radius:10px;overflow:hidden;border:1px solid #E3DED8;background:#F7F5F2;grid-row:1 / span 2;align-self:start}.book-cover img{width:100%;height:100%;object-fit:cover;display:block}.book-cover.no-cover{display:flex!important;align-items:center;justify-content:center;color:#9A918B;font-size:11px;font-weight:900;text-align:center;line-height:1.25;letter-spacing:-.02em;padding:6px}.book-cover.no-cover span{display:block}body.view-card .card.with-cover .card-info{grid-column:2;min-width:0;padding-top:2px}.book-title{padding-right:0}body.view-card .card.with-cover .card-middle{grid-column:2;justify-self:start;text-align:left;margin-top:2px}.book-history-inline{gap:6px}.history-pill{min-height:28px;padding:0 10px;font-size:12px}body.view-card .card.with-cover .card-actions{grid-column:2;grid-template-columns:1fr 1fr;margin-top:2px}.history-btn,.move-btn{min-height:38px}
-}
+  
+    /* Soft rose / greige final tuning */
+    :root{
+      --bg:#faf7f5!important;
+      --card:#ffffff!important;
+      --text:#302a27!important;
+      --muted:#7c706b!important;
+      --line:#e8dfda!important;
+      --accent:#9f757e!important;
+      --accent-weak:#f4eeee!important;
+      --shadow:0 8px 22px rgba(70,55,48,.07)!important;
+    }
+    body{background:#faf7f5!important;color:#302a27!important}
+    button{background:#9f757e!important;border-color:#9f757e!important;color:#fff!important}
+    button.secondary{background:#fff!important;color:#6f5a50!important;border-color:#e8dfda!important}
+    button.ghost{background:#f4eeee!important;color:#6f5a50!important;border-color:#e8dfda!important}
+    .go,.back-to-main{background:#6f5a50!important;color:#fff!important;border-color:#6f5a50!important}
+    .go:hover,.back-to-main:hover{background:#5f4c43!important}
+    .cart-btn{background:#fff!important;color:#7d6067!important;border-color:#ddcaca!important}
+    .cart-btn.added{background:#f7f1eb!important;color:#6f5a50!important;border-color:#c8b6b0!important}
+    .badge{background:#f2ebe4!important;color:#6f5a50!important}
+    .badge.price{background:#f7f1eb!important;color:#5f4c43!important}
+    .badge.type{background:#f4eeee!important;color:#7c706b!important}
+    .panel,.cart-panel,.side-search-panel,.card,.stat,.cart-item{background:rgba(255,255,255,.94)!important;border-color:#e8dfda!important}
+    .book-title:hover{color:#9f757e!important}
+    .mobile-cart-bar{background:#6f5a50!important}
+    .mobile-cart-open{background:#fff!important;color:#6f5a50!important}
+    .float-nav button{background:#fff!important;color:#6f5a50!important;border-color:#e8dfda!important}
 
-/* neutral flat polish: CSS only, no layout/function changes */
-body{
-  background:#FAF9F7;
-}
-.panel,
-.card,
-.empty,
-.error,
-.install-banner,
-.history-modal,
-.date-index-modal,
-.taste-modal,
-.taste-card{
-  border-radius:4px !important;
-  border-color:#E3DED8 !important;
-  box-shadow:0 1px 4px rgba(45,42,38,.035) !important;
-}
-input,
-select,
-button,
-.back-to-main,
-.top-menu-btn,
-.heart-top-btn,
-.blank-top-btn,
-.history-btn,
-.move-btn,
-.load-more-wrap button{
-  border-radius:4px !important;
-}
-.history-pill,
-.history-pill.recent,
-.history-rate,
-.date-chip,
-.clear-date-btn{
-  border-radius:4px !important;
-}
-.float-nav button,
-.history-close,
-.favorite-toggle,
-.blank-top-btn.small,
-.heart-top-btn.small{
-  border-radius:4px !important;
-}
-.search-row input,
-.detail-row input,
-select{
-  background:#FFFFFF;
-  border-color:#E3DED8;
-  box-shadow:none;
-}
-input:focus,
-select:focus,
-button:focus{
-  border-color:#B78A96;
-  box-shadow:0 0 0 2px rgba(183,138,150,.13);
-}
-button{
-  box-shadow:none;
-}
-.card{
-  background:#FFFFFF;
-}
-.book-title{
-  color:#242220;
-}
-.book-meta{
-  color:#5D5752;
-}
-.history-pill{
-  background:#F1E6E9;
-  border-color:#DED6D2;
-  color:#9B6F7B;
-}
-.history-pill.recent{
-  background:#F7F5F2;
-  border-color:#E3DED8;
-  color:#6A625C;
-}
-.history-row,
-.history-empty,
-.date-chip{
-  border-radius:4px !important;
-  background:#FAF9F7;
-}
-button.secondary,
-.move-btn,
-.top-menu-btn,
-.heart-top-btn,
-.float-nav button{
-  background:#FFFFFF;
-  color:#6A625C;
-  border-color:#D8D1CC;
-}
-.history-btn,
-.back-to-main{
-  background:#6A625C;
-  border-color:#6A625C;
-  color:#FFFFFF;
-}
-.history-btn:hover,
-.back-to-main:hover{
-  background:#4E4843;
-  border-color:#4E4843;
-}
-@media(max-width:980px){
-  .mobile-tabbar{
-    background:rgba(250,249,247,.96) !important;
-    border-radius:4px !important;
-    box-shadow:0 1px 4px rgba(45,42,38,.06) !important;
-  }
-  .mobile-tab{
-    border-radius:4px !important;
-  }
-  .mobile-tab.active{
-    background:#F1E6E9;
-    color:#9B6F7B;
-  }
-  body.view-card .card.with-cover .book-cover{
-    border-radius:4px !important;
-    border-color:#E3DED8;
-    background:#F7F5F2;
-  }
-  .view-mode-buttons{
-    border-radius:4px !important;
-    background:#F7F5F2;
-  }
-  .view-mode-btn{
-    border-radius:4px !important;
-  }
-  .favorite-toggle{
-    border-radius:4px !important;
-    box-shadow:none !important;
-    color:#98717C;
-  }
-  .favorite-toggle.is-on{
-    background:#F1E6E9;
-    color:#9B6F7B;
-    border-color:#DED6D2;
-  }
-}
-
-
-/* compact view selector only: rollback color tweak, reduce height/size */
-@media(max-width:980px){
-  .view-mode-row{
-    margin-top:6px !important;
-    padding-top:6px !important;
-    min-height:0 !important;
-  }
-  .view-mode-label{
-    font-size:11px !important;
-    line-height:1 !important;
-  }
-  .view-mode-buttons{
-    padding:2px !important;
-    gap:4px !important;
-  }
-  .view-mode-btn{
-    width:30px !important;
-    min-height:26px !important;
-    height:26px !important;
-    font-size:14px !important;
-    line-height:1 !important;
-    padding:0 !important;
-  }
-}
-
-
-/* view selector symbol size tweak only */
-@media(max-width:980px){
-  .view-mode-btn{
-    font-size:16px !important;
-  }
-}
-
-
-/* balance view selector icons only */
-@media(max-width:980px){
-  .view-mode-btn{
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    font-family:Arial, sans-serif !important;
-    font-size:17px !important;
-    font-weight:700 !important;
-    letter-spacing:0 !important;
-  }
-}
-
-
-/* make list view icon wider only */
-@media(max-width:980px){
-  .list-view-icon{
-    width:16px;
-    height:11px;
-    display:inline-block;
-    background:
-      linear-gradient(currentColor,currentColor) left top / 100% 1.5px no-repeat,
-      linear-gradient(currentColor,currentColor) left center / 100% 1.5px no-repeat,
-      linear-gradient(currentColor,currentColor) left bottom / 100% 1.5px no-repeat;
-  }
-}
-
-
-/* card view icon: 2x2 squares balanced with list icon */
-@media(max-width:980px){
-  .card-view-icon{
-    width:16px;
-    height:14px;
-    display:grid;
-    grid-template-columns:repeat(2, 6px);
-    grid-template-rows:repeat(2, 6px);
-    gap:2px;
-    align-items:center;
-    justify-content:center;
-  }
-  .card-view-icon::before{
-    content:"";
-    width:6px;
-    height:6px;
-    background:currentColor;
-    box-shadow:
-      8px 0 0 currentColor,
-      0 8px 0 currentColor,
-      8px 8px 0 currentColor;
-  }
-}
-
-
-/* mobile bottom tabbar: stick fully to bottom, device-safe */
-@media(max-width:980px){
-  .page{
-    padding-bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .mobile-tabbar{
-    left:0 !important;
-    right:0 !important;
-    bottom:0 !important;
-    width:100% !important;
-    border-left:0 !important;
-    border-right:0 !important;
-    border-bottom:0 !important;
-    border-radius:4px 4px 0 0 !important;
-    background:#FAF9F7 !important;
-    padding:7px 10px calc(7px + env(safe-area-inset-bottom, 0px)) 10px !important;
-    box-shadow:0 -1px 6px rgba(45,42,38,.08) !important;
-  }
-  .float-nav{
-    bottom:calc(78px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-}
-
-
-/* mobile quick buttons balance: reset + accordion */
-@media(max-width:980px){
-  .quick-row{
-    grid-template-columns:minmax(0,1fr) 68px 48px !important;
-    align-items:end !important;
-  }
-  .quick-row>div:nth-child(2){
-    width:68px !important;
-  }
-  #resetBtn{
-    width:68px !important;
-    min-height:40px !important;
-    height:40px !important;
-    padding:0 !important;
-    font-size:14px !important;
-    line-height:1 !important;
-  }
-  #detailToggleBtn{
-    width:48px !important;
-    min-height:40px !important;
-    height:40px !important;
-    padding:0 !important;
-    font-size:15px !important;
-    line-height:1 !important;
-  }
-  .detail-toggle-icon{
-    width:12px !important;
-    height:12px !important;
-    border-right-width:3px !important;
-    border-bottom-width:3px !important;
-  }
-}
-
-
-/* final mobile button balance */
-@media(max-width:980px){
-  .view-mode-label{
-    display:none !important;
-  }
-
-  .quick-row{
-    grid-template-columns:minmax(0,1fr) 72px 48px !important;
-    gap:8px !important;
-    align-items:end !important;
-  }
-
-  .quick-row > div:nth-child(2){
-    width:72px !important;
-  }
-
-  #sortBy,
-  #resetBtn,
-  #detailToggleBtn{
-    min-height:40px !important;
-    height:40px !important;
-  }
-
-  #resetBtn{
-    width:72px !important;
-    font-size:14px !important;
-    padding:0 !important;
-  }
-
-  #detailToggleBtn{
-    width:48px !important;
-    padding:0 !important;
-  }
-}
-
-
-/* align card/list view selector to the right */
-@media(max-width:980px){
-  .view-mode-row{
-    justify-content:flex-end !important;
-  }
-  .view-mode-buttons{
-    margin-left:auto !important;
-  }
-}
-
-
-/* ridi link + hide search panel on favorite tab */
-@media(max-width:980px){
-  .view-mode-row{
-    justify-content:space-between !important;
-  }
-  .ridi-mobile-link{
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    min-height:30px !important;
-    height:30px !important;
-    padding:0 10px !important;
-    border:1px solid #D8D1CC !important;
-    background:#FFFFFF !important;
-    color:#6A625C !important;
-    border-radius:4px !important;
-    font-size:12px !important;
-    font-weight:900 !important;
-    line-height:1 !important;
-    white-space:nowrap !important;
-  }
-  .view-mode-buttons{
-    margin-left:auto !important;
-  }
-  body.favorite-mode .panel{
-    display:none !important;
-  }
-}
-
-
-/* standalone webapp only: lift bottom tabbar slightly */
-@media(max-width:980px) and (display-mode: standalone){
-  .mobile-tabbar{
-    bottom:calc(10px + env(safe-area-inset-bottom, 0px)) !important;
-    border-bottom:1px solid #E3DED8 !important;
-    border-radius:4px !important;
-  }
-}
-@media(max-width:980px) and (-webkit-device-pixel-ratio: 3){
-  @supports (-webkit-touch-callout:none){
-    @media (display-mode: standalone){
-      .mobile-tabbar{
-        bottom:calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+  
+    /* Main-page-like width + richer dried rose accents */
+    @media(min-width:981px){
+      .back-to-main-wrap,
+      .page{
+        width:min(1000px,calc(100% - 40px))!important;
+        max-width:1000px!important;
+      }
+      .page{
+        padding-top:18px!important;
+      }
+      .layout{
+        grid-template-columns:minmax(0,1fr) 250px!important;
+        gap:14px!important;
+      }
+      .main-col{
+        min-width:0!important;
+      }
+      .panel{
+        padding:12px 14px!important;
+        border-radius:13px!important;
+      }
+      .quick-row{
+        grid-template-columns:1fr 1fr 1.1fr auto!important;
+        gap:8px!important;
+      }
+      .list{
+        gap:8px!important;
+      }
+      .card{
+        padding:10px 12px!important;
+        min-height:88px!important;
+        border-radius:12px!important;
+        grid-template-columns:minmax(0,1fr) 86px!important;
+      }
+      .side-search-panel,
+      .cart-panel{
+        padding:11px!important;
+        border-radius:13px!important;
+      }
+      .side-search-panel .search-row input,
+      .side-search-panel .search-row button{
+        min-height:36px!important;
+      }
+      .title{
+        font-size:30px!important;
+        margin-bottom:4px!important;
+      }
+      .desc{
+        font-size:13px!important;
       }
     }
-  }
-}
 
+    /* richer dried rose visual accents */
+    .card-banner,
+    .payout-date-heading{
+      background:#ead8da!important;
+      color:#4f3c36!important;
+      border-bottom:1px solid #dcc7c9!important;
+    }
 
-/* standalone webapp only: slightly larger bottom tabbar */
-@media(max-width:980px) and (display-mode: standalone){
-  .mobile-tabbar{
-    padding:9px 12px calc(9px + env(safe-area-inset-bottom, 0px)) 12px !important;
-  }
-  .mobile-tab{
-    min-height:52px !important;
-  }
-  .mobile-tab span{
-    font-size:21px !important;
-  }
-  .mobile-tab em{
-    font-size:12px !important;
-  }
-}
+    .panel,
+    .side-search-panel,
+    .cart-panel{
+      border-color:#dcc7c9!important;
+    }
 
-/* inline date list tab */
-@media(max-width:980px){
-  body.date-list-mode .panel{
-    display:none !important;
-  }
-  body.date-list-mode #list,
-  body.date-list-mode #empty,
-  body.date-list-mode #loadMoreWrap{
-    display:none !important;
-  }
-  body.date-list-mode #dateListView{
-    display:block !important;
-  }
-  body:not(.date-list-mode) #dateListView{
-    display:none !important;
-  }
-  .date-list-view{
-    background:#FFFFFF;
-    border:1px solid #E3DED8;
-    border-radius:4px;
-    box-shadow:0 1px 4px rgba(45,42,38,.035);
-    padding:12px;
-    margin:10px 0 12px;
-  }
-  .date-list-clear-row{
-    display:flex;
-    justify-content:flex-end;
-    margin:-2px 0 8px;
-  }
-  .date-list-clear-btn{
-    width:auto;
-    min-height:34px;
-    height:34px;
-    padding:0 12px;
-    background:#FFFFFF;
-    color:#6A625C;
-    border:1px solid #D8D1CC;
-    border-radius:4px;
-    font-size:12px;
-    font-weight:900;
-  }
-  .date-list-clear-btn:disabled{
-    opacity:.45;
-    cursor:not-allowed;
-  }
-  .date-list-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:10px;
-  }
-  .date-list-head strong{
-    font-size:15px;
-    font-weight:950;
-    color:#2B2927;
-  }
-  #dateYearFilter{
-    width:112px;
-    min-height:34px;
-    height:34px;
-    padding:0 8px;
-    font-size:13px;
-    border-radius:4px;
-  }
-  .date-list-inline{
-    display:grid;
-    gap:8px;
-  }
-  .date-list-item{
-    width:100%;
-    min-height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:0 12px;
-    background:#FAF9F7;
-    color:#6A625C;
-    border:1px solid #E3DED8;
-    border-radius:4px;
-    font-size:14px;
-    font-weight:900;
-  }
-  .date-list-item.active{
-    background:#F1E6E9;
-    color:#9B6F7B;
-    border-color:#DED6D2;
-  }
-  .date-list-item em{
-    font-style:normal;
-    color:#77706A;
-    font-size:12px;
-    font-weight:850;
-  }
-  .date-list-empty{
-    padding:24px 12px;
-    text-align:center;
-    color:#77706A;
-    border:1px dashed #E3DED8;
-    border-radius:4px;
-    font-weight:850;
-  }
-}
+    .badge.type,
+    button.ghost,
+    .desktop-cart-toggle{
+      background:#ead8da!important;
+      color:#6f5a50!important;
+      border-color:#dcc7c9!important;
+    }
 
+    .tabs button.active,
+    button:not(.secondary):not(.ghost):not(.danger):not(.remove-btn):not(.cart-btn):not(.mobile-cart-open):not(.desktop-cart-toggle){
+      background:#a97882!important;
+      border-color:#a97882!important;
+      color:#fff!important;
+    }
 
-/* mobile search input + button balance */
-@media(max-width:980px){
-  .search-row{
-    grid-template-columns:minmax(0,1fr) 64px !important;
-    gap:8px !important;
-    align-items:end !important;
-  }
-  .search-row > div:last-child{
-    width:64px !important;
-  }
-  #q,
-  #searchBtn{
-    min-height:42px !important;
-    height:42px !important;
-  }
-  #searchBtn{
-    width:64px !important;
-    padding:0 !important;
-    font-size:14px !important;
-    line-height:1 !important;
-  }
-}
+    .book-title{
+      color:#251f1d!important;
+    }
 
+    .book-title:hover{
+      color:#8f6670!important;
+    }
 
-/* date list count removed */
-@media(max-width:980px){
-  .date-list-item{
-    justify-content:flex-start !important;
-  }
-}
+    .badge{
+      background:#efe4d9!important;
+      color:#5f4c43!important;
+    }
 
+    .badge.price{
+      background:#f7f0e9!important;
+      color:#4f3c36!important;
+    }
 
-/* install banner: state-separated visibility */
-#installBanner{
-  display:none !important;
-}
-@media(max-width:980px){
-  #installBanner.is-visible{
-    display:flex !important;
-  }
-  #installBanner.is-dismissed{
-    display:none !important;
-  }
-}
-@media(max-width:980px) and (display-mode: standalone){
-  #installBanner,
-  #installBanner.is-visible,
-  #installBanner.is-dismissed{
-    display:none !important;
-  }
-}
-@media(max-width:980px){
-  body.standalone #installBanner,
-  body.standalone #installBanner.is-visible,
-  body.standalone #installBanner.is-dismissed{
-    display:none !important;
-  }
-}
+    .go,
+    .back-to-main,
+    .link-box a,
+    .go-btn{
+      background:#6f5a50!important;
+      border-color:#6f5a50!important;
+      color:#fff!important;
+    }
 
-/* top right ridi + heart buttons, gardening-like */
-.ridi-top-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:86px;
-  min-height:36px;
-  border:1px solid #D8D1CC;
-  border-radius:4px;
-  background:#FFFFFF;
-  color:#6A625C;
-  font-size:13px;
-  font-weight:900;
-  box-shadow:none;
-  white-space:nowrap;
-}
-.ridi-top-btn:hover{
-  background:#F7F5F2;
-}
-@media(max-width:980px){
-  .top-link-row{
-    display:flex !important;
-    width:min(100% - 24px,720px) !important;
-    margin:12px auto 0 !important;
-    justify-content:flex-end !important;
-  }
-  .back-to-main,
-  .top-menu-btn{
-    display:none !important;
-  }
-  .top-actions{
-    display:flex !important;
-    gap:8px !important;
-    margin-left:auto !important;
-  }
-  .ridi-top-btn{
-    width:64px !important;
-    min-height:34px !important;
-    height:34px !important;
-    padding:0 !important;
-    font-size:12px !important;
-  }
-  .heart-top-btn.small{
-    display:inline-flex !important;
-    width:38px !important;
-    min-height:34px !important;
-    height:34px !important;
-    border-radius:4px !important;
-    font-size:16px !important;
-  }
-  .view-mode-row{
-    justify-content:flex-end !important;
-  }
-}
+    .go:hover,
+    .back-to-main:hover,
+    .link-box a:hover,
+    .go-btn:hover{
+      background:#5f4c43!important;
+    }
 
-
-/* mobile: title and top buttons on the same line */
-@media(max-width:980px){
-  .top-link-row{
-    position:absolute !important;
-    top:26px !important;
-    right:12px !important;
-    width:auto !important;
-    max-width:none !important;
-    margin:0 !important;
-    z-index:30 !important;
-  }
-  header{
-    position:relative !important;
-    padding-right:116px !important;
-    margin-top:14px !important;
-  }
-  .title{
-    margin:0 !important;
-    line-height:34px !important;
-    white-space:nowrap !important;
-  }
-  .top-actions{
-    align-items:center !important;
-  }
-}
-
-
-
-/* PC card/list switch: default list stays unchanged, card mode shows manual covers */
-@media(min-width:981px){
-  .view-mode-row{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:flex-end !important;
-    gap:10px !important;
-    margin-top:10px !important;
-    padding-top:10px !important;
-    border-top:1px dashed var(--line) !important;
-  }
-  .view-mode-buttons{
-    display:inline-flex !important;
-    gap:6px !important;
-    background:#F7F5F2 !important;
-    border:1px solid var(--line) !important;
-    border-radius:4px !important;
-    padding:3px !important;
-  }
-  .view-mode-btn{
-    width:34px !important;
-    min-height:28px !important;
-    height:28px !important;
-    border-radius:4px !important;
-    padding:0 !important;
-    background:transparent !important;
-    border:0 !important;
-    color:var(--brown) !important;
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-  }
-  .view-mode-btn.active{
-    background:var(--accent) !important;
-    color:#fff !important;
-  }
-  .card-view-icon{
-    width:16px;
-    height:14px;
-    display:grid;
-    grid-template-columns:repeat(2, 6px);
-    grid-template-rows:repeat(2, 6px);
-    gap:2px;
-    align-items:center;
-    justify-content:center;
-  }
-  .card-view-icon::before{
-    content:"";
-    width:6px;
-    height:6px;
-    background:currentColor;
-    box-shadow:8px 0 0 currentColor,0 8px 0 currentColor,8px 8px 0 currentColor;
-  }
-  .list-view-icon{
-    width:16px;
-    height:11px;
-    display:inline-block;
-    background:
-      linear-gradient(currentColor,currentColor) left top / 100% 1.5px no-repeat,
-      linear-gradient(currentColor,currentColor) left center / 100% 1.5px no-repeat,
-      linear-gradient(currentColor,currentColor) left bottom / 100% 1.5px no-repeat;
-  }
-  body.view-card .list{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    align-items:stretch;
-  }
-  body.view-card .card.with-cover{
-    grid-template-columns:86px minmax(0,1fr);
-    grid-template-rows:auto 1fr auto;
-    gap:10px 12px;
-    align-items:start;
-    padding:13px;
-  }
-  body.view-card .card.with-cover .book-cover{
-    display:block;
-    width:86px;
-    height:126px;
-    border-radius:4px;
-    overflow:hidden;
-    border:1px solid #E3DED8;
-    background:#F7F5F2;
-    grid-column:1;
-    grid-row:1 / span 2;
-    align-self:start;
-  }
-  body.view-card .card.with-cover .book-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  body.view-card .card.with-cover .book-cover.no-cover{
-    display:flex !important;
-    align-items:center;
-    justify-content:center;
-    color:#9A918B;
-    font-size:12px;
-    font-weight:900;
-    text-align:center;
-    line-height:1.25;
-    letter-spacing:-.02em;
-    padding:7px;
-  }
-  body.view-card .card.with-cover .card-info{
-    grid-column:2;
-    grid-row:1;
-    min-width:0;
-    padding-top:2px;
-  }
-  body.view-card .card.with-cover .book-title{
-    white-space:normal;
-    font-size:16px;
-    line-height:1.35;
-  }
-  body.view-card .card.with-cover .book-meta{
-    white-space:normal;
-    font-size:13px;
-  }
-  body.view-card .card.with-cover .card-middle{
-    grid-column:2;
-    grid-row:2;
-    align-self:end;
-    justify-self:start;
-    text-align:left;
-    width:auto;
-    max-width:100%;
-    margin-top:0;
-  }
-  body.view-card .card.with-cover .book-history-inline{
-    justify-content:flex-start;
-    flex-wrap:wrap;
-    gap:6px;
-  }
-  body.view-card .card.with-cover .history-pill{
-    min-height:28px;
-    padding:0 10px;
-    font-size:12px;
-  }
-  body.view-card .card.with-cover .card-actions{
-    grid-column:1 / -1;
-    grid-row:3;
-    grid-template-columns:1fr 1fr;
-    width:100%;
-    min-width:0;
-    margin-top:2px;
-  }
-  body.view-card .card.with-cover .history-btn,
-  body.view-card .card.with-cover .move-btn{
-    width:100%;
-    min-height:38px;
-  }
-}
-
-
-/* PC: move card/list toggle beside reset; mobile keeps it under quick filters */
-.detail-toggle-cell{display:none}
-@media(min-width:981px){
-  .quick-row{grid-template-columns:minmax(0,1fr) auto auto !important;align-items:end !important}
-  .quick-row .view-mode-row{display:block !important;margin:0 !important;padding:0 !important;border:0 !important}
-  .quick-row .view-mode-row label{display:block !important;font-size:12px;color:transparent;margin-bottom:5px;font-weight:850}
-  .quick-row .view-mode-buttons{min-height:40px;height:40px;display:inline-flex !important;align-items:center !important;gap:6px !important;background:#F7F5F2 !important;border:1px solid var(--line) !important;border-radius:4px !important;padding:4px !important}
-  .quick-row .view-mode-btn{width:34px !important;min-height:30px !important;height:30px !important;border-radius:4px !important;padding:0 !important;background:transparent !important;border:0 !important;color:var(--brown) !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}
-  .quick-row .view-mode-btn.active{background:var(--accent) !important;color:#fff !important}
-}
-@media(max-width:980px){
-  .detail-toggle-cell{display:block !important}
-  .quick-row .view-mode-row{grid-column:1 / -1 !important}
-  .quick-row .view-mode-row label{display:none !important}
-}
-
-
-
-/* date-list clear button: outside list box, on summary right */
-.summary-right{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;margin-left:auto}
-.summary-right .active-summary{min-width:0}
-.date-list-clear-btn{display:none;width:auto;min-height:32px;height:32px;padding:0 10px;background:#FFFFFF;color:#6A625C;border:1px solid #D8D1CC;border-radius:4px;font-size:12px;font-weight:900;white-space:nowrap}
-body.date-list-mode .date-list-clear-btn{display:inline-flex;align-items:center;justify-content:center}
-.date-list-clear-btn:disabled{opacity:.45;cursor:not-allowed}
-@media(max-width:980px){
-  body.date-list-mode .summary{flex-direction:row !important;align-items:center !important;justify-content:space-between !important;gap:8px !important}
-  body.date-list-mode .summary .count{white-space:nowrap}
-  body.date-list-mode .summary-right{flex:1 1 auto;min-width:0}
-  body.date-list-mode .summary-right .active-summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
-}
-</style></head><body><div class="top-link-row"><a class="back-to-main" href="https://dmnovel.github.io/events/" target="_self" rel="noopener noreferrer">← 이벤트 메인으로</a><div class="top-actions"><a class="ridi-top-btn" href="https://ridibooks.com/category/2200" target="_blank" rel="noopener noreferrer">리디로</a><button class="top-menu-btn" id="dateIndexBtn" type="button">목록</button><button class="heart-top-btn small" id="tasteTopBtn" type="button" aria-label="내 취향">💚</button></div></div><main class="page" id="top"><header><h1 class="title">재정가검색 🌱</h1><p class="desc">※전적으로 저를 믿으시면 안됩니다. <br>누락 및 오기입 노정에서 더블체크하세요</p></header><div id="installBanner" class="install-banner hidden"><span>📱 홈화면에 추가하면 앱처럼 사용할 수 있어요</span><button id="installHowBtn" type="button">방법</button><button id="installDismissBtn" type="button" aria-label="닫기">×</button></div><section class="panel" aria-label="검색 및 필터"><div class="search-row"><div><label for="q">통합검색</label><input id="q" type="search" placeholder="제목 또는 작가 검색" autocomplete="off"></div><div><label>&nbsp;</label><button id="searchBtn" type="button">검색</button></div></div><div class="quick-row"><div><label for="sortBy">정렬</label><select id="sortBy"><option value="default">기본순</option><option value="titleAsc">제목 가나다순</option><option value="authorAsc">작가 가나다순</option></select></div><div><label>&nbsp;</label><button id="resetBtn" class="secondary" type="button">초기화</button></div><div class="detail-toggle-cell"><label>&nbsp;</label><button id="detailToggleBtn" class="secondary detail-toggle-btn" type="button" aria-expanded="true" aria-controls="detailRow" title="상세검색 접기"><span class="detail-toggle-icon" aria-hidden="true"></span></button></div><div class="view-mode-row" aria-label="보기 방식"><label>&nbsp;</label><div class="view-mode-buttons"><button id="viewCardBtn" class="view-mode-btn" type="button" aria-label="카드형"><span class="card-view-icon" aria-hidden="true"></span></button><button id="viewListBtn" class="view-mode-btn" type="button" aria-label="리스트형"><span class="list-view-icon" aria-hidden="true"></span></button></div></div></div><div class="detail-row" id="detailRow"><div><label for="titleOnly">제목만 검색</label><input id="titleOnly" type="search" placeholder="제목에 포함될 단어" autocomplete="off"></div><div><label for="authorOnly">작가만 검색</label><input id="authorOnly" type="search" placeholder="작가명" autocomplete="off"></div><div><label for="discountRate">할인율</label><select id="discountRate"><option value="">전체 할인율</option></select></div><div><label for="exclude">제외어</label><input id="exclude" type="search" placeholder="제목/작가에서 제외" autocomplete="off"></div></div></section><section class="summary"><div class="count">검색 결과 <strong id="resultCount">0</strong>개</div><div class="summary-right"><div id="activeSummary" class="active-summary">필터 없음</div><button id="dateListClearBtn" class="date-list-clear-btn" type="button">선택 해제</button></div></section>
-<section id="dateListView" class="date-list-view hidden" aria-label="출현연월 목록">
-  <div class="date-list-head">
-    <strong>출현연월 목록</strong>
-    <select id="dateYearFilter" aria-label="연도별 보기">
-      <option value="">전체 연도</option>
-    </select>
-  </div>
-  <div id="dateListInline" class="date-list-inline"></div>
-</section>
-<section id="list" class="list" aria-label="작품 목록"></section><div id="empty" class="empty prompt hidden">검색값을 입력하세요</div><div id="error" class="error hidden"></div><div id="loadMoreWrap" class="load-more-wrap hidden"><button id="loadMoreBtn" type="button">더보기</button></div><div id="bottomAnchor"></div></main><div id="historyModalBackdrop" class="history-modal-backdrop" aria-hidden="true"><section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle"><div class="history-head"><h2 id="historyModalTitle">과거 할인율</h2><button id="historyModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p id="historyModalMeta" class="history-meta"></p><div id="historyModalBody" class="history-list"></div></section></div><div id="dateIndexBackdrop" class="date-index-backdrop" aria-hidden="true"><section class="date-index-modal" role="dialog" aria-modal="true" aria-labelledby="dateIndexTitle"><div class="history-head"><h2 id="dateIndexTitle">정리된 출현연월</h2><button id="dateIndexClose" class="history-close" type="button" aria-label="닫기">×</button></div><p class="date-index-desc">누락에 주의하세요</p><div id="dateIndexBody" class="date-index-list"></div></section></div><div id="tasteModalBackdrop" class="taste-modal-backdrop" aria-hidden="true"><section class="taste-modal" role="dialog" aria-modal="true" aria-labelledby="tasteModalTitle"><div class="history-head"><h2 id="tasteModalTitle">찐토리 취향</h2><button id="tasteModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p class="history-meta">냠💚</p><div class="taste-card-list"><article class="taste-card"><h3 class="taste-card-title">취향작 카드 1</h3><p class="taste-card-desc">준비중</p></article></div></section></div><nav class="mobile-tabbar" aria-label="모바일 탭"><button id="tabSearchBtn" type="button" class="mobile-tab active"><span>⌕</span><em>검색</em></button><button id="tabListBtn" type="button" class="mobile-tab"><span>☷</span><em>목록</em></button><button id="tabFavBtn" type="button" class="mobile-tab"><span>♡</span><em>찜</em></button></nav><div class="float-nav" aria-label="페이지 이동"><button id="goTopBtn" type="button" aria-label="맨 위로">↑</button><button id="goBottomBtn" type="button" aria-label="맨 아래로">↓</button></div><script>
-const PAGE_SIZE=100;
-const state={items:[],filtered:[],visibleCount:PAGE_SIZE,selectedHistoryDate:"",viewMode:localStorage.getItem("dm_view_mode")||"list",favorites:new Set(JSON.parse(localStorage.getItem("dm_favorites")||"[]")),showFavorites:false,showDateList:false};
-const els={q:document.getElementById('q'),searchBtn:document.getElementById('searchBtn'),sortBy:document.getElementById('sortBy'),resetBtn:document.getElementById('resetBtn'),titleOnly:document.getElementById('titleOnly'),authorOnly:document.getElementById('authorOnly'),exclude:document.getElementById('exclude'),discountRate:document.getElementById('discountRate'),resultCount:document.getElementById('resultCount'),activeSummary:document.getElementById('activeSummary'),list:document.getElementById('list'),empty:document.getElementById('empty'),error:document.getElementById('error'),loadMoreWrap:document.getElementById('loadMoreWrap'),loadMoreBtn:document.getElementById('loadMoreBtn'),goTopBtn:document.getElementById('goTopBtn'),goBottomBtn:document.getElementById('goBottomBtn'),bottomAnchor:document.getElementById('bottomAnchor'),detailToggleBtn:document.getElementById('detailToggleBtn'),detailRow:document.getElementById('detailRow')};
-function normalizeText(value){return String(value??'').trim().toLowerCase().replace(/\s+/g,'')}
-function toNumber(value){if(typeof value==='number')return value;const text=String(value??'').replace(/[^\d.-]/g,'');const num=Number(text);return Number.isFinite(num)?num:0}
-function historyCount(value){return String(value||'').split(',').map(v=>v.trim()).filter(Boolean).length}
-function normalizeItem(item,index){
-const title=String(item.title??'').trim();
-const author=String(item.author??'').trim();
-const history=String(item.history??item.pastDiscount??item['과거할인율']??'').trim();
-const historyItems=parseHistory(history);
-const latest=latestHistoryEntry(history);
-return{
-workId:String(item.workId??item.id??'').trim(),
-title,author,
-_titleNorm:normalizeText(title),
-_authorNorm:normalizeText(author),
-_joinedNorm:normalizeText(title+author),
-link:String(item.link??'').trim(),
-discount:toNumber(item.discount),
-price:toNumber(item.price),
-type:String(item.type??'').trim(),
-cover:String(item.cover??item.coverUrl??item['표지주소']??item['표지']??'').trim(),
-history,
-_historyItems:historyItems,
-_historyCache:null,
-appearCount:historyItems.length,
-latestEntry:latest,
-originalIndex:index
-}}
-function hasSearchCriteria(){return Boolean(els.q.value.trim()||els.titleOnly.value.trim()||els.authorOnly.value.trim()||els.exclude.value.trim()||els.discountRate.value||state.selectedHistoryDate)}
-function getRateKey(value){const m=String(value||'').match(/(\d+)\s*%/);return m?m[1]:''}
-function historyMatchesSelected(item){const selectedDate=state.selectedHistoryDate,selectedRate=els.discountRate.value;if(!selectedDate&&!selectedRate)return true;return item._historyItems.some(entry=>{if(selectedDate&&entry.date!==selectedDate)return false;if(selectedRate&&getRateKey(entry.rate)!==selectedRate)return false;return true})}
-function applyFilters(){const hasCriteria=hasSearchCriteria();if(!hasCriteria){state.filtered=[];state.visibleCount=PAGE_SIZE;updateSummary();render(true);return}const q=normalizeText(els.q.value),titleOnly=normalizeText(els.titleOnly.value),authorOnly=normalizeText(els.authorOnly.value),exclude=normalizeText(els.exclude.value);let result=state.items.filter(item=>{const title=item._titleNorm,author=item._authorNorm,joined=item._joinedNorm;if(!historyMatchesSelected(item))return false;if(q&&!(title.includes(q)||author.includes(q)))return false;if(titleOnly&&!title.includes(titleOnly))return false;if(authorOnly&&!author.includes(authorOnly))return false;if(exclude&&joined.includes(exclude))return false;return true});state.filtered=applySort(result);state.visibleCount=PAGE_SIZE;updateSummary();render(false)}
-function applySort(list){const sort=els.sortBy.value,arr=[...list];const byText=f=>(a,b)=>String(a[f]||'').localeCompare(String(b[f]||''),'ko-KR',{numeric:true});if(sort==='titleAsc')arr.sort(byText('title'));if(sort==='authorAsc')arr.sort(byText('author'));if(sort==='default')arr.sort((a,b)=>a.originalIndex-b.originalIndex);return arr}
-function updateSummary(){const p=[];if(state.selectedHistoryDate)p.push(`출현연월: ${state.selectedHistoryDate}`);if(els.q.value.trim())p.push(`통합: ${els.q.value.trim()}`);if(els.sortBy.value!=='default')p.push(`정렬: ${els.sortBy.options[els.sortBy.selectedIndex].textContent}`);if(els.discountRate.value)p.push(`할인율: ${els.discountRate.value}%`);if(els.titleOnly.value.trim())p.push(`제목: ${els.titleOnly.value.trim()}`);if(els.authorOnly.value.trim())p.push(`작가: ${els.authorOnly.value.trim()}`);if(els.exclude.value.trim())p.push(`제외: ${els.exclude.value.trim()}`);els.activeSummary.textContent=p.length?p.join(' · '):'필터 없음'}
-function makeSearchLink(item){const q=encodeURIComponent(String(item.title||'').trim());return q?`https://ridibooks.com/search?q=${q}&adult_exclude=n&tab=WEBNOVEL&child_tab=BL_WEBNOVEL`:''}
-function parseHistory(value){return String(value||'').split(',').map(v=>v.trim()).filter(Boolean).map(v=>{const m=v.match(/^(\d{6}\S*)\s+(.*)$/);return m?{date:m[1],rate:m[2].trim()||'-'}:{date:'기록',rate:v}})}
-function latestHistoryEntry(value){const entries=parseHistory(value).filter(entry=>entry.date&&entry.date!=='기록');if(!entries.length)return null;return [...entries].sort((a,b)=>String(b.date).slice(0,6).localeCompare(String(a.date).slice(0,6),'ko-KR',{numeric:true}))[0]}
-function populateDiscountOptions(){const rates=[...new Set(state.items.flatMap(item=>parseHistory(item.history).map(entry=>getRateKey(entry.rate)).filter(Boolean)))].sort((a,b)=>Number(a)-Number(b));els.discountRate.innerHTML='<option value="">전체 할인율</option>'+rates.map(rate=>`<option value="${rate}">${rate}%</option>`).join('')}
-function openHistoryModal(item){const backdrop=document.getElementById('historyModalBackdrop'),title=document.getElementById('historyModalTitle'),meta=document.getElementById('historyModalMeta'),body=document.getElementById('historyModalBody');title.textContent=item.title||'과거 할인율';meta.textContent=(item.author||'작가 정보 없음')+' · 과거 마크다운 할인율';body.innerHTML='';const entries=item._historyCache||(item._historyCache=item._historyItems);if(!entries.length){const empty=document.createElement('div');empty.className='history-empty';empty.textContent='정리된 과거 할인율이 없습니다.';body.appendChild(empty)}else{entries.forEach(entry=>{const row=document.createElement('div');row.className='history-row';const date=document.createElement('span');date.className='history-date';date.textContent=entry.date;const rate=document.createElement('span');rate.className='history-rate';rate.textContent=entry.rate;row.append(date,rate);body.appendChild(row)})}backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
-function closeHistoryModal(){const backdrop=document.getElementById('historyModalBackdrop');backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
-function getHistoryDateCounts(){const counts=new Map();state.items.forEach(item=>{new Set(item._historyItems.map(entry=>entry.date).filter(date=>date&&date!=='기록')).forEach(date=>counts.set(date,(counts.get(date)||0)+1))});return [...counts.entries()].sort((a,b)=>b[0].localeCompare(a[0],'ko-KR',{numeric:true}))}
-function getHistoryYears(){
-  return [...new Set(getHistoryDateCounts().map(([date])=>String(date).slice(0,4)).filter(Boolean))].sort((a,b)=>b.localeCompare(a,'ko-KR',{numeric:true}));
-}
-function populateDateYearFilter(){
-  const sel=document.getElementById('dateYearFilter');
-  if(!sel)return;
-  const current=sel.value;
-  const years=getHistoryYears();
-  sel.innerHTML='<option value="">전체 연도</option>'+years.map(y=>`<option value="${y}">${y}년</option>`).join('');
-  if(years.includes(current))sel.value=current;
-}
-function renderDateListInline(){
-  const wrap=document.getElementById('dateListInline');
-  const yearSel=document.getElementById('dateYearFilter');
-  const clearBtn=document.getElementById('dateListClearBtn');
-  if(!wrap)return;
-  if(clearBtn)clearBtn.disabled=!state.selectedHistoryDate;
-  const year=yearSel?yearSel.value:'';
-  const dates=getHistoryDateCounts().filter(([date])=>!year||String(date).startsWith(year));
-  wrap.innerHTML='';
-  if(!dates.length){
-    const empty=document.createElement('div');
-    empty.className='date-list-empty';
-    empty.textContent='정리된 출현연월이 없습니다.';
-    wrap.appendChild(empty);
-    return;
-  }
-  dates.forEach(([date,count])=>{
-    const isSelected=state.selectedHistoryDate===date;
-    const btn=document.createElement('button');
-    btn.type='button';
-    btn.className='date-list-item'+(isSelected?' active':'');
-    btn.setAttribute('aria-pressed',String(isSelected));
-    btn.innerHTML=`<span>${isSelected?'✓ ':''}${date}</span>`;
-    btn.addEventListener('click',()=>{
-      if(isSelected){
-        state.selectedHistoryDate='';
-        state.showDateList=true;
-        state.showFavorites=false;
-        document.body.classList.add('date-list-mode');
-        document.body.classList.remove('favorite-mode');
-        applyFilters();
-        renderDateListInline();
-        updateBottomTabs();
-        return;
+  
+    /* Price option / card action alignment fix */
+    @media(min-width:981px){
+      .card{
+        grid-template-columns:minmax(0,1fr) 116px!important;
+        padding-right:18px!important;
       }
-      state.selectedHistoryDate=date;
-      state.showDateList=false;
-      state.showFavorites=false;
-      document.body.classList.remove('date-list-mode','favorite-mode');
-      applyFilters();
-      updateBottomTabs();
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-    wrap.appendChild(btn);
-  });
+      .card-actions{
+        justify-self:start!important;
+        width:96px!important;
+        min-width:96px!important;
+      }
+      .go,.cart-btn{
+        width:96px!important;
+      }
+    }
+
+
+    /* =========================
+       2026-05 light clean / inline meta final override
+       배경은 밝게, 할인율·금액·구매유형은 작가 옆 한 줄 배치
+    ========================= */
+    :root{
+      --bg:#fffdf9!important;
+      --card:#ffffff!important;
+      --text:#2f2725!important;
+      --muted:#8b756d!important;
+      --line:#e8ddd6!important;
+      --accent:#a97882!important;
+      --accent-weak:#f3e7ea!important;
+      --brown:#6f5a50!important;
+      --brown-dark:#5f4c43!important;
+      --shadow:0 2px 12px rgba(80,55,45,.045)!important;
+    }
+    html,body{background:#fffdf9!important;color:var(--text)!important;}
+    .page{background:transparent!important;}
+    .panel,.cart-panel,.side-search-panel,.card,.stat,.cart-item,.empty,.error{
+      background:#ffffff!important;
+      border-color:#e8ddd6!important;
+      box-shadow:0 2px 12px rgba(80,55,45,.04)!important;
+      backdrop-filter:none!important;
+    }
+    .panel,.side-search-panel,.cart-panel{border-radius:16px!important;}
+    input,select{
+      background:#ffffff!important;
+      color:var(--text)!important;
+      border-color:#e4d9d3!important;
+    }
+    input:focus,select:focus,button:focus{
+      outline:none!important;
+      border-color:#b7848f!important;
+      box-shadow:0 0 0 3px rgba(183,132,143,.16)!important;
+    }
+    button:not(.secondary):not(.ghost):not(.danger):not(.remove-btn):not(.cart-btn):not(.mobile-cart-open):not(.desktop-cart-toggle){
+      background:#a97882!important;
+      border-color:#a97882!important;
+      color:#ffffff!important;
+    }
+    button.secondary{background:#ffffff!important;color:#6f5a50!important;border-color:#d8c8be!important;}
+    button.ghost,.detail-toggle button,.desktop-cart-toggle{background:#efe3e6!important;color:#6d5058!important;border-color:#dfcdd2!important;}
+    button.danger,.remove-btn{background:#ffffff!important;color:#9b3b35!important;border-color:#e5c8c4!important;}
+    .go,.back-to-main,.link-box a,.go-btn{
+      background:#6f5a50!important;
+      border-color:#6f5a50!important;
+      color:#ffffff!important;
+    }
+    .go:hover,.back-to-main:hover,.link-box a:hover,.go-btn:hover{background:#5f4c43!important;}
+    .list{gap:10px!important;}
+    .card{
+      display:grid!important;
+      grid-template-columns:minmax(0,1fr) 116px!important;
+      align-items:center!important;
+      gap:18px!important;
+      min-height:86px!important;
+      padding:14px 20px 14px 18px!important;
+      border-radius:14px!important;
+    }
+    .book-title{
+      display:block!important;
+      margin:0 0 8px!important;
+      color:#251f1d!important;
+      font-size:17px!important;
+      font-weight:950!important;
+      line-height:1.35!important;
+      overflow:hidden!important;
+      text-overflow:ellipsis!important;
+      white-space:nowrap!important;
+    }
+    .book-title:hover{color:#8f6670!important;}
+    .book-meta-line{
+      display:flex!important;
+      align-items:center!important;
+      flex-wrap:wrap!important;
+      gap:7px!important;
+      min-width:0!important;
+    }
+    .book-meta{
+      display:inline-flex!important;
+      align-items:center!important;
+      margin:0 5px 0 0!important;
+      color:#8b756d!important;
+      font-size:14px!important;
+      font-weight:600!important;
+      line-height:1.2!important;
+      max-width:220px!important;
+      overflow:hidden!important;
+      text-overflow:ellipsis!important;
+      white-space:nowrap!important;
+    }
+    .badges{
+      display:inline-flex!important;
+      align-items:center!important;
+      flex-wrap:wrap!important;
+      gap:7px!important;
+      margin:0!important;
+    }
+    .badge{
+      display:inline-flex!important;
+      align-items:center!important;
+      justify-content:center!important;
+      min-height:29px!important;
+      height:29px!important;
+      padding:0 12px!important;
+      border-radius:999px!important;
+      font-size:14px!important;
+      font-weight:900!important;
+      line-height:1!important;
+      white-space:nowrap!important;
+      box-shadow:0 1px 3px rgba(80,55,45,.06)!important;
+    }
+    .badge.discount{
+      background:#ead8c6!important;
+      color:#5e4335!important;
+      border:1px solid #e0c7b2!important;
+    }
+    .badge.price{
+      min-width:82px!important;
+      background:#fff0dc!important;
+      color:#3f2b22!important;
+      border:1px solid #e4cbb7!important;
+    }
+    .badge.type{
+      background:#eadde0!important;
+      color:#6d5058!important;
+      border:1px solid #d7c1c8!important;
+    }
+    .card-actions{
+      display:grid!important;
+      grid-template-columns:1fr!important;
+      gap:9px!important;
+      width:96px!important;
+      min-width:96px!important;
+      justify-self:start!important;
+    }
+    .go,.cart-btn{
+      width:96px!important;
+      min-height:40px!important;
+      height:40px!important;
+      border-radius:12px!important;
+      font-size:14px!important;
+      font-weight:950!important;
+      padding:0 10px!important;
+    }
+    .cart-btn{
+      background:#ffffff!important;
+      color:#6f5a50!important;
+      border-color:#dbcac2!important;
+    }
+    .cart-btn:hover{background:#fff8f5!important;}
+    .cart-btn.added{
+      background:#f3e7ea!important;
+      color:#6d5058!important;
+      border-color:#d7c1c8!important;
+    }
+    .mobile-cart-bar{background:#6f5a50!important;}
+    .mobile-cart-open{background:#ffffff!important;color:#6f5a50!important;}
+    .cart-sheet{background:#fffdf9!important;}
+    .float-nav button{background:#ffffff!important;color:#6f5a50!important;border-color:#e8ddd6!important;}
+    @media(min-width:981px){
+      .back-to-main-wrap,.page{width:min(1000px,calc(100% - 40px))!important;max-width:1000px!important;}
+      .layout{grid-template-columns:minmax(0,1fr) 250px!important;gap:14px!important;}
+    }
+    @media(max-width:980px){
+      .card{
+        grid-template-columns:1fr!important;
+        align-items:start!important;
+        gap:13px!important;
+        padding:16px!important;
+      }
+      .book-title{white-space:normal!important;font-size:16px!important;}
+      .book-meta-line{align-items:flex-start!important;}
+      .book-meta{max-width:100%!important;width:100%!important;margin:0!important;}
+      .card-actions{grid-template-columns:1fr 1fr!important;width:100%!important;min-width:0!important;}
+      .go,.cart-btn{width:100%!important;}
+    }
+    @media(max-width:420px){
+      .card-actions{grid-template-columns:1fr!important;}
+      .badge{font-size:13px!important;height:28px!important;min-height:28px!important;padding:0 10px!important;}
+    }
+
+    /* final: 할인율/금액/구매유형 배지를 제목·작가와 분리해서 카드 가운데 배치 */
+    .card{
+      grid-template-columns:minmax(0,260px) minmax(240px,1fr) 96px!important;
+      column-gap:22px!important;
+      gap:22px!important;
+    }
+    .book-info{
+      min-width:0!important;
+      display:flex!important;
+      flex-direction:column!important;
+      justify-content:center!important;
+    }
+    .book-meta-line{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:0!important;}
+    .book-meta{display:block!important;max-width:100%!important;margin:0!important;}
+    .badges{
+      display:flex!important;
+      align-items:center!important;
+      justify-content:center!important;
+      justify-self:center!important;
+      align-self:center!important;
+      flex-wrap:wrap!important;
+      gap:7px!important;
+      margin:0!important;
+      min-width:0!important;
+    }
+    @media(max-width:980px){
+      .card{grid-template-columns:1fr!important;gap:13px!important;}
+      .badges{justify-self:start!important;justify-content:flex-start!important;}
+    }
+
+
+    /* final update: 할인율 강조 + 상단 리디북스 버튼 */
+    .badge.discount{
+      background:#c45f73!important;
+      color:#ffffff!important;
+      border:1px solid #b85668!important;
+      box-shadow:0 2px 6px rgba(196,95,115,.25)!important;
+    }
+    .top-link-row{
+      width:min(1000px,calc(100% - 40px));
+      max-width:1000px;
+      margin:14px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .top-link-row .back-to-main-wrap{
+      width:auto!important;
+      max-width:none!important;
+      margin:0!important;
+      display:flex!important;
+      justify-content:flex-start!important;
+    }
+    .ridi-top-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:0 15px;
+      background:#6f5a50!important;
+      color:#ffffff!important;
+      border:1px solid #6f5a50!important;
+      border-radius:9px;
+      font-weight:800;
+      font-size:13px;
+      text-decoration:none;
+      white-space:nowrap;
+      box-shadow:0 2px 8px rgba(80,55,45,.08);
+    }
+    .ridi-top-link:hover{background:#5f4c43!important;border-color:#5f4c43!important;}
+    @media(max-width:980px){
+      .top-link-row{width:min(100% - 24px,1120px);margin-top:12px;}
+      .ridi-top-link{min-height:34px;padding:0 12px;font-size:12px;}
+    }
+
+
+    /* final update: 검색/필터 영역 고정 해제 (PC/모바일 공통) */
+    .panel,
+    .side-search-panel{
+      position:static!important;
+      top:auto!important;
+      z-index:auto!important;
+    }
+    @media(max-width:980px){
+      .panel{
+        position:static!important;
+        top:auto!important;
+      }
+    }
+    @media(min-width:981px){
+      .desktop-side{
+        position:static!important;
+        top:auto!important;
+        max-height:none!important;
+      }
+      .desktop-side .cart-panel{
+        position:sticky!important;
+        top:12px!important;
+      }
+    }
+
+
+    /* ♥내 취향♥ 버튼 + 카드 팝업 */
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-left:auto;
+      position:relative;
+    }
+    .taste-wrap{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+    .taste-top-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:auto!important;
+      min-height:34px!important;
+      padding:0 12px!important;
+      background:#fff!important;
+      color:#9b5262!important;
+      border:1px solid #dfcdd2!important;
+      border-radius:999px!important;
+      font-weight:950!important;
+      font-size:12px!important;
+      line-height:1!important;
+      white-space:nowrap;
+      box-shadow:0 2px 8px rgba(80,55,45,.06);
+    }
+    .taste-top-btn:hover{background:#fff6f8!important;border-color:#cfaeb6!important;}
+    .taste-popover{
+      position:absolute;
+      top:calc(100% + 9px);
+      right:0;
+      width:min(340px,calc(100vw - 28px));
+      max-height:min(70vh,520px);
+      overflow:auto;
+      display:none;
+      z-index:80;
+      background:#ffffff;
+      border:1px solid #e4d5d1;
+      border-radius:16px;
+      box-shadow:0 16px 34px rgba(80,55,45,.16);
+      padding:13px;
+    }
+    .taste-popover.open{display:block;}
+    .taste-popover::before{
+      content:"";
+      position:absolute;
+      top:-7px;
+      right:28px;
+      width:12px;
+      height:12px;
+      background:#ffffff;
+      border-left:1px solid #e4d5d1;
+      border-top:1px solid #e4d5d1;
+      transform:rotate(45deg);
+    }
+    .taste-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+    .taste-head h2{
+      margin:0;
+      font-size:15px;
+      letter-spacing:-.03em;
+      color:#4f3c36;
+    }
+    .taste-close{
+      width:30px!important;
+      min-height:30px!important;
+      height:30px!important;
+      padding:0!important;
+      border-radius:999px!important;
+      background:#f7f0f1!important;
+      color:#7d6067!important;
+      border:1px solid #ead8da!important;
+      font-size:16px!important;
+      line-height:1!important;
+    }
+    .taste-desc{
+      margin:0 0 10px;
+      color:#8b756d;
+      font-size:12px;
+      line-height:1.45;
+    }
+    .taste-list{
+      display:grid;
+      gap:7px;
+      position:relative;
+      z-index:1;
+    }
+    .taste-item{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+      background:#fffdf9;
+      border:1px solid #eee2dc;
+      border-radius:12px;
+      padding:9px 10px;
+    }
+    .taste-item-title{
+      margin:0;
+      font-size:13px;
+      font-weight:950;
+      line-height:1.35;
+      color:#302a27;
+    }
+    .taste-item-meta{
+      margin:2px 0 0;
+      font-size:12px;
+      color:#8b756d;
+    }
+    .taste-item-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      min-width:46px;
+      padding:0 9px;
+      border-radius:10px;
+      background:#6f5a50!important;
+      color:#fff!important;
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+      border:1px solid #6f5a50!important;
+    }
+    .taste-item-link:hover{background:#5f4c43!important;border-color:#5f4c43!important;}
+    .taste-item-link.disabled{
+      background:#f4eeee!important;
+      color:#b09c96!important;
+      border-color:#ead8da!important;
+      cursor:not-allowed;
+      pointer-events:none;
+    }
+    @media(max-width:980px){
+      .top-link-row{align-items:flex-start;}
+      .top-actions{gap:6px;}
+      .taste-top-btn{min-height:32px!important;padding:0 10px!important;font-size:11px!important;}
+      .taste-popover{position:fixed;top:56px;left:12px;right:12px;width:auto;max-height:70vh;}
+      .taste-popover::before{right:80px;}
+    }
+
+
+    /* Past discount modal */
+    .history-modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:80;padding:18px;align-items:center;justify-content:center}
+    .history-modal-backdrop.open{display:flex}
+    .history-modal{width:min(440px,100%);max-height:82vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 46px rgba(70,55,48,.22);padding:20px}
+    .history-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .history-head h2{margin:0;font-size:17px;font-weight:950;letter-spacing:-.03em;line-height:1.45;color:#251f1d}
+    .history-close{width:34px!important;min-height:34px!important;padding:0!important;border-radius:999px!important;background:#f4eeee!important;color:#6f5a50!important;border:1px solid #ead8da!important;flex:0 0 auto}
+    .history-meta{margin:0 0 15px;color:#5f4c43;font-size:13px;font-weight:800;line-height:1.45}
+    .history-list{display:grid;gap:9px}
+    .history-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #ead8da;background:#fffaf7;border-radius:13px;padding:11px 12px}
+    .history-date{font-weight:950;color:#4f3c36;font-size:15px}
+    .history-rate{font-weight:950;color:#fff;background:#a97882;border:1px solid #a97882;border-radius:999px;padding:5px 12px;min-width:58px;text-align:center;box-shadow:0 2px 8px rgba(169,120,130,.18)}
+    .history-empty{padding:18px 12px;text-align:center;color:var(--muted);border:1px dashed #ead8da;border-radius:13px;background:#fffaf7}
+    .go.disabled{opacity:.48;cursor:not-allowed;filter:none!important}
+
+  
+
+/* mobile fixed tabs: search / list / cart (desktop keeps old side panel) */
+.mobile-tabbar,.mobile-tab-view{display:none}
+@media(max-width:980px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+  .mobile-cart-bar,.cart-sheet-backdrop,.cart-sheet{display:none!important}
+  .mobile-tabbar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,253,249,.97);border-top:1px solid var(--line);box-shadow:0 -1px 8px rgba(70,55,48,.08);padding:7px 10px calc(7px + env(safe-area-inset-bottom));backdrop-filter:blur(10px)}
+  .mobile-tab{min-height:48px;border-radius:12px!important;background:transparent!important;border:0!important;color:var(--muted)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0!important;font-weight:950!important;box-shadow:none!important}
+  .mobile-tab span{font-size:18px;line-height:1}.mobile-tab em{font-style:normal;font-size:11px;line-height:1}
+  .mobile-tab.active{background:#f4eeee!important;color:#9f757e!important}
+  .mobile-tab-view{display:none;background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 2px 12px rgba(80,55,45,.04);padding:13px;margin:10px 0 12px}
+  body.mobile-list-mode .panel, body.mobile-list-mode .meta-bar, body.mobile-list-mode #list, body.mobile-list-mode #empty, body.mobile-list-mode #loadMoreWrap{display:none!important}
+  body.mobile-cart-mode .panel, body.mobile-cart-mode .meta-bar, body.mobile-cart-mode #list, body.mobile-cart-mode #empty, body.mobile-cart-mode #loadMoreWrap{display:none!important}
+  body.mobile-list-mode #mobileListView{display:block}
+  body.mobile-cart-mode #mobileCartView{display:block}
+  .mobile-tab-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}.mobile-tab-title h2{margin:0;font-size:17px;font-weight:950;letter-spacing:-.03em}.mobile-tab-count{font-size:12px;font-weight:950;color:#9f757e;background:#f4eeee;border-radius:999px;padding:4px 9px}
+  .mobile-picked-list{display:grid;gap:8px}.mobile-picked-empty{padding:22px 10px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;background:#fffdf9;font-size:13px;font-weight:800}
+  .mobile-picked-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px}.mobile-picked-title{margin:0;font-size:13px;font-weight:950;line-height:1.35}.mobile-picked-meta{margin:3px 0 0;color:var(--muted);font-size:12px}.mobile-picked-remove{min-height:32px!important;width:auto!important;padding:0 10px!important;border-radius:10px!important;font-size:12px!important;background:#fff!important;color:var(--danger)!important;border-color:#e5c8c4!important}
+  .float-nav{bottom:calc(84px + env(safe-area-inset-bottom))!important}
 }
-function setDateListMode(on){
-  state.showDateList=on;
-  if(on)state.showFavorites=false;
-  document.body.classList.toggle('date-list-mode',on);
-  document.body.classList.toggle('favorite-mode',state.showFavorites);
-  populateDateYearFilter();
-  renderDateListInline();
-  updateBottomTabs();
-  render(false);
+
+  
+
+/* 202605 cart revision: keep latest neutral tone + split wish/cart */
+.wish-btn{background:#fff!important;color:#6A625C!important;border:1px solid #D8D1CC!important}
+.wish-btn.added{background:#F1E6E9!important;color:#9B6F7B!important;border-color:#DED6D2!important}
+@media(min-width:981px){
+  .card{grid-template-columns:minmax(0,260px) minmax(240px,1fr) 116px!important}
+  .card-actions{width:116px!important;min-width:116px!important}
+  .go,.cart-btn,.wish-btn{width:116px!important;min-height:38px!important;height:38px!important;border-radius:4px!important}
 }
-
-function openDateIndex(){const backdrop=document.getElementById('dateIndexBackdrop'),body=document.getElementById('dateIndexBody');body.innerHTML='';const clearBtn=document.createElement('button');clearBtn.type='button';clearBtn.className='clear-date-btn';clearBtn.textContent=state.selectedHistoryDate?'선택 해제':'전체 목차';clearBtn.addEventListener('click',()=>{state.selectedHistoryDate='';closeDateIndex();applyFilters()});body.appendChild(clearBtn);getHistoryDateCounts().forEach(([date,count])=>{const isSelected=state.selectedHistoryDate===date;const btn=document.createElement('button');btn.type='button';btn.className='date-chip'+(isSelected?' active':'');btn.setAttribute('aria-pressed',String(isSelected));btn.textContent=(isSelected?'✓ ':'')+date;btn.addEventListener('click',()=>{state.selectedHistoryDate=isSelected?'':date;closeDateIndex();applyFilters()});body.appendChild(btn)});backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
-function closeDateIndex(){const backdrop=document.getElementById('dateIndexBackdrop');backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
-function itemKey(item){return item.workId||item.link||`${item.title}__${item.author}`}
-function saveFavorites(){localStorage.setItem('dm_favorites',JSON.stringify([...state.favorites]))}
-function isFavorite(item){return state.favorites.has(itemKey(item))}
-function toggleFavorite(item){const key=itemKey(item);if(state.favorites.has(key))state.favorites.delete(key);else state.favorites.add(key);saveFavorites();render(false);updateBottomTabs()}
-function setViewMode(mode){state.viewMode=mode;localStorage.setItem('dm_view_mode',mode);document.body.classList.toggle('view-card',mode==='card');document.body.classList.toggle('view-list',mode!=='card');updateViewButtons();render(false)}
-function updateViewButtons(){const card=document.getElementById('viewCardBtn'),list=document.getElementById('viewListBtn');if(card)card.classList.toggle('active',state.viewMode==='card');if(list)list.classList.toggle('active',state.viewMode!=='card')}
-function setFavoriteMode(on){state.showFavorites=on;if(on)state.showDateList=false;document.body.classList.toggle("favorite-mode",on);document.body.classList.toggle("date-list-mode",state.showDateList);state.visibleCount=PAGE_SIZE;updateBottomTabs();render(false)}
-function updateBottomTabs(){const s=document.getElementById('tabSearchBtn'),l=document.getElementById('tabListBtn'),f=document.getElementById('tabFavBtn');if(s)s.classList.toggle('active',!state.showFavorites&&!state.showDateList);if(f)f.classList.toggle('active',state.showFavorites);if(l)l.classList.toggle('active',state.showDateList)}
-function render(isPrompt=false){const source=state.showFavorites?applySort(state.items.filter(item=>isFavorite(item))):state.filtered;const total=source.length,visible=source.slice(0,state.visibleCount);els.resultCount.textContent=total.toLocaleString('ko-KR');els.list.innerHTML='';if(state.showFavorites){els.empty.textContent=total?'':'찜한 작품이 없습니다.'}else{els.empty.textContent=isPrompt?'검색값을 입력하세요':'조건에 맞는 작품이 없습니다.'}els.empty.classList.toggle('prompt',isPrompt&&!state.showFavorites);els.empty.classList.toggle('hidden',state.showFavorites?total!==0:(isPrompt?false:total!==0));els.loadMoreWrap.classList.toggle('hidden',isPrompt||state.visibleCount>=total);if(isPrompt&&!state.showFavorites)return;const frag=document.createDocumentFragment();visible.forEach(item=>{const card=document.createElement('article');card.className='card'+(state.viewMode==='card'?' with-cover':'');if(state.viewMode==='card'){const cover=item.cover?document.createElement(item.link?'a':'div'):document.createElement('div');cover.className='book-cover'+(item.cover?'':' no-cover');if(item.cover&&item.link){cover.href=item.link;cover.target='_blank';cover.rel='noopener noreferrer'}if(item.cover){const img=document.createElement('img');img.src=item.cover;img.alt='';img.loading='lazy';img.decoding='async';cover.appendChild(img)}else{const noCover=document.createElement('span');noCover.textContent='이미지 없음';cover.appendChild(noCover)}card.appendChild(cover)}const fav=document.createElement('button');fav.className='favorite-toggle'+(isFavorite(item)?' is-on':'');fav.type='button';fav.textContent=isFavorite(item)?'♥':'♡';fav.setAttribute('aria-label',isFavorite(item)?'찜 해제':'찜하기');fav.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleFavorite(item)});const info=document.createElement('div');info.className='card-info';const title=document.createElement(item.link?'a':'span');title.className='book-title'+(item.link?'':' no-link');title.textContent=item.title||'(제목 없음)';if(item.link){title.href=item.link;title.target='_blank';title.rel='noopener noreferrer'}const meta=document.createElement('p');meta.className='book-meta';meta.textContent=item.author||'작가 정보 없음';info.append(title,meta);const middle=document.createElement('div');middle.className='card-middle';const hCount=historyCount(item.history);if(hCount){const recent=latestHistoryEntry(item.history);const historySummary=document.createElement('div');historySummary.className='book-history-inline';const countLine=document.createElement('span');countLine.className='history-pill';countLine.textContent=`출현 ${hCount}회`;historySummary.appendChild(countLine);if(recent){const recentLine=document.createElement('span');recentLine.className='history-pill recent';recentLine.textContent=`최근 ${recent.date} ${recent.rate}`;historySummary.appendChild(recentLine)}middle.appendChild(historySummary)}const actions=document.createElement('div');actions.className='card-actions';const historyBtn=document.createElement('button');historyBtn.className='history-btn'+(item.history?'':' disabled');historyBtn.type='button';historyBtn.textContent='과거';historyBtn.title=item.history?'과거 할인율 보기':'정리된 과거 할인율 없음';if(item.history)historyBtn.addEventListener('click',()=>openHistoryModal(item));const move=document.createElement('a');move.className='move-btn';move.textContent='이동';move.href=item.link||makeSearchLink(item)||'#';move.target='_blank';move.rel='noopener noreferrer';actions.append(historyBtn,move);card.append(fav,info,middle,actions);frag.appendChild(card)});els.list.appendChild(frag)}
-function setDetailCollapsed(collapsed){
-if(!els.detailToggleBtn||!els.detailRow)return;
-els.detailRow.classList.toggle('mobile-collapsed',collapsed);
-els.detailToggleBtn.classList.toggle('is-collapsed',collapsed);
-els.detailToggleBtn.title=collapsed?'상세검색 펼치기':'상세검색 접기';
-els.detailToggleBtn.setAttribute('aria-expanded',String(!collapsed));
+@media(max-width:980px){
+  .mobile-tabbar{background:#FAF9F7!important;border-top:1px solid #E3DED8!important;box-shadow:0 -1px 6px rgba(45,42,38,.08)!important}
+  .mobile-tab{border-radius:4px!important;background:transparent!important;color:#77706A!important}
+  .mobile-tab.active{background:#F1E6E9!important;color:#9B6F7B!important}
+  .mobile-tab-count{color:#9B6F7B!important;background:#F1E6E9!important;border-radius:4px!important}
+  .mobile-tab-view{background:#FFFFFF!important;border-color:#E3DED8!important;border-radius:4px!important;box-shadow:0 1px 4px rgba(45,42,38,.035)!important}
+  .card-actions{grid-template-columns:repeat(3,1fr)!important;width:100%!important;min-width:0!important}
+  .go,.cart-btn,.wish-btn{width:100%!important;min-width:0!important;border-radius:4px!important;padding:0 6px!important;font-size:13px!important}
 }
-function toggleDetailPanel(){
-if(!window.matchMedia('(max-width:980px)').matches)return;
-setDetailCollapsed(!els.detailRow.classList.contains('mobile-collapsed'));
-}
-function resetAll(){els.q.value='';els.sortBy.value='default';els.titleOnly.value='';els.authorOnly.value='';els.exclude.value='';els.discountRate.value='';state.selectedHistoryDate='';applyFilters()}
-function debounce(fn,delay){let timer;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),delay)}}
-function bindEvents(){els.searchBtn.addEventListener('click',applyFilters);[els.q,els.titleOnly,els.authorOnly,els.exclude].forEach(input=>{
-input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyFilters();e.currentTarget.blur()}});
-});els.sortBy.addEventListener('change',applyFilters);els.discountRate.addEventListener('change',applyFilters);els.resetBtn.addEventListener('click',resetAll);if(els.detailToggleBtn)els.detailToggleBtn.addEventListener('click',toggleDetailPanel);els.loadMoreBtn.addEventListener('click',()=>{state.visibleCount+=PAGE_SIZE;render()});els.goTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));els.goBottomBtn.addEventListener('click',()=>els.bottomAnchor.scrollIntoView({behavior:'smooth'}));document.getElementById('historyModalClose').addEventListener('click',closeHistoryModal);document.getElementById('historyModalBackdrop').addEventListener('click',e=>{if(e.target.id==='historyModalBackdrop')closeHistoryModal()});document.getElementById('dateIndexBtn').addEventListener('click',openDateIndex);document.getElementById('dateIndexClose').addEventListener('click',closeDateIndex);document.getElementById('dateIndexBackdrop').addEventListener('click',e=>{if(e.target.id==='dateIndexBackdrop')closeDateIndex()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeHistoryModal();closeDateIndex()}});const vc=document.getElementById('viewCardBtn'),vl=document.getElementById('viewListBtn');if(vc)vc.addEventListener('click',()=>setViewMode('card'));if(vl)vl.addEventListener('click',()=>setViewMode('list'));const ts=document.getElementById('tabSearchBtn'),tl=document.getElementById('tabListBtn'),tf=document.getElementById('tabFavBtn');if(ts)ts.addEventListener('click',()=>{state.showDateList=false;document.body.classList.remove('date-list-mode');setFavoriteMode(false);window.scrollTo({top:0,behavior:'smooth'})});if(tl)tl.addEventListener('click',()=>setDateListMode(!state.showDateList));if(tf)tf.addEventListener('click',()=>setFavoriteMode(!state.showFavorites));const dy=document.getElementById('dateYearFilter');if(dy)dy.addEventListener('change',renderDateListInline);const dc=document.getElementById('dateListClearBtn');if(dc)dc.addEventListener('click',()=>{state.selectedHistoryDate='';applyFilters();renderDateListInline();updateBottomTabs();window.scrollTo({top:0,behavior:'smooth'})});const ib=document.getElementById('installBanner'),ih=document.getElementById('installHowBtn'),id=document.getElementById('installDismissBtn');const isStandalone=((window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone);const dismissed=localStorage.getItem('dm_install_dismissed')==='1';if(ib){ib.classList.remove('hidden','is-visible','is-dismissed');ib.style.display='';if(!isStandalone&&!dismissed){ib.classList.add('is-visible')}else{ib.classList.add('is-dismissed')}}if(ih)ih.addEventListener('click',()=>alert('아이폰 Safari 하단 공유 버튼(□↑) → 홈 화면에 추가를 누르면 앱처럼 열 수 있습니다.'));if(id&&ib)id.addEventListener('click',()=>{localStorage.setItem('dm_install_dismissed','1');ib.classList.remove('is-visible');ib.classList.add('is-dismissed');ib.style.display='none'});}
-async function init(){bindEvents();document.body.classList.toggle('view-card',state.viewMode==='card');document.body.classList.toggle('view-list',state.viewMode!=='card');updateViewButtons();document.body.classList.toggle("favorite-mode",state.showFavorites);document.body.classList.toggle("date-list-mode",state.showDateList);updateBottomTabs();setDetailCollapsed(window.matchMedia('(max-width:980px)').matches);try{const res=await fetch('./works.json',{cache:'no-store'});if(!res.ok)throw new Error('works.json을 불러오지 못했습니다.');const data=await res.json();if(!Array.isArray(data))throw new Error('works.json 형식이 배열이 아닙니다.');state.items=data.map(normalizeItem);populateDiscountOptions();populateDateYearFilter();state.filtered=[...state.items];applyFilters()}catch(err){els.error.textContent='works.json을 불러오지 못했습니다. index.html과 같은 위치에 works.json을 올려주세요.';els.error.classList.remove('hidden');console.error(err)}}
-init();
-</script>
+@media(max-width:420px){.card-actions{grid-template-columns:1fr!important}}
 
-<script>
-document.addEventListener('click',function(e){
-  var a=e.target.closest&&e.target.closest('.back-to-main');
-  if(!a) return;
-  e.preventDefault();
-  if(e.stopImmediatePropagation) e.stopImmediatePropagation();
-  window.location.href='https://dmnovel.github.io/events/';
-},true);
-</script>
+  </style>
+</head>
+<body>
+<div class="top-link-row">
+  <div class="back-to-main-wrap"><a class="back-to-main" href="https://dmnovel.github.io/events/">← 이벤트 메인으로</a></div>
+  <div class="top-actions">
+    <a class="ridi-top-link" id="ridiTopLink" href="#" target="_blank" rel="noopener noreferrer">리디북스로</a>
+    <div class="taste-wrap">
+      <button class="taste-top-btn" id="tasteBtn" type="button" aria-expanded="false" aria-controls="tastePopover">🥰🤍</button>
+      <section class="taste-popover" id="tastePopover" aria-label="내 취향 목록">
+        <div class="taste-head">
+          <h2>♡아무도 묻지 않은 찐토리의 취향 목록♡</h2>
+          <button class="taste-close" id="tasteCloseBtn" type="button" aria-label="내 취향 닫기">×</button>
+        </div>
+        <p class="taste-desc">구석탱이에 잠시 실례실례 실례합니다👾</p>
+        <div class="taste-list" id="tasteList"></div>
+      </section>
+    </div>
+  </div>
+</div>
+  <main class="page" id="top">
+    <header><h1 class="title">202605 이벤트 장바구니</h1><p class="desc">검색 결과에서 바로 담고, 장바구니에서 총액을 확인하세요.<br>※전적으로 저를 믿으시면 안됩니다.</p></header>
+    <div class="layout">
+      <div class="main-col">
+        <section class="panel" aria-label="검색 및 필터">
+          <div id="mainSearchSlot"></div>
+          <div class="search-row"><div><label for="q">통합검색</label><input id="q" type="search" placeholder="제목 또는 작가 검색" autocomplete="off"></div><div><label>&nbsp;</label><button id="searchBtn" type="button">검색</button></div></div>
+          <button id="mobileFilterToggle" class="mobile-filter-toggle ghost" type="button" aria-expanded="false">필터 열기 ▾</button>
+          <div id="mobileFilterBody" class="mobile-filter-body">
+          <div class="quick-row">
+            <div><label for="discountFilter">할인율</label><select id="discountFilter"><option value="">전체</option></select></div>
+            <div><label for="pricePreset">금액대</label><select id="pricePreset"><option value="">전체</option><option value="0-10000">10,000원 이하</option><option value="0-20000">20,000원 이하</option><option value="0-30000">30,000원 이하</option><option value="0-40000">40,000원 이하</option><option value="0-50000">50,000원 이하</option></select></div>
+            <div><label for="sortBy">정렬</label><select id="sortBy"><option value="default">기본순</option><option value="titleAsc">제목 가나다순</option><option value="authorAsc">작가 가나다순</option><option value="priceAsc">판매가 낮은순</option><option value="priceDesc">판매가 높은순</option><option value="discountDesc">할인율 높은순</option><option value="underRemainAsc">목표금액 이하 + 낮은순</option><option value="underRemainDesc">목표금액 이하 + 높은순</option></select></div>
+            <div><label>&nbsp;</label><button id="resetTopBtn" class="secondary" type="button">초기화</button></div>
+          </div>
+          <div class="detail-toggle"><button id="detailBtn" class="ghost" type="button" aria-expanded="false">상세검색 열기 ▾</button><div id="activeSummary" class="active-summary">필터 없음</div></div>
+          <div id="detail" class="detail">
+            <div class="detail-grid">
+              <div><label for="titleOnly">제목만 검색</label><input id="titleOnly" type="search" placeholder="제목에 포함될 단어" autocomplete="off"></div>
+              <div><label for="authorOnly">작가만 검색</label><input id="authorOnly" type="search" placeholder="작가명" autocomplete="off"></div>
+              <div><label for="typeFilter">구매유형</label><select id="typeFilter"><option value="">전체</option></select></div>
+              <div><label>판매가 직접입력</label><div class="price-range"><input id="minPrice" inputmode="numeric" placeholder="최소"><span class="tilde">~</span><input id="maxPrice" inputmode="numeric" placeholder="최대"></div></div>
+              <div><label for="exclude">제외어</label><input id="exclude" type="search" placeholder="제목/작가에서 제외" autocomplete="off"></div>
+            </div>
+            <div class="actions"><button id="applyDetailBtn" type="button">상세검색 적용</button><button id="resetDetailBtn" class="secondary" type="button">상세만 초기화</button></div>
+          </div>
+        </div>
+        </section>
+        <section class="meta-bar"><div class="count">검색 결과 <strong id="resultCount">0</strong>개</div><div id="loadedCount">표시 0개</div></section>
+        <section id="list" class="list" aria-label="작품 목록"></section>
+        <div id="empty" class="empty hidden">조건에 맞는 작품이 없습니다.</div><div id="error" class="error hidden"></div>
+        <div id="loadMoreWrap" class="load-more-wrap hidden"><button id="loadMoreBtn" type="button">더보기</button></div><section id="mobileListView" class="mobile-tab-view" aria-label="찜 목록"><div class="mobile-tab-title"><h2>찜♥</h2><span id="mobileListCount" class="mobile-tab-count">0개</span></div><div id="mobileListMount" class="mobile-picked-list"></div></section><section id="mobileCartView" class="mobile-tab-view" aria-label="장바구니"><div id="mobileTabCartMount"></div></section><div id="bottomAnchor"></div>
+      </div>
+      <aside class="desktop-side" aria-label="검색 및 장바구니">
+        <div id="sideSearchMount" class="side-search-panel"></div>
+        <div class="cart-panel desktop-cart compact-cart" aria-label="장바구니">
+          <button id="desktopCartToggle" class="desktop-cart-toggle ghost" type="button" aria-expanded="false">장바구니 열기 ▾</button>
+          <div id="desktopCartBody" class="desktop-cart-body">
+            <div id="desktopCartMount"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <div class="mobile-cart-bar" aria-label="모바일 장바구니 요약"><div class="mobile-cart-text"><strong id="mobileCartSummary">담기 0개 · 총 0원</strong><span id="mobileRemainSummary">목표금액을 입력하면 남은금액이 표시됩니다</span></div><button id="openCartSheetBtn" class="mobile-cart-open" type="button">보기</button></div>
+  <div id="cartSheetBackdrop" class="cart-sheet-backdrop"></div><section id="cartSheet" class="cart-sheet" aria-label="모바일 장바구니"><div class="sheet-handle"></div><div id="mobileCartMount"></div><button id="closeCartSheetBtn" class="sheet-close secondary" type="button">닫기</button></section>
 
-<script>
-(function(){
-  const tasteBtn=document.getElementById('tasteTopBtn');
-  const tasteBackdrop=document.getElementById('tasteModalBackdrop');
-  const tasteClose=document.getElementById('tasteModalClose');
-  function openTaste(){
-    if(!tasteBackdrop) return;
-    tasteBackdrop.classList.add('open');
-    tasteBackdrop.setAttribute('aria-hidden','false');
-    document.body.classList.add('modal-open');
-  }
-  function closeTaste(){
-    if(!tasteBackdrop) return;
-    tasteBackdrop.classList.remove('open');
-    tasteBackdrop.setAttribute('aria-hidden','true');
-    document.body.classList.remove('modal-open');
-  }
-  if(tasteBtn) tasteBtn.addEventListener('click',openTaste);
-  if(tasteClose) tasteClose.addEventListener('click',closeTaste);
-  if(tasteBackdrop) tasteBackdrop.addEventListener('click',function(e){if(e.target===tasteBackdrop) closeTaste();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&tasteBackdrop&&tasteBackdrop.classList.contains('open')) closeTaste();});
-})();
-</script>
+  <nav class="mobile-tabbar" aria-label="모바일 탭"><button id="tabSearchBtn" type="button" class="mobile-tab active"><span>⌕</span><em>검색</em></button><button id="tabListBtn" type="button" class="mobile-tab"><span>♡</span><em>찜♥</em></button><button id="tabCartBtn" type="button" class="mobile-tab"><span>🛒</span><em>담기🛒</em></button></nav>
+  <div id="historyModalBackdrop" class="history-modal-backdrop" aria-hidden="true">
+    <section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+      <div class="history-head">
+        <h2 id="historyModalTitle">과거 할인율</h2>
+        <button id="historyModalClose" class="history-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <p id="historyModalMeta" class="history-meta"></p>
+      <div id="historyModalBody" class="history-list"></div>
+    </section>
+  </div>
+  <div class="float-nav" aria-label="페이지 이동"><button id="goTopBtn" type="button" aria-label="맨 위로">↑</button><button id="goBottomBtn" type="button" aria-label="맨 아래로">↓</button></div>
+  <script>
+    const PAGE_SIZE=100,CART_STORAGE_KEY="ridi-event-cart-v3",FAV_STORAGE_KEY="ridi-event-wish-v1",TARGET_STORAGE_KEY="ridi-event-cart-target-v3";
+    const state={raw:[],items:[],filtered:[],visibleCount:PAGE_SIZE,cartIds:new Set(),favoriteIds:new Set(),targetPrice:0,activeMobileTab:"search"};
+    const els={q:document.getElementById("q"),searchBtn:document.getElementById("searchBtn"),discountFilter:document.getElementById("discountFilter"),pricePreset:document.getElementById("pricePreset"),sortBy:document.getElementById("sortBy"),resetTopBtn:document.getElementById("resetTopBtn"),detailBtn:document.getElementById("detailBtn"),detail:document.getElementById("detail"),activeSummary:document.getElementById("activeSummary"),titleOnly:document.getElementById("titleOnly"),authorOnly:document.getElementById("authorOnly"),typeFilter:document.getElementById("typeFilter"),minPrice:document.getElementById("minPrice"),maxPrice:document.getElementById("maxPrice"),exclude:document.getElementById("exclude"),applyDetailBtn:document.getElementById("applyDetailBtn"),resetDetailBtn:document.getElementById("resetDetailBtn"),resultCount:document.getElementById("resultCount"),loadedCount:document.getElementById("loadedCount"),list:document.getElementById("list"),empty:document.getElementById("empty"),error:document.getElementById("error"),loadMoreWrap:document.getElementById("loadMoreWrap"),loadMoreBtn:document.getElementById("loadMoreBtn"),desktopCartMount:document.getElementById("desktopCartMount"),mobileCartMount:document.getElementById("mobileCartMount"),mobileCartSummary:document.getElementById("mobileCartSummary"),mobileRemainSummary:document.getElementById("mobileRemainSummary"),openCartSheetBtn:document.getElementById("openCartSheetBtn"),closeCartSheetBtn:document.getElementById("closeCartSheetBtn"),cartSheet:document.getElementById("cartSheet"),cartSheetBackdrop:document.getElementById("cartSheetBackdrop"),goTopBtn:document.getElementById("goTopBtn"),goBottomBtn:document.getElementById("goBottomBtn"),bottomAnchor:document.getElementById("bottomAnchor"),mobileListMount:document.getElementById("mobileListMount"),mobileListCount:document.getElementById("mobileListCount"),mobileTabCartMount:document.getElementById("mobileTabCartMount"),tabSearchBtn:document.getElementById("tabSearchBtn"),tabListBtn:document.getElementById("tabListBtn"),tabCartBtn:document.getElementById("tabCartBtn")};
+    function normalizeText(value){return String(value??"").trim().toLowerCase().replace(/\s+/g,"")}
+    function toNumber(value){if(typeof value==="number")return value;const text=String(value??"").replace(/[^\d.-]/g,"");const num=Number(text);return Number.isFinite(num)?num:0}
+    function formatPrice(price){const num=Number(price);return Number.isFinite(num)?num.toLocaleString("ko-KR")+"원":""}
+    function formatDiscount(discount){const num=Number(discount);return Number.isFinite(num)&&num>0?num+"%":""}
+    function decodeLink(value){try{return atob(String(value||"").trim())}catch{return ""}}
+    function getItemLink(item){return decodeLink(item.linkCode||item.u||"")||String(item.link??"").trim()}
+    function makeItemId(item,index){const link=getItemLink(item);if(link)return"link:"+link;return`row:${index}:${item.title}:${item.author}:${item.price}`}
+    function normalizeItem(item,index){return{id:makeItemId(item,index),originalIndex:index,type:String(item.type??"").trim(),title:String(item.title??"").trim(),author:String(item.author??"").trim(),discount:toNumber(item.discount),price:toNumber(item.price),link:getItemLink(item),history:String(item.history??item.pastDiscount??item["과거할인율"]??"").trim()}}
+    function initTopRidiLink(){const el=document.getElementById("ridiTopLink");if(!el)return;const codes=[104,116,116,112,115,58,47,47,114,105,100,105,98,111,111,107,115,46,99,111,109,47,101,118,101,110,116,47,57,51,56,48,55];el.href=String.fromCharCode(...codes)}
+    const tasteItems=[
+      // link에 리디북스 작품 주소를 넣으면 오른쪽 [이동] 버튼으로 열립니다.
+      {title:"회귀자 인성 교육",meta:"외않사",link:"https://ridibooks.com/books/111138048"},
+      {title:"칼.꼽.슬 -망겜으로 구독자 1억 달성 챌린지-",meta:"#잭러셀테리어수 #슬라임빙의공",link:"https://ridibooks.com/books/111139067"},
+      {title:"헌트 포 페이트",meta:"#뱀파이어수 #헌터공",link:"https://ridibooks.com/books/111138864"},
+      {title:"전설의 대장장이를 지켜 줘!",meta:"대장장이보다는 화타같은... 귀염슴슴물",link:"https://ridibooks.com/books/111138231"},
+      {title:"예쓰 앤 예스",meta:"인헌아ㅠ",link:"https://ridibooks.com/books/111138108"},
+      {title:"극한던전 직업상인",meta:"귀여운 인형 조아해? #제목에유의",link:"https://ridibooks.com/books/111137980"},
+      {title:"기간트리카 데이브레이크!",meta:"│⁘工_工⁘) 고양이 그잡채수",link:"https://ridibooks.com/books/111138102"},
+      {title:"타임무버",meta:"#구작의맛 #아는맛이무섭긔",link:"https://ridibooks.com/books/111138172"},
+      {title:"🛒",meta:"프렛리스 원더!!",link:"https://ridibooks.com/books/111138009"},
+      {title:"🛒",meta:"북부대공의 우울",link:"https://ridibooks.com/books/111138859"}
+    ];
+    function initTastePopover(){
+      const btn=document.getElementById("tasteBtn"),pop=document.getElementById("tastePopover"),close=document.getElementById("tasteCloseBtn"),list=document.getElementById("tasteList");
+      if(!btn||!pop||!close||!list)return;
+      function renderTasteList(){
+        list.innerHTML="";
+        tasteItems.forEach(item=>{
+          const row=document.createElement("div");
+          row.className="taste-item";
+          const text=document.createElement("div");
+          const title=document.createElement("p");
+          title.className="taste-item-title";
+          title.textContent=item.title||"제목 없음";
+          const meta=document.createElement("p");
+          meta.className="taste-item-meta";
+          meta.textContent=item.meta||"";
+          text.append(title,meta);
+          row.appendChild(text);
+          const a=document.createElement("a");
+          a.className="taste-item-link";
+          a.textContent="이동";
+          if(item.link){
+            a.href=item.link;
+            a.target="_blank";
+            a.rel="noopener noreferrer";
+          }else{
+            a.href="#";
+            a.classList.add("disabled");
+            a.setAttribute("aria-disabled","true");
+            a.tabIndex=-1;
+          }
+          row.appendChild(a);
+          list.appendChild(row);
+        });
+      }
+      function setOpen(open){pop.classList.toggle("open",open);btn.setAttribute("aria-expanded",String(open));}
+      renderTasteList();
+      btn.addEventListener("click",e=>{e.stopPropagation();setOpen(!pop.classList.contains("open"));});
+      close.addEventListener("click",()=>setOpen(false));
+      pop.addEventListener("click",e=>e.stopPropagation());
+      document.addEventListener("click",()=>setOpen(false));
+      document.addEventListener("keydown",e=>{if(e.key==="Escape")setOpen(false)});
+    }
+    function uniqueSorted(values){return[...new Set(values.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"ko-KR",{numeric:true}))}
+    function populateFilters(){uniqueSorted(state.items.map(i=>i.discount).filter(v=>v>0).map(String)).sort((a,b)=>Number(b)-Number(a)).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v+"%";els.discountFilter.appendChild(o)});uniqueSorted(state.items.map(i=>i.type)).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;els.typeFilter.appendChild(o)})}
+    function getPriceRange(){if(els.pricePreset.value){const[min,max]=els.pricePreset.value.split("-").map(Number);return{min,max}}return{min:els.minPrice.value?toNumber(els.minPrice.value):null,max:els.maxPrice.value?toNumber(els.maxPrice.value):null}}
+    function getCartItems(){return state.items.filter(i=>state.cartIds.has(i.id))}
+    function getFavoriteItems(){return state.items.filter(i=>state.favoriteIds.has(i.id))}
+    function getCartTotal(){return getCartItems().reduce((s,i)=>s+Number(i.price||0),0)}
+    function getRemain(){return Number(state.targetPrice||0)-getCartTotal()}
+    function applyFilters(){const q=normalizeText(els.q.value),titleOnly=normalizeText(els.titleOnly.value),authorOnly=normalizeText(els.authorOnly.value),exclude=normalizeText(els.exclude.value),discount=els.discountFilter.value,type=els.typeFilter.value,{min,max}=getPriceRange();let result=state.items.filter(item=>{const title=normalizeText(item.title),author=normalizeText(item.author),joined=title+author;if(q&&!(title.includes(q)||author.includes(q)))return false;if(titleOnly&&!title.includes(titleOnly))return false;if(authorOnly&&!author.includes(authorOnly))return false;if(exclude&&joined.includes(exclude))return false;if(discount&&String(item.discount)!==discount)return false;if(type&&item.type!==type)return false;if(min!==null&&item.price<min)return false;if(max!==null&&item.price>max)return false;return true});state.filtered=applySort(result);state.visibleCount=PAGE_SIZE;updateSummary();render()}
+    function applySort(list){const sort=els.sortBy.value,arr=[...list],remain=getRemain();const byText=f=>(a,b)=>String(a[f]||"").localeCompare(String(b[f]||""),"ko-KR",{numeric:true});if(sort==="titleAsc")arr.sort(byText("title"));if(sort==="authorAsc")arr.sort(byText("author"));if(sort==="priceAsc")arr.sort((a,b)=>a.price-b.price);if(sort==="priceDesc")arr.sort((a,b)=>b.price-a.price);if(sort==="discountDesc")arr.sort((a,b)=>b.discount-a.discount);if(sort==="default")arr.sort((a,b)=>a.originalIndex-b.originalIndex);if(sort==="underRemainAsc"||sort==="underRemainDesc"){const usable=remain>0?remain:-1;arr.sort((a,b)=>{const af=a.price<=usable?0:1,bf=b.price<=usable?0:1;if(af!==bf)return af-bf;return sort==="underRemainAsc"?a.price-b.price:b.price-a.price})}return arr}
+    function updateSummary(){const p=[];if(els.q.value.trim())p.push(`통합: ${els.q.value.trim()}`);if(els.discountFilter.value)p.push(`할인율: ${els.discountFilter.value}%`);if(els.pricePreset.value)p.push(`금액대: ${els.pricePreset.options[els.pricePreset.selectedIndex].textContent}`);if(els.sortBy.value!=="default")p.push(`정렬: ${els.sortBy.options[els.sortBy.selectedIndex].textContent}`);if(els.titleOnly.value.trim())p.push(`제목: ${els.titleOnly.value.trim()}`);if(els.authorOnly.value.trim())p.push(`작가: ${els.authorOnly.value.trim()}`);if(els.typeFilter.value)p.push(`구매유형: ${els.typeFilter.value}`);if(els.minPrice.value.trim()||els.maxPrice.value.trim())p.push(`직접금액: ${els.minPrice.value||"0"}~${els.maxPrice.value||"∞"}`);if(els.exclude.value.trim())p.push(`제외: ${els.exclude.value.trim()}`);els.activeSummary.textContent=p.length?p.join(" · "):"필터 없음"}
+    function makeBadge(text,cls){const s=document.createElement("span");s.className=`badge ${cls||""}`.trim();s.textContent=text;return s}
+    function parseHistory(value){return String(value||"").split(",").map(v=>v.trim()).filter(Boolean).map(v=>{const m=v.match(/^(\d{6})\s*(.*)$/);return m?{date:m[1],rate:m[2].trim()||"-"}:{date:"",rate:v}})}
+    function openHistoryModal(item){const backdrop=document.getElementById("historyModalBackdrop"),title=document.getElementById("historyModalTitle"),meta=document.getElementById("historyModalMeta"),body=document.getElementById("historyModalBody");if(!backdrop||!title||!meta||!body)return;title.textContent=item.title||"과거 할인율";meta.textContent=(item.author||"작가 정보 없음")+" · 과거 마크다운 할인율";body.innerHTML="";const entries=parseHistory(item.history);if(!entries.length){const empty=document.createElement("div");empty.className="history-empty";empty.textContent="정리된 과거 할인율이 없습니다.";body.appendChild(empty)}else{entries.forEach(entry=>{const row=document.createElement("div");row.className="history-row";const date=document.createElement("span");date.className="history-date";date.textContent=entry.date||"기록";const rate=document.createElement("span");rate.className="history-rate";rate.textContent=entry.rate;row.append(date,rate);body.appendChild(row)})}backdrop.classList.add("open");backdrop.setAttribute("aria-hidden","false");document.body.classList.add("modal-open")}
+    function closeHistoryModal(){const backdrop=document.getElementById("historyModalBackdrop");if(!backdrop)return;backdrop.classList.remove("open");backdrop.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open")}
+    function render(){const total=state.filtered.length,visible=state.filtered.slice(0,state.visibleCount);els.resultCount.textContent=total.toLocaleString("ko-KR");els.loadedCount.textContent=`표시 ${visible.length.toLocaleString("ko-KR")}개`;els.list.innerHTML="";els.empty.classList.toggle("hidden",total!==0);els.loadMoreWrap.classList.toggle("hidden",state.visibleCount>=total);const frag=document.createDocumentFragment();visible.forEach(item=>{const card=document.createElement("article");card.className="card";const info=document.createElement("div");const title=document.createElement(item.link?"a":"span");title.className="book-title";title.textContent=item.title||"(제목 없음)";if(item.link){title.href=item.link;title.target="_blank";title.rel="noopener noreferrer"}const metaLine=document.createElement("div");metaLine.className="book-meta-line";const meta=document.createElement("span");meta.className="book-meta";meta.textContent=item.author||"작가 정보 없음";const badges=document.createElement("div");badges.className="badges";if(item.discount)badges.appendChild(makeBadge(formatDiscount(item.discount),"discount"));badges.appendChild(makeBadge(formatPrice(item.price),"price"));if(item.type)badges.appendChild(makeBadge(item.type,"type"));info.className="book-info";metaLine.append(meta);info.append(title,metaLine);card.appendChild(info);card.appendChild(badges);const actions=document.createElement("div");actions.className="card-actions";const historyBtn=document.createElement("button");historyBtn.className="go"+(item.history?"":" disabled");historyBtn.type="button";historyBtn.textContent="과거";historyBtn.title=item.history?"과거 할인율 보기":"정리된 과거 할인율 없음";historyBtn.addEventListener("click",()=>openHistoryModal(item));actions.appendChild(historyBtn);const wish=document.createElement("button");const wished=state.favoriteIds.has(item.id);wish.className="wish-btn"+(wished?" added":"");wish.type="button";wish.textContent=wished?"찜♥ ✓":"찜♥";wish.addEventListener("click",()=>toggleFavorite(item.id));actions.appendChild(wish);const btn=document.createElement("button");const added=state.cartIds.has(item.id);btn.className="cart-btn"+(added?" added":"");btn.type="button";btn.textContent=added?"담김 ✓":"담기🛒";btn.addEventListener("click",()=>toggleCart(item.id));actions.appendChild(btn);card.appendChild(actions);frag.appendChild(card)});els.list.appendChild(frag);renderCart()}
+    function resetAll(){els.q.value="";els.discountFilter.value="";els.pricePreset.value="";els.sortBy.value="default";resetDetail(false);applyFilters()}
+    function resetDetail(apply=true){els.titleOnly.value="";els.authorOnly.value="";els.typeFilter.value="";els.minPrice.value="";els.maxPrice.value="";els.exclude.value="";if(apply)applyFilters()}
+    function toggleCart(id){state.cartIds.has(id)?state.cartIds.delete(id):state.cartIds.add(id);saveCart();render()}
+    function toggleFavorite(id){state.favoriteIds.has(id)?state.favoriteIds.delete(id):state.favoriteIds.add(id);saveFavorites();render()}
+    function removeFromCart(id){state.cartIds.delete(id);saveCart();render()}
+    function clearCart(){if(!state.cartIds.size)return;if(confirm("장바구니를 비울까요?")){state.cartIds.clear();saveCart();render()}}
+    function saveCart(){localStorage.setItem(CART_STORAGE_KEY,JSON.stringify([...state.cartIds]))}
+    function saveFavorites(){localStorage.setItem(FAV_STORAGE_KEY,JSON.stringify([...state.favoriteIds]))}
+    function loadCart(){try{const saved=JSON.parse(localStorage.getItem(CART_STORAGE_KEY)||"[]");state.cartIds=new Set(Array.isArray(saved)?saved:[])}catch{state.cartIds=new Set()}try{const fav=JSON.parse(localStorage.getItem(FAV_STORAGE_KEY)||"[]");state.favoriteIds=new Set(Array.isArray(fav)?fav:[])}catch{state.favoriteIds=new Set()}state.targetPrice=toNumber(localStorage.getItem(TARGET_STORAGE_KEY)||0)}
+    function saveTarget(v){state.targetPrice=toNumber(v);localStorage.setItem(TARGET_STORAGE_KEY,String(state.targetPrice||""));if(els.sortBy.value.startsWith("underRemain"))applyFilters();else renderCart()}
+    function escapeHtml(s){return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+    async function copyCartList(){const text=getCartItems().map((item,idx)=>`${idx+1}. ${item.title} / ${item.author||""} / ${formatPrice(item.price)}${item.link?" / "+item.link:""}`).join("\n");if(!text){alert("복사할 작품이 없습니다.");return}try{await navigator.clipboard.writeText(text);alert("담은 목록을 복사했습니다.")}catch{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();alert("담은 목록을 복사했습니다.")}}
+    function buildCartHtml(){const items=getCartItems(),count=items.length,total=getCartTotal(),target=Number(state.targetPrice||0),remain=target-total,remainText=target?(remain>=0?`${formatPrice(remain)} 남음`:`${formatPrice(Math.abs(remain))} 초과`):"목표금액 없음",remainClass=target?(remain>=0?"ok":"danger"):"";const wrap=document.createElement("div");wrap.innerHTML=`<div class="cart-title-row"><h2>담기🛒</h2><span class="cart-mini-count">${count}개</span></div><div class="target-row"><label for="targetPriceInput">목표금액</label><input id="targetPriceInput" inputmode="numeric" placeholder="예: 20000" value="${target?target:""}"></div><div class="cart-stats"><div class="stat"><span class="stat-label">총액</span><span class="stat-value">${formatPrice(total)}</span></div><div class="stat"><span class="stat-label">목표까지</span><span class="stat-value ${remainClass}">${remainText}</span></div></div><div class="cart-tools"><button type="button" class="ghost" data-action="copy">담은 목록 복사</button><button type="button" class="danger" data-action="clear">담기 비우기</button></div>`;const list=document.createElement("div");list.className="cart-list";if(!items.length){const e=document.createElement("div");e.className="cart-empty";e.textContent="담은 작품이 없습니다.";list.appendChild(e)}else items.forEach(item=>{const row=document.createElement("div");row.className="cart-item";row.innerHTML=`<div><p class="cart-item-title">${escapeHtml(item.title||"(제목 없음)")}</p><p class="cart-item-meta">${escapeHtml(item.author||"작가 정보 없음")} · ${formatPrice(item.price)}</p></div><button type="button" class="remove-btn" data-remove-id="${escapeHtml(item.id)}">빼기</button>`;list.appendChild(row)});wrap.appendChild(list);return wrap}
+    function renderCartMount(mount){const active=document.activeElement;const keepFocus=active&&active.id==="targetPriceInput"&&mount.contains(active);const selectionStart=keepFocus?active.selectionStart:null;const selectionEnd=keepFocus?active.selectionEnd:null;mount.innerHTML="";const cart=buildCartHtml();mount.appendChild(cart);const input=mount.querySelector("#targetPriceInput");if(input){input.addEventListener("input",debounce(e=>saveTarget(e.target.value),180));if(keepFocus){input.focus();try{input.setSelectionRange(selectionStart,selectionEnd)}catch{}}}const copy=mount.querySelector('[data-action="copy"]');if(copy)copy.addEventListener("click",copyCartList);const clear=mount.querySelector('[data-action="clear"]');if(clear)clear.addEventListener("click",clearCart);mount.querySelectorAll("[data-remove-id]").forEach(b=>b.addEventListener("click",()=>removeFromCart(b.getAttribute("data-remove-id"))))}
+    function setMobileTab(tab){state.activeMobileTab=tab;document.body.classList.toggle("mobile-list-mode",tab==="list");document.body.classList.toggle("mobile-cart-mode",tab==="cart");if(els.tabSearchBtn)els.tabSearchBtn.classList.toggle("active",tab==="search");if(els.tabListBtn)els.tabListBtn.classList.toggle("active",tab==="list");if(els.tabCartBtn)els.tabCartBtn.classList.toggle("active",tab==="cart");renderCart();window.scrollTo({top:0,behavior:"smooth"})}
+    function renderMobilePickedList(){if(!els.mobileListMount)return;const items=getFavoriteItems();if(els.mobileListCount)els.mobileListCount.textContent=items.length.toLocaleString("ko-KR")+"개";els.mobileListMount.innerHTML="";if(!items.length){const e=document.createElement("div");e.className="mobile-picked-empty";e.textContent="찜한 작품이 없습니다.";els.mobileListMount.appendChild(e);return}items.forEach(item=>{const row=document.createElement("div");row.className="mobile-picked-item";const text=document.createElement("div");const title=document.createElement(item.link?"a":"p");title.className="mobile-picked-title";title.textContent=item.title||"(제목 없음)";if(item.link){title.href=item.link;title.target="_blank";title.rel="noopener noreferrer"}const meta=document.createElement("p");meta.className="mobile-picked-meta";meta.textContent=`${item.author||"작가 정보 없음"} · ${formatPrice(item.price)}`;text.append(title,meta);const btn=document.createElement("button");btn.type="button";btn.className="mobile-picked-remove";btn.textContent="찜해제";btn.addEventListener("click",()=>toggleFavorite(item.id));row.append(text,btn);els.mobileListMount.appendChild(row)})}
+    function renderCart(){renderCartMount(els.desktopCartMount);renderCartMount(els.mobileCartMount);if(els.mobileTabCartMount)renderCartMount(els.mobileTabCartMount);renderMobilePickedList();const count=state.cartIds.size,total=getCartTotal(),target=Number(state.targetPrice||0),remain=target-total;els.mobileCartSummary.textContent=`장바구니 ${count}개 · 총 ${formatPrice(total)}`;els.mobileRemainSummary.textContent=!target?"목표금액을 입력하면 남은금액이 표시됩니다":remain>=0?`목표까지 ${formatPrice(remain)} 남음`:`목표보다 ${formatPrice(Math.abs(remain))} 초과`}
+    function openCartSheet(){els.cartSheetBackdrop.classList.add("open");els.cartSheet.classList.add("open");document.body.classList.add("modal-open")}
+    function closeCartSheet(){els.cartSheetBackdrop.classList.remove("open");els.cartSheet.classList.remove("open");document.body.classList.remove("modal-open")}
+    function debounce(fn,delay){let timer;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),delay)}}
+    function bindEvents(){initTopRidiLink();initTastePopover();els.searchBtn.addEventListener("click",applyFilters);els.q.addEventListener("input",debounce(applyFilters,180));els.discountFilter.addEventListener("change",applyFilters);els.pricePreset.addEventListener("change",()=>{if(els.pricePreset.value){els.minPrice.value="";els.maxPrice.value=""}applyFilters()});els.sortBy.addEventListener("change",applyFilters);els.resetTopBtn.addEventListener("click",resetAll);els.detailBtn.addEventListener("click",()=>{const open=!els.detail.classList.contains("open");els.detail.classList.toggle("open",open);els.detailBtn.setAttribute("aria-expanded",String(open));els.detailBtn.textContent=open?"상세검색 닫기 ▴":"상세검색 열기 ▾"});els.applyDetailBtn.addEventListener("click",()=>{if(els.minPrice.value||els.maxPrice.value)els.pricePreset.value="";applyFilters()});els.resetDetailBtn.addEventListener("click",()=>resetDetail(true));[els.titleOnly,els.authorOnly,els.exclude,els.minPrice,els.maxPrice].forEach(input=>input.addEventListener("input",debounce(()=>{if(input===els.minPrice||input===els.maxPrice)els.pricePreset.value="";applyFilters()},200)));els.typeFilter.addEventListener("change",applyFilters);els.loadMoreBtn.addEventListener("click",()=>{state.visibleCount+=PAGE_SIZE;render()});els.openCartSheetBtn.addEventListener("click",openCartSheet);els.closeCartSheetBtn.addEventListener("click",closeCartSheet);els.cartSheetBackdrop.addEventListener("click",closeCartSheet);if(els.tabSearchBtn)els.tabSearchBtn.addEventListener("click",()=>setMobileTab("search"));if(els.tabListBtn)els.tabListBtn.addEventListener("click",()=>setMobileTab("list"));if(els.tabCartBtn)els.tabCartBtn.addEventListener("click",()=>setMobileTab("cart"));document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCartSheet();closeHistoryModal()}});const historyBackdrop=document.getElementById("historyModalBackdrop"),historyClose=document.getElementById("historyModalClose");if(historyBackdrop)historyBackdrop.addEventListener("click",e=>{if(e.target===historyBackdrop)closeHistoryModal()});if(historyClose)historyClose.addEventListener("click",closeHistoryModal);els.goTopBtn.addEventListener("click",()=>document.getElementById("top").scrollIntoView({behavior:"smooth",block:"start"}));els.goBottomBtn.addEventListener("click",()=>els.bottomAnchor.scrollIntoView({behavior:"smooth",block:"end"}))}
+    async function loadData(){try{const res=await fetch("./events.json",{cache:"no-store"});if(!res.ok)throw new Error("events.json 파일을 찾을 수 없습니다.");state.raw=await res.json();if(!Array.isArray(state.raw))throw new Error("events.json은 배열 형식이어야 합니다.")}catch(e){els.error.classList.remove("hidden");els.error.textContent="events.json을 불러오지 못했습니다. index.html과 같은 위치에 events.json을 올려주세요.";state.raw=[]}state.items=state.raw.map(normalizeItem).filter(i=>i.title||i.author);loadCart();const valid=new Set(state.items.map(i=>i.id));state.cartIds=new Set([...state.cartIds].filter(id=>valid.has(id)));state.favoriteIds=new Set([...state.favoriteIds].filter(id=>valid.has(id)));saveCart();saveFavorites();populateFilters();bindEvents();applyFilters()}
+    loadData();
+  </script>
 
-<script>
-(function(){
-  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-    document.body.classList.add('standalone');
-  }
-})();
-</script>
+  <script>
+    (function(){
+      const btn = document.getElementById("mobileFilterToggle");
+      const body = document.getElementById("mobileFilterBody");
+      if(!btn || !body) return;
+      function setOpen(open){
+        body.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.textContent = open ? "필터 접기 ▴" : "필터 열기 ▾";
+      }
+      btn.addEventListener("click", function(){ setOpen(!body.classList.contains("open")); });
+      const mq = window.matchMedia("(max-width: 980px)");
+      function init(){ if(mq.matches) setOpen(false); else setOpen(true); }
+      mq.addEventListener("change", init);
+      init();
+    })();
+  </script>
 
-</body></html>
+
+  <script>
+    (function(){
+      const searchRow = document.querySelector(".search-row");
+      const mainSlot = document.getElementById("mainSearchSlot");
+      const sideSlot = document.getElementById("sideSearchMount");
+      const mq = window.matchMedia("(min-width: 981px)");
+
+      function placeSearch(){
+        if(!searchRow || !mainSlot || !sideSlot) return;
+        if(mq.matches){
+          if(searchRow.parentElement !== sideSlot) sideSlot.appendChild(searchRow);
+        } else {
+          if(searchRow.parentElement !== mainSlot.parentElement) {
+            mainSlot.insertAdjacentElement("afterend", searchRow);
+          }
+        }
+      }
+
+      mq.addEventListener("change", placeSearch);
+      placeSearch();
+
+      const cartPanel = document.querySelector(".compact-cart");
+      const cartToggle = document.getElementById("desktopCartToggle");
+      const cartBody = document.getElementById("desktopCartBody");
+
+      function setCartOpen(open){
+        if(!cartPanel || !cartToggle || !cartBody) return;
+        cartPanel.classList.toggle("collapsed", !open);
+        cartToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        cartToggle.textContent = open ? "장바구니 접기 ▴" : "장바구니 열기 ▾";
+      }
+
+      if(cartToggle){
+        cartToggle.addEventListener("click", function(){
+          const isCollapsed = cartPanel.classList.contains("collapsed");
+          setCartOpen(isCollapsed);
+        });
+        setCartOpen(false);
+      }
+    })();
+  </script>
+
+</body>
+</html>
