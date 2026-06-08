@@ -1,5 +1,4 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8" /><meta name="robots" content="noindex,nofollow,noarchive" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-title" content="재정가검색 🌱" /><meta name="apple-mobile-web-app-status-bar-style" content="default" /><meta name="theme-color" content="#FAF9F7" /><link rel="manifest" href="./manifest.webmanifest" /><title>재정가검색 🌱</title><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"><style>
-
 :root{
 --bg:#FAF9F7;--card:#FFFFFF;--text:#2B2927;--muted:#77706A;--line:#E3DED8;
 --accent:#B78A96;--accent-dark:#98717C;--rose:#F1E6E9;--brown:#6A625C;--brown-dark:#4E4843;
@@ -70,15 +69,14 @@ button.ghost{background:#F1E6E9;color:#6d5058;border-color:#DED6D2}
 }
 }
 
-
 .card{position:relative}
 .book-cover{display:none}.favorite-toggle{display:none}.view-mode-row{display:none}.install-banner{display:none}.mobile-tabbar{display:none}
 @media(max-width:980px){
   .top-link-row{display:none}.page{padding-bottom:112px}header{margin:14px 0 10px}.title{font-size:25px;letter-spacing:-.04em}.desc{display:none}
   .install-banner{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:10px 11px;margin:0 0 10px;color:#6A625C;font-size:12px;font-weight:800;line-height:1.35}.install-banner.hidden{display:none!important}.install-banner span{min-width:0;flex:1}.install-banner button{width:auto;min-height:30px;border-radius:999px;padding:0 10px;font-size:12px;background:#fff;color:var(--brown);border-color:#D8D1CC}.install-banner button#installDismissBtn{width:30px;padding:0;font-size:16px}
   .view-mode-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}.view-mode-label{font-size:12px;color:var(--muted);font-weight:850}.view-mode-buttons{display:inline-flex;gap:6px;background:#FAF9F7;border:1px solid var(--line);border-radius:999px;padding:3px}.view-mode-btn{width:38px;min-height:32px;border-radius:999px;padding:0;background:transparent;border:0;color:var(--brown);font-size:17px;line-height:1}.view-mode-btn.active{background:var(--accent);color:#fff}
-  .mobile-tabbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;background:rgba(255,253,249,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 22px rgba(70,55,48,.13);padding:7px;backdrop-filter:blur(10px)}.mobile-tab{min-height:46px;border-radius:14px;background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;font-weight:900}.mobile-tab span{font-size:18px;line-height:1}.mobile-tab em{font-style:normal;font-size:11px;line-height:1}.mobile-tab.active{background:#F1E6E9;color:#9B6F7B}
-  .float-nav{bottom:88px}.float-nav button{box-shadow:0 4px 12px rgba(70,55,48,.11)}.favorite-toggle{display:none!important}.favorite-toggle.is-on{background:#F1E6E9;color:#9B6F7B;border-color:#DED6D2}.card{padding-right:16px}
+  .mobile-tabbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,253,249,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 22px rgba(70,55,48,.13);padding:7px;backdrop-filter:blur(10px)}.mobile-tab{min-height:46px;border-radius:14px;background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;font-weight:900}.mobile-tab span{font-size:18px;line-height:1}.mobile-tab em{font-style:normal;font-size:11px;line-height:1}.mobile-tab.active{background:#F1E6E9;color:#9B6F7B}
+  .float-nav{bottom:88px}.float-nav button{box-shadow:0 4px 12px rgba(70,55,48,.11)}.favorite-toggle{display:flex;position:absolute;top:10px;right:10px;z-index:2;align-items:center;justify-content:center;width:34px;min-height:34px;height:34px;border-radius:999px;background:#fff;color:#B78A96;border:1px solid #DED6D2;box-shadow:0 2px 8px rgba(80,55,45,.06);font-size:18px;padding:0}.favorite-toggle.is-on{background:#F1E6E9;color:#9B6F7B;border-color:#DED6D2}.card{padding-right:48px}
   body.view-card .card.with-cover{grid-template-columns:72px minmax(0,1fr);align-items:start;gap:12px;padding:13px 48px 13px 13px}body.view-card .card.with-cover .book-cover{display:block;width:72px;height:104px;border-radius:10px;overflow:hidden;border:1px solid #E3DED8;background:#F7F5F2;grid-row:1 / span 2;align-self:start}.book-cover img{width:100%;height:100%;object-fit:cover;display:block}.book-cover.no-cover{display:flex!important;align-items:center;justify-content:center;color:#9A918B;font-size:11px;font-weight:900;text-align:center;line-height:1.25;letter-spacing:-.02em;padding:6px}.book-cover.no-cover span{display:block}body.view-card .card.with-cover .card-info{grid-column:2;min-width:0;padding-top:2px}.book-title{padding-right:0}body.view-card .card.with-cover .card-middle{grid-column:2;justify-self:start;text-align:left;margin-top:2px}.book-history-inline{gap:6px}.history-pill{min-height:28px;padding:0 10px;font-size:12px}body.view-card .card.with-cover .card-actions{grid-column:2;grid-template-columns:1fr 1fr;margin-top:2px}.history-btn,.move-btn{min-height:38px}
 }
 
@@ -223,7 +221,6 @@ button.secondary,
   }
 }
 
-
 /* compact view selector only: rollback color tweak, reduce height/size */
 @media(max-width:980px){
   .view-mode-row{
@@ -249,14 +246,12 @@ button.secondary,
   }
 }
 
-
 /* view selector symbol size tweak only */
 @media(max-width:980px){
   .view-mode-btn{
     font-size:16px !important;
   }
 }
-
 
 /* balance view selector icons only */
 @media(max-width:980px){
@@ -271,7 +266,6 @@ button.secondary,
   }
 }
 
-
 /* make list view icon wider only */
 @media(max-width:980px){
   .list-view-icon{
@@ -284,7 +278,6 @@ button.secondary,
       linear-gradient(currentColor,currentColor) left bottom / 100% 1.5px no-repeat;
   }
 }
-
 
 /* card view icon: 2x2 squares balanced with list icon */
 @media(max-width:980px){
@@ -310,7 +303,6 @@ button.secondary,
   }
 }
 
-
 /* mobile bottom tabbar: stick fully to bottom, device-safe */
 @media(max-width:980px){
   .page{
@@ -333,7 +325,6 @@ button.secondary,
     bottom:calc(78px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
-
 
 /* mobile quick buttons balance: reset + accordion */
 @media(max-width:980px){
@@ -367,7 +358,6 @@ button.secondary,
     border-bottom-width:3px !important;
   }
 }
-
 
 /* final mobile button balance */
 @media(max-width:980px){
@@ -404,7 +394,6 @@ button.secondary,
   }
 }
 
-
 /* align card/list view selector to the right */
 @media(max-width:980px){
   .view-mode-row{
@@ -414,7 +403,6 @@ button.secondary,
     margin-left:auto !important;
   }
 }
-
 
 /* ridi link + hide search panel on favorite tab */
 @media(max-width:980px){
@@ -445,7 +433,6 @@ button.secondary,
   }
 }
 
-
 /* standalone webapp only: lift bottom tabbar slightly */
 @media(max-width:980px) and (display-mode: standalone){
   .mobile-tabbar{
@@ -463,7 +450,6 @@ button.secondary,
     }
   }
 }
-
 
 /* standalone webapp only: slightly larger bottom tabbar */
 @media(max-width:980px) and (display-mode: standalone){
@@ -586,7 +572,6 @@ button.secondary,
   }
 }
 
-
 /* mobile search input + button balance */
 @media(max-width:980px){
   .search-row{
@@ -610,14 +595,12 @@ button.secondary,
   }
 }
 
-
 /* date list count removed */
 @media(max-width:980px){
   .date-list-item{
     justify-content:flex-start !important;
   }
 }
-
 
 /* install banner: state-separated visibility */
 #installBanner{
@@ -701,7 +684,6 @@ button.secondary,
   }
 }
 
-
 /* mobile: title and top buttons on the same line */
 @media(max-width:980px){
   .top-link-row{
@@ -727,8 +709,6 @@ button.secondary,
     align-items:center !important;
   }
 }
-
-
 
 /* PC card/list switch: default list stays unchanged, card mode shows manual covers */
 @media(min-width:981px){
@@ -883,7 +863,6 @@ button.secondary,
   }
 }
 
-
 /* PC: move card/list toggle beside reset; mobile keeps it under quick filters */
 .detail-toggle-cell{display:none}
 @media(min-width:981px){
@@ -900,8 +879,6 @@ button.secondary,
   .quick-row .view-mode-row label{display:none !important}
 }
 
-
-
 /* date-list clear button: outside list box, on summary right */
 .summary-right{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;margin-left:auto}
 .summary-right .active-summary{min-width:0}
@@ -914,704 +891,199 @@ body.date-list-mode .date-list-clear-btn{display:inline-flex;align-items:center;
   body.date-list-mode .summary-right{flex:1 1 auto;min-width:0}
   body.date-list-mode .summary-right .active-summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
 }
-
-
-/* 202605 event search additions: cart + event badges, index136 tone preserved */
-.event-badges{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin-bottom:7px}.event-badge{display:inline-flex;align-items:center;justify-content:center;min-height:29px;padding:0 11px;border-radius:4px;border:1px solid #DED6D2;background:#F7F5F2;color:#6A625C;font-size:13px;font-weight:950;line-height:1;white-space:nowrap}.event-badge.discount{background:#B78A96;border-color:#B78A96;color:#fff}.event-badge.price{background:#FAF9F7;color:#4E4843}.event-badge.type{background:#F1E6E9;color:#6d5058}.cart-toggle-btn{display:inline-flex;align-items:center;justify-content:center;width:48px;min-height:36px;border:1px solid #DED6D2;border-radius:4px;background:#fff;color:var(--brown);cursor:pointer;font-weight:900;font-size:16px;box-shadow:0 1px 5px rgba(80,55,45,.035)}.cart-toggle-btn.has-items{background:#F1E6E9;color:#9B6F7B}.favorite-action-btn{width:96px;min-height:40px;border-radius:4px;font-size:14px;font-weight:950;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;text-align:center;background:#fff;color:var(--brown);border:1px solid #D8D1CC}.favorite-action-btn.is-on{background:#F1E6E9;color:#9B6F7B;border-color:#DED6D2}.card-actions{gap:8px}.card-actions.three-actions{grid-template-columns:1fr;width:96px;min-width:96px}.move-btn,.history-btn,.favorite-action-btn{width:96px!important}
-@media(max-width:980px){.cart-toggle-btn{width:38px;min-height:34px;height:34px}.event-badges{justify-content:flex-start;margin-bottom:0}.card-actions.three-actions{grid-template-columns:1fr 1fr 1fr;width:100%;min-width:0}.move-btn,.history-btn,.favorite-action-btn{width:100%!important}.mobile-tabbar{grid-template-columns:repeat(2,1fr)!important}.top-link-row{display:flex!important}}
-@media(max-width:420px){.card-actions.three-actions{grid-template-columns:1fr}.event-badge{font-size:12px;padding:0 9px}}
-
-
-
-/* mobile: title handles move, action buttons become past / favorite / cart */
-.mobile-fav-btn{display:none}
-@media(max-width:980px){
-  .card .move-btn{display:none !important;}
-  .card .favorite-toggle{display:none !important;}
-  .mobile-fav-btn{
-    display:inline-flex !important;
-    align-items:center;
-    justify-content:center;
-    width:100% !important;
-    min-height:40px;
-    border-radius:4px;
-    font-size:14px;
-    font-weight:950;
-    padding:0 10px;
-    text-align:center;
-    background:#fff;
-    color:var(--brown);
-    border:1px solid #D8D1CC;
-  }
-  .mobile-fav-btn.is-on{
-    background:#F1E6E9;
-    color:#9B6F7B;
-    border-color:#DED6D2;
-  }
-  .move-btn{font-size:14px;}
-}
-
-
-/* separated card action sections: past vs favorite */
-.card-actions.three-actions{
-  display:grid !important;
-  grid-template-columns:1fr !important;
-  gap:8px !important;
-}
-.history-action-section,
-.user-action-section{
-  display:grid;
-  width:100%;
-  min-width:0;
-}
-.history-action-section{
-  grid-template-columns:1fr;
-}
-.user-action-section{
-  grid-template-columns:1fr;
-  gap:7px;
-  padding-top:8px;
-  border-top:1px dashed #E3DED8;
-}
-.history-action-section .history-btn,
-.user-action-section .favorite-action-btn,
-.user-action-section .move-btn{
-  width:100% !important;
-}
-@media(max-width:980px){
-  .card-actions.three-actions{
-    grid-template-columns:1fr !important;
-    width:100% !important;
-    min-width:0 !important;
-    gap:9px !important;
-  }
-  .history-action-section{
-    grid-template-columns:1fr !important;
-  }
-  .user-action-section{
-    grid-template-columns:1fr 1fr !important;
-    gap:8px !important;
-    padding-top:9px !important;
-  }
-}
-@media(max-width:420px){
-  .user-action-section{
-    grid-template-columns:1fr 1fr !important;
-  }
-}
-
-/* PC cart access restored; mobile top cart button remains hidden */
-.pc-cart-top-btn{display:inline-flex;}
-@media(max-width:980px){
-  .pc-cart-top-btn{display:none !important;}
-}
-
-
-/* mobile: move card/list selector to result summary row */
-@media(max-width:980px){
-  .summary{
-    flex-direction:row !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    gap:8px !important;
-  }
-  .summary .count{
-    white-space:nowrap !important;
-  }
-  .summary-right{
-    flex:1 1 auto !important;
-    min-width:0 !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:flex-end !important;
-    gap:8px !important;
-  }
-  .summary-right .view-mode-row{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:flex-end !important;
-    margin:0 !important;
-    padding:0 !important;
-    border:0 !important;
-    flex:0 0 auto !important;
-  }
-  .summary-right .view-mode-row label{
-    display:none !important;
-  }
-  .summary-right .view-mode-buttons{
-    margin-left:0 !important;
-  }
-  .summary-right .active-summary{
-    flex:1 1 auto !important;
-    min-width:0 !important;
-    text-align:right !important;
-    white-space:nowrap !important;
-    overflow:hidden !important;
-    text-overflow:ellipsis !important;
-  }
-}
-
-
-
-/* simplified result cards: emphasize discount + price only */
-.event-badges{
-  gap:8px !important;
-  margin-bottom:0 !important;
-}
-.event-badge{
-  min-height:34px !important;
-  padding:0 13px !important;
-  font-size:15px !important;
-  font-weight:950 !important;
-  letter-spacing:-.02em !important;
-}
-.event-badge.discount{
-  background:#B78A96 !important;
-  border-color:#B78A96 !important;
-  color:#fff !important;
-  min-width:58px !important;
-}
-.event-badge.price{
-  background:#FAF9F7 !important;
-  border-color:#DED6D2 !important;
-  color:#2B2927 !important;
-  min-width:92px !important;
-}
-.event-badge.type,
-.book-history-inline,
-.history-pill{
-  display:none !important;
-}
-.card-middle{
-  max-width:none !important;
-}
-@media(max-width:980px){
-  .event-badges{
-    justify-content:flex-start !important;
-  }
-  .event-badge{
-    min-height:32px !important;
-    font-size:14px !important;
-    padding:0 12px !important;
-  }
-}
-
-
-
-/* PC only: bl-search style right cart panel. Mobile untouched. */
-@media(min-width:981px){
-  .pc-cart-dock{
-    position:fixed;
-    top:64px;
-    right:18px;
-    z-index:24;
-    width:280px;
-    max-height:calc(100vh - 82px);
-    overflow:auto;
-    display:block;
-    background:#FFFFFF;
-    border:1px solid var(--line);
-    border-radius:4px;
-    box-shadow:var(--shadow);
-    padding:14px;
-  }
-  .pc-cart-dock 
-}
-@media(max-width:980px){
-  .pc-cart-dock{display:none !important;}
-}
-
-
-/* final patch: remove top cart trigger, remove copy action, and use index138-like mobile favorite placement */
-.pc-cart-top-btn{display:none !important;}
-
-
-.card-actions.two-actions{display:grid !important;grid-template-columns:1fr !important;gap:8px !important;width:96px;min-width:96px;justify-self:start;}
-.card-actions.two-actions .history-btn,
-.card-actions.two-actions .move-btn{width:96px !important;}
-@media(max-width:980px){
-  .card .favorite-toggle{
-    display:flex !important;
-    position:absolute;
-    top:10px;
-    right:10px;
-    z-index:2;
-    align-items:center;
-    justify-content:center;
-    width:34px;
-    min-height:34px;
-    height:34px;
-    border-radius:4px !important;
-    background:#fff;
-    color:#98717C;
-    border:1px solid #DED6D2;
-    box-shadow:none !important;
-    font-size:18px;
-    padding:0;
-  }
-  .card .favorite-toggle.is-on{
-    background:#F1E6E9;
-    color:#9B6F7B;
-    border-color:#DED6D2;
-  }
-  .card{padding-right:48px !important;}
-  .card-actions.two-actions{
-    grid-template-columns:1fr 1fr !important;
-    width:100% !important;
-    min-width:0 !important;
-    gap:8px !important;
-  }
-  .card-actions.two-actions .history-btn,
-  .card-actions.two-actions .move-btn{
-    width:100% !important;
-  }
-}
-
-/* final patch 2: PC favorite heart + PC card-view action buttons in one row */
-@media(min-width:981px){
-  .card .favorite-toggle{
-    display:flex !important;
-    position:absolute !important;
-    top:10px !important;
-    right:124px !important;
-    z-index:2 !important;
-    align-items:center !important;
-    justify-content:center !important;
-    width:34px !important;
-    min-height:34px !important;
-    height:34px !important;
-    border-radius:4px !important;
-    background:#fff !important;
-    color:#98717C !important;
-    border:1px solid #DED6D2 !important;
-    box-shadow:none !important;
-    font-size:18px !important;
-    padding:0 !important;
-  }
-  .card .favorite-toggle.is-on{
-    background:#F1E6E9 !important;
-    color:#9B6F7B !important;
-    border-color:#DED6D2 !important;
-  }
-  body.view-card .card.with-cover .favorite-toggle{
-    right:10px !important;
-  }
-  body.view-card .card.with-cover .card-actions.two-actions{
-    grid-column:1 / -1 !important;
-    grid-template-columns:1fr 1fr !important;
-    width:100% !important;
-    min-width:0 !important;
-    gap:8px !important;
-  }
-  body.view-card .card.with-cover .card-actions.two-actions .history-btn,
-  body.view-card .card.with-cover .card-actions.two-actions .move-btn{
-    width:100% !important;
-  }
-}
-
-
-/* final request patch: mobile only top arrow/heart removal, favorite filters, and card text-size balance */
-.favorite-filter-bar{display:none;}
-@media(max-width:980px){
-  #goTopBtn{display:none !important;}
-  #tasteTopBtn{display:none !important;}
-  header{padding-right:72px !important;}
-  .favorite-filter-bar{
-    display:none;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    background:#FFFFFF;
-    border:1px solid #E3DED8;
-    border-radius:4px;
-    box-shadow:0 1px 4px rgba(45,42,38,.035);
-    padding:10px;
-    margin:8px 0 10px;
-  }
-  body.favorite-mode .favorite-filter-bar{display:grid !important;}
-  
-  .favorite-filter-bar label{font-size:11px !important;margin-bottom:4px !important;}
-  .favorite-filter-bar select{min-height:38px !important;height:38px !important;font-size:13px !important;padding:0 8px !important;}
-  .card .book-title{font-size:17px !important;line-height:1.34 !important;}
-  .card .book-meta{font-size:14px !important;line-height:1.35 !important;}
-  .card-actions.two-actions .history-btn,
-  .card-actions.two-actions .move-btn{font-size:12px !important;}
-}
-@media(min-width:981px){
-  .card-actions.two-actions .history-btn,
-  .card-actions.two-actions .move-btn{font-size:12px !important;}
-}
-
-
-/* PC card view: prevent favorite heart overlapping title text only */
-@media(min-width:981px){
-  body.view-card .card.with-cover .card-info{
-    padding-right:42px !important;
-  }
-  body.view-card .card.with-cover .book-title{
-    padding-right:0 !important;
-  }
-}
-
-
-/* favorite list hamburger/direct-jump bar */
-.favorite-list-bar{display:none;background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:8px;margin:0 0 8px;gap:7px;align-items:center;position:relative}
-body.favorite-mode .favorite-list-bar{display:flex}
-.fav-list-menu-btn{width:38px!important;min-width:38px!important;height:34px!important;min-height:34px!important;padding:0!important;background:#fff!important;color:#6A625C!important;border:1px solid #D8D1CC!important;border-radius:4px!important;font-size:18px!important;line-height:1!important}
-.fav-list-select{flex:0 0 104px;width:104px!important;min-height:34px!important;height:34px!important;padding:0 8px!important;border-radius:4px!important;font-size:13px!important;font-weight:900!important;color:#6A625C!important;background:#FAF9F7!important;border:1px solid #E3DED8!important}.fav-list-count{display:inline-flex;align-items:center;justify-content:center;min-height:34px;height:34px;padding:0 9px;border:1px solid #DED6D2;border-radius:4px;background:#F1E6E9;color:#9B6F7B;font-size:12px;font-weight:950;white-space:nowrap;line-height:1}
-.fav-list-hint{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 8px;border:1px dashed #DED6D2;border-radius:4px;background:#FAF9F7;color:#98717C;font-size:13px;font-weight:950;white-space:nowrap}
-.fav-list-menu{position:absolute;left:8px;right:8px;top:48px;z-index:55;display:grid;grid-template-columns:38px 38px minmax(0,1fr) 38px;gap:6px;background:#fff;border:1px solid #DED6D2;border-radius:4px;box-shadow:0 8px 20px rgba(70,55,48,.12);padding:8px}
-.fav-list-menu[hidden]{display:none!important}
-.fav-list-menu button{width:38px!important;min-width:38px!important;min-height:34px!important;height:34px!important;padding:0!important;background:#F1E6E9!important;color:#6A625C!important;border-color:#DED6D2!important;border-radius:4px!important;font-size:17px!important}
-.fav-list-menu input{min-height:34px!important;height:34px!important;border-radius:4px!important;font-size:13px!important;padding:0 8px!important}
-.favorite-list-bar .view-mode-row{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-end !important;
-  margin:0 0 0 auto !important;
-  padding:0 !important;
-  border:0 !important;
-  flex:0 0 auto !important;
-}
-.favorite-list-bar .view-mode-row label{
-  display:none !important;
-}
-.favorite-list-bar .view-mode-buttons{
-  min-height:34px !important;
-  height:34px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:4px !important;
-  padding:2px !important;
-  margin-left:0 !important;
-  background:#F7F5F2 !important;
-  border:1px solid #E3DED8 !important;
-  border-radius:4px !important;
-}
-.favorite-list-bar .view-mode-btn{
-  width:30px !important;
-  min-height:28px !important;
-  height:28px !important;
-  border-radius:4px !important;
-  padding:0 !important;
-}
-.favorite-filter-bar{margin-top:0!important}
-@media(max-width:980px){.favorite-list-bar{margin-top:0}.fav-list-select{flex:0 0 96px;width:96px!important}.fav-list-count{min-height:34px;height:34px;padding:0 8px;font-size:12px}.fav-list-hint{font-size:12px;padding:0 7px}.fav-list-menu{top:46px}}
-
-
-/* favorite tab: per-card move button next to heart; remove unused guide text */
-.favorite-move-btn{display:none;}
-body.favorite-mode .card .favorite-move-btn{
-  display:flex !important;
-  position:absolute !important;
-  top:10px !important;
-  right:164px !important;
-  z-index:2 !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:34px !important;
-  min-height:34px !important;
-  height:34px !important;
-  border-radius:4px !important;
-  background:#fff !important;
-  color:#98717C !important;
-  border:1px solid #DED6D2 !important;
-  box-shadow:none !important;
-  font-size:17px !important;
-  padding:0 !important;
-}
-body.favorite-mode .card .favorite-move-btn:hover{background:#F7F5F2 !important;}
-@media(min-width:981px){
-  body.favorite-mode.view-card .card.with-cover .favorite-move-btn{right:50px !important;}
-}
-@media(max-width:980px){
-  body.favorite-mode .card .favorite-move-btn{right:50px !important;}
-}
-
-
-/* final patch: standalone webapp bottom tabbar fixed to bottom */
-@media(max-width:980px) and (display-mode: standalone){
-  .mobile-tabbar{
-    bottom:0 !important;
-    border-bottom:0 !important;
-    border-radius:4px 4px 0 0 !important;
-    padding-bottom:calc(9px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-}
-@media(max-width:980px){
-  body.standalone .mobile-tabbar{
-    bottom:0 !important;
-    border-bottom:0 !important;
-    border-radius:4px 4px 0 0 !important;
-    padding-bottom:calc(9px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-}
-
-
-/* favorite move menu: choose target list by buttons, no number prompt */
-.favorite-move-popover{
-  position:fixed;
-  z-index:120;
-  min-width:128px;
-  max-width:min(220px, calc(100vw - 24px));
-  display:grid;
-  gap:6px;
-  padding:8px;
-  background:#fff;
-  border:1px solid #DED6D2;
-  border-radius:4px;
-  box-shadow:0 8px 22px rgba(70,55,48,.16);
-}
-.favorite-move-popover button{
-  width:100% !important;
-  min-height:34px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  padding:0 10px !important;
-  border-radius:4px !important;
-  background:#FAF9F7 !important;
-  color:#6A625C !important;
-  border:1px solid #E3DED8 !important;
-  font-size:13px !important;
-  font-weight:950 !important;
-  text-align:left !important;
-}
-.favorite-move-popover button:hover{
-  background:#F1E6E9 !important;
-  color:#9B6F7B !important;
-  border-color:#DED6D2 !important;
-}
-
-
-/* overlap fix only: keep favorite/move buttons from covering title/author in favorite tab */
-body.favorite-mode .card .card-info{
-  padding-right:92px !important;
-}
-body.favorite-mode.view-card .card.with-cover .card-info{
-  padding-right:92px !important;
-}
-@media(min-width:981px){
-  body.favorite-mode:not(.view-card) .card .card-info{
-    padding-right:92px !important;
-  }
-  body.favorite-mode.view-card .card.with-cover .card-info{
-    padding-right:88px !important;
-  }
-}
-@media(max-width:980px){
-  body.favorite-mode .card .card-info{
-    padding-right:92px !important;
-  }
-  body.favorite-mode.view-card .card.with-cover .card-info{
-    padding-right:92px !important;
-  }
-}
-
-
-/* mobile card buttons center fix only: center past/cart buttons within the card */
-@media(max-width:980px){
-  .card-actions.two-actions{
-    grid-column:1 / -1 !important;
-    justify-self:center !important;
-    align-self:center !important;
-    width:min(100%, 320px) !important;
-    max-width:320px !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-    padding-right:0 !important;
-  }
-  .card-actions.two-actions .history-btn,
-  .card-actions.two-actions .move-btn{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    text-align:center !important;
-  }
-  body.view-card .card.with-cover .card-actions.two-actions{
-    grid-column:1 / -1 !important;
-    justify-self:center !important;
-    width:min(100%, 320px) !important;
-    max-width:320px !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
-}
-
-
-
-/* price badge color tweak: muted warm yellow, tone-preserving */
-.event-badge.price{
-  background:#F7E7B8 !important;
-  border-color:#E7D39B !important;
-  color:#5E5140 !important;
-}
-
-
-
-/* B patch: center past/cart buttons + cart share buttons */
-.card-actions.two-actions{
-  justify-content:center !important;
-}
-.card-actions.two-actions .history-btn,
-.card-actions.two-actions .move-btn{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-}
-@media(min-width:981px){
-  body.view-card .card.with-cover .card-actions.two-actions{
-    justify-self:center !important;
-    max-width:320px !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
-}
-.cart-share-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:12px;
-}
-.cart-share-btn{
-  min-height:38px;
-  border-radius:4px;
-  font-size:13px;
-  font-weight:950;
-  background:#F1E6E9;
-  color:#9B6F7B;
-  border:1px solid #DED6D2;
-}
-.cart-share-btn:hover{
-  background:#EADDE1;
-  border-color:#D4C6CB;
-}
-.cart-share-btn.secondary-share{
-  background:#FAF9F7;
-  color:#6A625C;
-  border-color:#E3DED8;
-}
-.cart-share-btn.secondary-share:hover{
-  background:#F7F5F2;
-}
-@media(max-width:360px){
-  .cart-share-actions{gap:6px}
-  .cart-share-btn{font-size:12px;padding:0 8px}
-}
-
-
-
-/* correction: keep heart in original top-right position; visually center only past/cart row with heart padding considered */
-@media(max-width:980px){
-  .card .favorite-toggle{
-    position:absolute !important;
-    top:10px !important;
-    right:10px !important;
-  }
-  .card-actions.two-actions,
-  body.view-card .card.with-cover .card-actions.two-actions{
-    transform:translateX(16px) !important;
-  }
-}
-
-/* requested fix: keep favorite heart position, move discount/price badges slightly left on PC list view only */
-@media(min-width:981px){
-  body:not(.view-card) .card .card-middle{
-    transform:translateX(-58px) !important;
-  }
-}
-
-
-/* no-cart favorite action: former cart/add slot is now favorite */
-.card-actions.two-actions .favorite-action-btn{
-  width:96px !important;
-}
-@media(max-width:980px){
-  .card-actions.two-actions .favorite-action-btn,
-  body.view-card .card.with-cover .card-actions.two-actions .favorite-action-btn{
-    width:100% !important;
-    min-height:38px !important;
-  }
-}
-@media(max-width:420px){
-  .card-actions.two-actions .favorite-action-btn{font-size:12px !important;}
-}
-</style>
-</head><body><div class="top-link-row"><div class="top-actions"><a class="ridi-top-btn" href="https://ridibooks.com/event/bl-novel?fresh=1780250084186" target="_blank" rel="noopener noreferrer">리디로</a><button class="heart-top-btn small" id="tasteTopBtn" type="button" aria-label="찜 목록">💚</button></div></div><main class="page" id="top"><header><h1 class="title">재정가검색 🌱</h1><p class="desc">※전적으로 저를 믿으시면 안됩니다. <br>누락 및 오기입 노정에서 더블체크하세요</p></header><div id="installBanner" class="install-banner hidden"><span>📱 홈화면에 추가하면 앱처럼 사용할 수 있어요</span><button id="installHowBtn" type="button">방법</button><button id="installDismissBtn" type="button" aria-label="닫기">×</button></div><section class="panel" aria-label="검색 및 필터"><div class="search-row"><div><label for="q">통합검색</label><input id="q" type="search" placeholder="제목 또는 작가 검색" autocomplete="off"></div><div><label>&nbsp;</label><button id="searchBtn" type="button">검색</button></div></div><div class="quick-row"><div><label for="sortBy">정렬</label><select id="sortBy"><option value="default">기본순</option><option value="titleAsc">제목 가나다순</option><option value="authorAsc">작가 가나다순</option><option value="priceAsc">판매가 낮은순</option><option value="priceDesc">판매가 높은순</option><option value="discountDesc">할인율 높은순</option></select></div><div><label>&nbsp;</label><button id="resetBtn" class="secondary" type="button">초기화</button></div><div class="detail-toggle-cell"><label>&nbsp;</label><button id="detailToggleBtn" class="secondary detail-toggle-btn is-collapsed" type="button" aria-expanded="false" aria-controls="detailRow" title="상세검색 펼치기"><span class="detail-toggle-icon" aria-hidden="true"></span></button></div><div class="view-mode-row" aria-label="보기 방식"><label>&nbsp;</label><div class="view-mode-buttons"><button id="viewCardBtn" class="view-mode-btn" type="button" aria-label="카드형"><span class="card-view-icon" aria-hidden="true"></span></button><button id="viewListBtn" class="view-mode-btn" type="button" aria-label="리스트형"><span class="list-view-icon" aria-hidden="true"></span></button></div></div></div><div class="detail-row mobile-collapsed" id="detailRow"><div><label for="titleOnly">제목만 검색</label><input id="titleOnly" type="search" placeholder="제목에 포함될 단어" autocomplete="off"></div><div><label for="authorOnly">작가만 검색</label><input id="authorOnly" type="search" placeholder="작가명" autocomplete="off"></div><div><label for="discountRate">할인율</label><select id="discountRate"><option value="">전체 할인율</option></select></div><div><label for="pricePreset">금액대</label><select id="pricePreset"><option value="">전체 금액</option><option value="0-10000">10,000원 이하</option><option value="0-20000">20,000원 이하</option><option value="0-30000">30,000원 이하</option><option value="0-40000">40,000원 이하</option><option value="0-50000">50,000원 이하</option></select></div><div><label for="typeFilter">구매유형</label><select id="typeFilter"><option value="">전체 유형</option></select></div><div><label for="exclude">제외어</label><input id="exclude" type="search" placeholder="제목/작가에서 제외" autocomplete="off"></div></div></section><section class="summary"><div class="count">검색 결과 <strong id="resultCount">0</strong>개</div><div class="summary-right"><div id="activeSummary" class="active-summary">필터 없음</div></div></section><section id="favoriteListBar" class="favorite-list-bar" aria-label="찜목록"><button id="favListMenuBtn" class="fav-list-menu-btn" type="button" aria-label="찜목록 메뉴">☰</button><select id="favListSelect" class="fav-list-select" aria-label="찜목록 바로 이동"></select><span id="favListCount" class="fav-list-count" aria-live="polite">0개</span><div id="favListMenu" class="fav-list-menu" hidden><button id="favListAddBtn" type="button" aria-label="찜목록 추가">＋</button><button id="favListDeleteBtn" type="button" aria-label="찜목록 삭제">−</button><input id="favListNameInput" type="text" maxlength="18" placeholder="+ 이름"><button id="favListRenameBtn" type="button" aria-label="이름 저장">✓</button></div></section><section id="favoriteFilterBar" class="favorite-filter-bar" aria-label="찜 필터"><div><label for="favDiscountRate">찜 할인율</label><select id="favDiscountRate"><option value="">전체 할인율</option></select></div><div><label for="favPricePreset">찜 금액순</label><select id="favPricePreset"><option value="">기본순</option><option value="priceAsc">낮은 금액순</option><option value="priceDesc">높은 금액순</option></select></div></section><section id="list" class="list" aria-label="작품 목록"></section><div id="empty" class="empty prompt hidden">검색값을 입력하세요</div><div id="error" class="error hidden"></div><div id="loadMoreWrap" class="load-more-wrap hidden"><button id="loadMoreBtn" type="button">더보기</button></div><div id="bottomAnchor"></div></main><div id="historyModalBackdrop" class="history-modal-backdrop" aria-hidden="true"><section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle"><div class="history-head"><h2 id="historyModalTitle">과거 할인율</h2><button id="historyModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p id="historyModalMeta" class="history-meta"></p><div id="historyModalBody" class="history-list"></div></section></div><nav class="mobile-tabbar" aria-label="모바일 탭"><button id="tabSearchBtn" type="button" class="mobile-tab active"><span>⌕</span><em>검색</em></button><button id="tabFavBtn" type="button" class="mobile-tab"><span>♡</span><em>찜</em></button></nav><div class="float-nav" aria-label="페이지 이동"><button id="goTopBtn" type="button" aria-label="맨 위로">↑</button><button id="goBottomBtn" type="button" aria-label="맨 아래로">↓</button></div><script>
-
+</style></head><body><div class="top-link-row"><div class="top-actions"><a class="ridi-top-btn" href="https://ridibooks.com/bl/ebook" target="_blank" rel="noopener noreferrer">리디로</a><button class="top-menu-btn" id="dateIndexBtn" type="button">목록</button><button class="heart-top-btn small" id="tasteTopBtn" type="button" aria-label="내 취향">💚</button></div></div><main class="page" id="top"><header><h1 class="title">재정가검색 🌱</h1><p class="desc">※전적으로 저를 믿으시면 안됩니다. <br>누락 및 오기입 노정에서 더블체크하세요</p></header><div id="installBanner" class="install-banner hidden"><span>📱 홈화면에 추가하면 앱처럼 사용할 수 있어요</span><button id="installHowBtn" type="button">방법</button><button id="installDismissBtn" type="button" aria-label="닫기">×</button></div><section class="panel" aria-label="검색 및 필터"><div class="search-row"><div><label for="q">통합검색</label><input id="q" type="search" placeholder="제목 또는 작가 검색" autocomplete="off"></div><div><label>&nbsp;</label><button id="searchBtn" type="button">검색</button></div></div><div class="quick-row"><div><label for="sortBy">정렬</label><select id="sortBy"><option value="default">기본순</option><option value="titleAsc">제목 가나다순</option><option value="authorAsc">작가 가나다순</option></select></div><div><label>&nbsp;</label><button id="resetBtn" class="secondary" type="button">초기화</button></div><div class="detail-toggle-cell"><label>&nbsp;</label><button id="detailToggleBtn" class="secondary detail-toggle-btn" type="button" aria-expanded="true" aria-controls="detailRow" title="상세검색 접기"><span class="detail-toggle-icon" aria-hidden="true"></span></button></div><div class="view-mode-row" aria-label="보기 방식"><label>&nbsp;</label><div class="view-mode-buttons"><button id="viewCardBtn" class="view-mode-btn" type="button" aria-label="카드형"><span class="card-view-icon" aria-hidden="true"></span></button><button id="viewListBtn" class="view-mode-btn" type="button" aria-label="리스트형"><span class="list-view-icon" aria-hidden="true"></span></button></div></div></div><div class="detail-row" id="detailRow"><div><label for="titleOnly">제목만 검색</label><input id="titleOnly" type="search" placeholder="제목에 포함될 단어" autocomplete="off"></div><div><label for="authorOnly">작가만 검색</label><input id="authorOnly" type="search" placeholder="작가명" autocomplete="off"></div><div><label for="discountRate">할인율</label><select id="discountRate"><option value="">전체 할인율</option></select></div><div><label for="exclude">제외어</label><input id="exclude" type="search" placeholder="제목/작가에서 제외" autocomplete="off"></div></div></section><section class="summary"><div class="count">검색 결과 <strong id="resultCount">0</strong>개</div><div class="summary-right"><div id="activeSummary" class="active-summary">필터 없음</div><button id="dateListClearBtn" class="date-list-clear-btn" type="button">선택 해제</button></div></section>
+<section id="dateListView" class="date-list-view hidden" aria-label="출현연월 목록">
+  <div class="date-list-head">
+    <strong>출현연월 목록</strong>
+    <select id="dateYearFilter" aria-label="연도별 보기">
+      <option value="">전체 연도</option>
+    </select>
+  </div>
+  <div id="dateListInline" class="date-list-inline"></div>
+</section>
+<section id="list" class="list" aria-label="작품 목록"></section><div id="empty" class="empty prompt hidden">검색값을 입력하세요</div><div id="error" class="error hidden"></div><div id="loadMoreWrap" class="load-more-wrap hidden"><button id="loadMoreBtn" type="button">더보기</button></div><div id="bottomAnchor"></div></main><div id="historyModalBackdrop" class="history-modal-backdrop" aria-hidden="true"><section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle"><div class="history-head"><h2 id="historyModalTitle">과거 할인율</h2><button id="historyModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p id="historyModalMeta" class="history-meta"></p><div id="historyModalBody" class="history-list"></div></section></div><div id="dateIndexBackdrop" class="date-index-backdrop" aria-hidden="true"><section class="date-index-modal" role="dialog" aria-modal="true" aria-labelledby="dateIndexTitle"><div class="history-head"><h2 id="dateIndexTitle">정리된 출현연월</h2><button id="dateIndexClose" class="history-close" type="button" aria-label="닫기">×</button></div><p class="date-index-desc">누락에 주의하세요</p><div id="dateIndexBody" class="date-index-list"></div></section></div><div id="tasteModalBackdrop" class="taste-modal-backdrop" aria-hidden="true"><section class="taste-modal" role="dialog" aria-modal="true" aria-labelledby="tasteModalTitle"><div class="history-head"><h2 id="tasteModalTitle">찐토리 취향</h2><button id="tasteModalClose" class="history-close" type="button" aria-label="닫기">×</button></div><p class="history-meta">냠💚</p><div class="taste-card-list"><article class="taste-card"><h3 class="taste-card-title">취향작 카드 1</h3><p class="taste-card-desc">준비중</p></article></div></section></div><nav class="mobile-tabbar" aria-label="모바일 탭"><button id="tabSearchBtn" type="button" class="mobile-tab active"><span>⌕</span><em>검색</em></button><button id="tabListBtn" type="button" class="mobile-tab"><span>☷</span><em>목록</em></button><button id="tabFavBtn" type="button" class="mobile-tab"><span>♡</span><em>찜</em></button></nav><div class="float-nav" aria-label="페이지 이동"><button id="goTopBtn" type="button" aria-label="맨 위로">↑</button><button id="goBottomBtn" type="button" aria-label="맨 아래로">↓</button></div><script>
 const PAGE_SIZE=100;
-const FAVORITE_LEGACY_KEY='dm_favorites_202606';
-const FAVORITE_LISTS_STORAGE_KEY='dm_favorite_lists_202606';
-const ACTIVE_FAVORITE_LIST_KEY='dm_active_favorite_list_202606';
-function readJsonStorage(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch{return fallback}}
-function loadFavoriteData(){const legacy=readJsonStorage(FAVORITE_LEGACY_KEY,[]);const saved=readJsonStorage(FAVORITE_LISTS_STORAGE_KEY,null);let lists=saved&&saved.lists&&typeof saved.lists==='object'?saved.lists:null;let names=saved&&saved.names&&typeof saved.names==='object'?saved.names:null;if(!lists){lists={fav1:Array.isArray(legacy)?legacy:[],fav2:[],fav3:[]};names={fav1:'',fav2:'',fav3:''}}['fav1','fav2','fav3'].forEach(id=>{if(!Array.isArray(lists[id]))lists[id]=[];if(!Object.prototype.hasOwnProperty.call(names,id))names[id]=''});let activeId=localStorage.getItem(ACTIVE_FAVORITE_LIST_KEY)||'fav1';if(!lists[activeId])activeId='fav1';return{lists,names,activeId}}
-const loadedFavoriteData=loadFavoriteData();
-const state={items:[],filtered:[],visibleCount:PAGE_SIZE,viewMode:localStorage.getItem('dm_view_mode')||'list',favoriteLists:loadedFavoriteData.lists,favoriteNames:loadedFavoriteData.names,activeFavoriteListId:loadedFavoriteData.activeId,favorites:new Set(loadedFavoriteData.lists[loadedFavoriteData.activeId]||[]),showFavorites:false};
-const els={q:document.getElementById('q'),searchBtn:document.getElementById('searchBtn'),sortBy:document.getElementById('sortBy'),resetBtn:document.getElementById('resetBtn'),titleOnly:document.getElementById('titleOnly'),authorOnly:document.getElementById('authorOnly'),exclude:document.getElementById('exclude'),discountRate:document.getElementById('discountRate'),pricePreset:document.getElementById('pricePreset'),typeFilter:document.getElementById('typeFilter'),favDiscountRate:document.getElementById('favDiscountRate'),favPricePreset:document.getElementById('favPricePreset'),favoriteListBar:document.getElementById('favoriteListBar'),favListMenuBtn:document.getElementById('favListMenuBtn'),favListSelect:document.getElementById('favListSelect'),favListCount:document.getElementById('favListCount'),favListMenu:document.getElementById('favListMenu'),favListAddBtn:document.getElementById('favListAddBtn'),favListDeleteBtn:document.getElementById('favListDeleteBtn'),favListNameInput:document.getElementById('favListNameInput'),favListRenameBtn:document.getElementById('favListRenameBtn'),resultCount:document.getElementById('resultCount'),activeSummary:document.getElementById('activeSummary'),list:document.getElementById('list'),empty:document.getElementById('empty'),error:document.getElementById('error'),loadMoreWrap:document.getElementById('loadMoreWrap'),loadMoreBtn:document.getElementById('loadMoreBtn'),goTopBtn:document.getElementById('goTopBtn'),goBottomBtn:document.getElementById('goBottomBtn'),bottomAnchor:document.getElementById('bottomAnchor'),detailToggleBtn:document.getElementById('detailToggleBtn'),detailRow:document.getElementById('detailRow')};
+const state={items:[],filtered:[],visibleCount:PAGE_SIZE,selectedHistoryDate:"",viewMode:localStorage.getItem("dm_view_mode")||"list",favorites:new Set(JSON.parse(localStorage.getItem("dm_favorites")||"[]")),showFavorites:false,showDateList:false};
+const els={q:document.getElementById('q'),searchBtn:document.getElementById('searchBtn'),sortBy:document.getElementById('sortBy'),resetBtn:document.getElementById('resetBtn'),titleOnly:document.getElementById('titleOnly'),authorOnly:document.getElementById('authorOnly'),exclude:document.getElementById('exclude'),discountRate:document.getElementById('discountRate'),resultCount:document.getElementById('resultCount'),activeSummary:document.getElementById('activeSummary'),list:document.getElementById('list'),empty:document.getElementById('empty'),error:document.getElementById('error'),loadMoreWrap:document.getElementById('loadMoreWrap'),loadMoreBtn:document.getElementById('loadMoreBtn'),goTopBtn:document.getElementById('goTopBtn'),goBottomBtn:document.getElementById('goBottomBtn'),bottomAnchor:document.getElementById('bottomAnchor'),detailToggleBtn:document.getElementById('detailToggleBtn'),detailRow:document.getElementById('detailRow')};
 function normalizeText(value){return String(value??'').trim().toLowerCase().replace(/\s+/g,'')}
 function toNumber(value){if(typeof value==='number')return value;const text=String(value??'').replace(/[^\d.-]/g,'');const num=Number(text);return Number.isFinite(num)?num:0}
-function formatPrice(price){const num=Number(price)||0;return num.toLocaleString('ko-KR')+'원'}
-function formatDiscount(d){const n=Number(d)||0;return n?n+'%':''}
 function historyCount(value){return String(value||'').split(',').map(v=>v.trim()).filter(Boolean).length}
+function normalizeItem(item,index){
+const title=String(item.title??'').trim();
+const author=String(item.author??'').trim();
+const history=String(item.history??item.pastDiscount??item['과거할인율']??'').trim();
+const historyItems=parseHistory(history);
+const latest=latestHistoryEntry(history);
+return{
+workId:String(item.workId??item.id??'').trim(),
+title,author,
+_titleNorm:normalizeText(title),
+_authorNorm:normalizeText(author),
+_joinedNorm:normalizeText(title+author),
+link:String(item.link??'').trim(),
+discount:toNumber(item.discount),
+price:toNumber(item.price),
+type:String(item.type??'').trim(),
+cover:String(item.cover??item.coverUrl??item['표지주소']??item['표지']??'').trim(),
+history,
+_historyItems:historyItems,
+_historyCache:null,
+appearCount:historyItems.length,
+latestEntry:latest,
+originalIndex:index
+}}
+function hasSearchCriteria(){return Boolean(els.q.value.trim()||els.titleOnly.value.trim()||els.authorOnly.value.trim()||els.exclude.value.trim()||els.discountRate.value||state.selectedHistoryDate)}
+function getRateKey(value){const m=String(value||'').match(/(\d+)\s*%/);return m?m[1]:''}
+function historyMatchesSelected(item){const selectedDate=state.selectedHistoryDate,selectedRate=els.discountRate.value;if(!selectedDate&&!selectedRate)return true;return item._historyItems.some(entry=>{if(selectedDate&&entry.date!==selectedDate)return false;if(selectedRate&&getRateKey(entry.rate)!==selectedRate)return false;return true})}
+function applyFilters(){const hasCriteria=hasSearchCriteria();if(!hasCriteria){state.filtered=[];state.visibleCount=PAGE_SIZE;updateSummary();render(true);return}const q=normalizeText(els.q.value),titleOnly=normalizeText(els.titleOnly.value),authorOnly=normalizeText(els.authorOnly.value),exclude=normalizeText(els.exclude.value);let result=state.items.filter(item=>{const title=item._titleNorm,author=item._authorNorm,joined=item._joinedNorm;if(!historyMatchesSelected(item))return false;if(q&&!(title.includes(q)||author.includes(q)))return false;if(titleOnly&&!title.includes(titleOnly))return false;if(authorOnly&&!author.includes(authorOnly))return false;if(exclude&&joined.includes(exclude))return false;return true});state.filtered=applySort(result);state.visibleCount=PAGE_SIZE;updateSummary();render(false)}
+function applySort(list){const sort=els.sortBy.value,arr=[...list];const byText=f=>(a,b)=>String(a[f]||'').localeCompare(String(b[f]||''),'ko-KR',{numeric:true});if(sort==='titleAsc')arr.sort(byText('title'));if(sort==='authorAsc')arr.sort(byText('author'));if(sort==='default')arr.sort((a,b)=>a.originalIndex-b.originalIndex);return arr}
+function updateSummary(){const p=[];if(state.selectedHistoryDate)p.push(`출현연월: ${state.selectedHistoryDate}`);if(els.q.value.trim())p.push(`통합: ${els.q.value.trim()}`);if(els.sortBy.value!=='default')p.push(`정렬: ${els.sortBy.options[els.sortBy.selectedIndex].textContent}`);if(els.discountRate.value)p.push(`할인율: ${els.discountRate.value}%`);if(els.titleOnly.value.trim())p.push(`제목: ${els.titleOnly.value.trim()}`);if(els.authorOnly.value.trim())p.push(`작가: ${els.authorOnly.value.trim()}`);if(els.exclude.value.trim())p.push(`제외: ${els.exclude.value.trim()}`);els.activeSummary.textContent=p.length?p.join(' · '):'필터 없음'}
+function makeSearchLink(item){const q=encodeURIComponent(String(item.title||'').trim());return q?`https://ridibooks.com/search?q=${q}&adult_exclude=n&tab=WEBNOVEL&child_tab=BL_WEBNOVEL`:''}
 function parseHistory(value){return String(value||'').split(',').map(v=>v.trim()).filter(Boolean).map(v=>{const m=v.match(/^(\d{6}\S*)\s+(.*)$/);return m?{date:m[1],rate:m[2].trim()||'-'}:{date:'기록',rate:v}})}
 function latestHistoryEntry(value){const entries=parseHistory(value).filter(entry=>entry.date&&entry.date!=='기록');if(!entries.length)return null;return [...entries].sort((a,b)=>String(b.date).slice(0,6).localeCompare(String(a.date).slice(0,6),'ko-KR',{numeric:true}))[0]}
-function itemKeyRaw(item,index){return String(item.workId||item.id||item.link||`${item.title}__${item.author}__${index}`)}
-function itemKey(item){return item.workId||item.link||`${item.title}__${item.author}`}
-function normalizeItem(item,index){const title=String(item.title??'').trim();const author=String(item.author??'').trim();const history=String(item.history??'').trim();const historyItems=parseHistory(history);return{workId:String(item.workId??item.id??'').trim(),id:itemKeyRaw(item,index),title,author,_titleNorm:normalizeText(title),_authorNorm:normalizeText(author),_joinedNorm:normalizeText(title+author),link:String(item.link??'').trim(),discount:toNumber(item.discount),price:toNumber(item.price),type:String(item.type??'').trim(),cover:String(item.cover??item.coverUrl??item.thumbnail??item.image??item.img??item['표지주소']??item['표지']??'').trim(),history,_historyItems:historyItems,_historyCache:null,appearCount:historyItems.length,latestEntry:latestHistoryEntry(history),originalIndex:index}}
-function hasSearchCriteria(){return Boolean(els.q.value.trim()||els.titleOnly.value.trim()||els.authorOnly.value.trim()||els.exclude.value.trim()||els.discountRate.value||els.pricePreset.value||els.typeFilter.value)}
-function getPriceRange(){if(!els.pricePreset.value)return{min:null,max:null};const[min,max]=els.pricePreset.value.split('-').map(Number);return{min,max}}
-function applySort(list){const sort=els.sortBy.value,arr=[...list];const byText=f=>(a,b)=>String(a[f]||'').localeCompare(String(b[f]||''),'ko-KR',{numeric:true});if(sort==='titleAsc')arr.sort(byText('title'));else if(sort==='authorAsc')arr.sort(byText('author'));else if(sort==='priceAsc')arr.sort((a,b)=>(a.price||0)-(b.price||0));else if(sort==='priceDesc')arr.sort((a,b)=>(b.price||0)-(a.price||0));else if(sort==='discountDesc')arr.sort((a,b)=>(b.discount||0)-(a.discount||0));else arr.sort((a,b)=>(a.originalIndex||0)-(b.originalIndex||0));return arr}
-function populateFilters(){const discounts=[...new Set(state.items.map(item=>item.discount).filter(Boolean))].sort((a,b)=>b-a);els.discountRate.innerHTML='<option value="">전체 할인율</option>'+discounts.map(v=>`<option value="${v}">${v}%</option>`).join('');if(els.favDiscountRate)els.favDiscountRate.innerHTML='<option value="">전체 할인율</option>'+discounts.map(v=>`<option value="${v}">${v}%</option>`).join('');const types=[...new Set(state.items.map(item=>item.type).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'ko-KR',{numeric:true}));els.typeFilter.innerHTML='<option value="">전체 유형</option>'+types.map(v=>`<option value="${String(v).replace(/"/g,'&quot;')}">${v}</option>`).join('')}
-function updateActiveSummary(isPrompt=false){if(!els.activeSummary)return;if(isPrompt){els.activeSummary.textContent='검색값을 입력하세요';return}const parts=[];if(els.q.value.trim())parts.push(`통합: ${els.q.value.trim()}`);if(els.titleOnly.value.trim())parts.push(`제목: ${els.titleOnly.value.trim()}`);if(els.authorOnly.value.trim())parts.push(`작가: ${els.authorOnly.value.trim()}`);if(els.exclude.value.trim())parts.push(`제외: ${els.exclude.value.trim()}`);if(els.discountRate.value)parts.push(`${els.discountRate.value}%`);if(els.pricePreset.value){const r=getPriceRange();if(r.max!=null)parts.push(`${r.max.toLocaleString('ko-KR')}원 이하`)}if(els.typeFilter.value)parts.push(els.typeFilter.value);els.activeSummary.textContent=parts.length?parts.join(' · '):'필터 없음'}
-function filterFavoriteItems(list){let arr=[...list];if(els.favDiscountRate&&els.favDiscountRate.value)arr=arr.filter(item=>String(item.discount)===String(els.favDiscountRate.value));const sort=els.favPricePreset?els.favPricePreset.value:'';if(sort==='priceAsc')arr.sort((a,b)=>(a.price||0)-(b.price||0));else if(sort==='priceDesc')arr.sort((a,b)=>(b.price||0)-(a.price||0));return arr}
-function applyFilters(){state.showFavorites=false;document.body.classList.remove('favorite-mode');state.visibleCount=PAGE_SIZE;const prompt=!hasSearchCriteria();updateActiveSummary(prompt);if(prompt){state.filtered=[];updateBottomTabs();render(true);return}const q=normalizeText(els.q.value);const titleOnly=normalizeText(els.titleOnly.value);const authorOnly=normalizeText(els.authorOnly.value);const exclude=normalizeText(els.exclude.value);const discount=els.discountRate.value;const type=els.typeFilter.value;const range=getPriceRange();let list=state.items.filter(item=>{if(q&&!item._joinedNorm.includes(q))return false;if(titleOnly&&!item._titleNorm.includes(titleOnly))return false;if(authorOnly&&!item._authorNorm.includes(authorOnly))return false;if(exclude&&(item._joinedNorm.includes(exclude)))return false;if(discount&&String(item.discount)!==String(discount))return false;if(type&&item.type!==type)return false;if(range.min!==null&&item.price<range.min)return false;if(range.max!==null&&item.price>range.max)return false;return true});state.filtered=applySort(list);updateBottomTabs();render(false)}
-function switchFavoriteList(id){if(!state.favoriteLists[id])return;state.favoriteLists[state.activeFavoriteListId]=[...state.favorites];state.activeFavoriteListId=id;state.favorites=new Set(state.favoriteLists[id]||[]);saveFavorites();refreshFavoriteListUI();state.visibleCount=PAGE_SIZE;render(false);updateBottomTabs()}
-function addFavoriteList(){const nums=favoriteListIds().map(id=>Number(id.replace('fav',''))||0);const next=Math.max(0,...nums)+1;const id=`fav${next}`;state.favoriteLists[id]=[];state.favoriteNames[id]='';switchFavoriteList(id);if(els.favListMenu)els.favListMenu.hidden=false;if(els.favListNameInput)els.favListNameInput.focus()}
-function deleteFavoriteList(){const ids=favoriteListIds();if(ids.length<=1){showToast('찜목록은 1개 이상 필요합니다');return}const current=state.activeFavoriteListId;delete state.favoriteLists[current];delete state.favoriteNames[current];const next=ids.find(id=>id!==current)||'fav1';state.activeFavoriteListId=next;state.favorites=new Set(state.favoriteLists[next]||[]);saveFavorites();refreshFavoriteListUI();state.visibleCount=PAGE_SIZE;render(false);updateBottomTabs()}
-function renameFavoriteList(){const name=String(els.favListNameInput?.value||'').trim();state.favoriteNames[state.activeFavoriteListId]=name;saveFavorites();refreshFavoriteListUI();if(els.favListMenu)els.favListMenu.hidden=true}
-function moveFavoriteItemToList(item,targetId){const key=itemKey(item);if(!state.favoriteLists[targetId]||targetId===state.activeFavoriteListId)return;state.favorites.delete(key);state.favoriteLists[state.activeFavoriteListId]=[...state.favorites];const targetSet=new Set(state.favoriteLists[targetId]||[]);targetSet.add(key);state.favoriteLists[targetId]=[...targetSet];saveFavorites();refreshFavoriteListUI();state.visibleCount=PAGE_SIZE;render(false);updateBottomTabs();showToast(`${favoriteDisplayName(targetId)}으로 이동했습니다`)}
-function closeFavoriteMoveMenu(){document.querySelectorAll('.favorite-move-popover').forEach(el=>el.remove());document.removeEventListener('click',closeFavoriteMoveMenu._outside,true)}
-function openFavoriteMoveMenu(item,anchor){const targets=favoriteListIds().filter(id=>id!==state.activeFavoriteListId);if(!targets.length){showToast('이동할 다른 찜목록이 없습니다');return}closeFavoriteMoveMenu();const menu=document.createElement('div');menu.className='favorite-move-popover';menu.setAttribute('role','menu');targets.forEach(id=>{const btn=document.createElement('button');btn.type='button';btn.textContent=favoriteDisplayName(id);btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeFavoriteMoveMenu();moveFavoriteItemToList(item,id)});menu.appendChild(btn)});document.body.appendChild(menu);const rect=(anchor&&anchor.getBoundingClientRect)?anchor.getBoundingClientRect():{left:window.innerWidth/2,top:window.innerHeight/2,bottom:window.innerHeight/2};const menuRect=menu.getBoundingClientRect();let left=Math.min(Math.max(12,rect.left),window.innerWidth-menuRect.width-12);let top=rect.bottom+6;if(top+menuRect.height>window.innerHeight-12)top=Math.max(12,rect.top-menuRect.height-6);menu.style.left=left+'px';menu.style.top=top+'px';closeFavoriteMoveMenu._outside=function(e){if(!menu.contains(e.target)&&e.target!==anchor)closeFavoriteMoveMenu()};setTimeout(()=>document.addEventListener('click',closeFavoriteMoveMenu._outside,true),0)}
-function isFavorite(item){return state.favorites.has(itemKey(item))}
-function toggleFavorite(item){const key=itemKey(item);if(state.favorites.has(key))state.favorites.delete(key);else state.favorites.add(key);saveFavorites();refreshFavoriteListUI();render(false);updateBottomTabs()}
-function setViewMode(mode){state.viewMode=mode;localStorage.setItem('dm_view_mode',mode);document.body.classList.toggle('view-card',mode==='card');document.body.classList.toggle('view-list',mode!=='card');updateViewButtons();render(false)}
-function updateViewButtons(){const card=document.getElementById('viewCardBtn'),list=document.getElementById('viewListBtn');if(card)card.classList.toggle('active',state.viewMode==='card');if(list)list.classList.toggle('active',state.viewMode!=='card')}
-function setFavoriteMode(on){state.showFavorites=on;document.body.classList.toggle('favorite-mode',on);relocateViewModeForViewport();state.visibleCount=PAGE_SIZE;refreshFavoriteListUI();updateBottomTabs();render(false)}
-function updateBottomTabs(){const s=document.getElementById('tabSearchBtn'),f=document.getElementById('tabFavBtn');if(s)s.classList.toggle('active',!state.showFavorites);if(f)f.classList.toggle('active',state.showFavorites)}
-function showToast(msg){console.log(msg)}
-function makeSearchLink(item){const q=encodeURIComponent(String(item.title||'').trim());return q?`https://ridibooks.com/search?q=${q}&adult_exclude=n&tab=WEBNOVEL&child_tab=BL_WEBNOVEL`:''}
-function makeBadge(text,cls){const s=document.createElement('span');s.className=cls;s.textContent=text;return s}
-function render(isPrompt=false){const source=state.showFavorites?filterFavoriteItems(state.items.filter(item=>isFavorite(item))):state.filtered;const total=source.length,visible=source.slice(0,state.visibleCount);els.resultCount.textContent=total.toLocaleString('ko-KR');els.list.innerHTML='';if(state.showFavorites){els.empty.textContent=total?'':'찜한 작품이 없습니다.'}else{els.empty.textContent=isPrompt?'검색값을 입력하세요':'조건에 맞는 작품이 없습니다.'}els.empty.classList.toggle('prompt',isPrompt&&!state.showFavorites);els.empty.classList.toggle('hidden',state.showFavorites?total!==0:(isPrompt?false:total!==0));els.loadMoreWrap.classList.toggle('hidden',isPrompt||state.visibleCount>=total);if(isPrompt&&!state.showFavorites)return;const frag=document.createDocumentFragment();visible.forEach(item=>{const card=document.createElement('article');card.className='card'+(state.viewMode==='card'?' with-cover':'');if(state.viewMode==='card'){const cover=item.cover?document.createElement(item.link?'a':'div'):document.createElement('div');cover.className='book-cover'+(item.cover?'':' no-cover');if(item.cover&&item.link){cover.href=item.link;cover.target='_blank';cover.rel='noopener noreferrer'}if(item.cover){const img=document.createElement('img');img.src=item.cover;img.alt='';img.loading='lazy';img.decoding='async';cover.appendChild(img)}else{const noCover=document.createElement('span');noCover.textContent='이미지 없음';cover.appendChild(noCover)}card.appendChild(cover)}const info=document.createElement('div');info.className='card-info';const titleLink=item.link||makeSearchLink(item);const title=document.createElement(titleLink?'a':'span');title.className='book-title'+(titleLink?'':' no-link');title.textContent=item.title||'(제목 없음)';if(titleLink){title.href=titleLink;title.target='_blank';title.rel='noopener noreferrer'}const meta=document.createElement('p');meta.className='book-meta';meta.textContent=item.author||'작가 정보 없음';info.append(title,meta);const middle=document.createElement('div');middle.className='card-middle';const badges=document.createElement('div');badges.className='event-badges';if(item.discount)badges.appendChild(makeBadge(formatDiscount(item.discount),'event-badge discount'));badges.appendChild(makeBadge(formatPrice(item.price),'event-badge price'));middle.appendChild(badges);const fav=document.createElement('button');fav.className='favorite-toggle'+(isFavorite(item)?' is-on':'');fav.type='button';fav.textContent=isFavorite(item)?'♥':'♡';fav.setAttribute('aria-label',isFavorite(item)?'찜 해제':'찜하기');fav.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleFavorite(item)});const favMove=document.createElement('button');favMove.className='favorite-move-btn';favMove.type='button';favMove.textContent='↪';favMove.setAttribute('aria-label','다른 찜목록으로 이동');favMove.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openFavoriteMoveMenu(item,favMove)});const actions=document.createElement('div');actions.className='card-actions two-actions';const historyBtn=document.createElement('button');historyBtn.className='history-btn'+(item.history?'':' disabled');historyBtn.type='button';historyBtn.textContent='과거';historyBtn.title=item.history?'과거 할인율 보기':'정리된 과거 할인율 없음';if(item.history)historyBtn.addEventListener('click',()=>openHistoryModal(item));const favAction=document.createElement('button');favAction.className='favorite-action-btn'+(isFavorite(item)?' is-on':'');favAction.type='button';favAction.textContent=isFavorite(item)?'찜됨':'찜';favAction.setAttribute('aria-label',isFavorite(item)?'찜 해제':'찜하기');favAction.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleFavorite(item)});actions.append(historyBtn,favAction);card.append(fav,favMove,info,middle,actions);frag.appendChild(card)});els.list.appendChild(frag)}
-function resetAll(){els.q.value='';els.sortBy.value='default';els.titleOnly.value='';els.authorOnly.value='';els.exclude.value='';els.discountRate.value='';els.pricePreset.value='';els.typeFilter.value='';if(els.favDiscountRate)els.favDiscountRate.value='';if(els.favPricePreset)els.favPricePreset.value='';applyFilters()}
-function debounce(fn,delay){let timer;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),delay)}}
-function setDetailCollapsed(collapsed){if(!els.detailToggleBtn||!els.detailRow)return;els.detailRow.classList.toggle('mobile-collapsed',collapsed);els.detailToggleBtn.classList.toggle('is-collapsed',collapsed);els.detailToggleBtn.title=collapsed?'상세검색 펼치기':'상세검색 접기';els.detailToggleBtn.setAttribute('aria-expanded',String(!collapsed))}
-function toggleDetailPanel(){if(!window.matchMedia('(max-width:980px)').matches)return;setDetailCollapsed(!els.detailRow.classList.contains('mobile-collapsed'))}
-
-function relocateViewModeForViewport(){
-  const viewRow=document.querySelector('.view-mode-row');
-  const quickRow=document.querySelector('.quick-row');
-  const summaryRight=document.querySelector('.summary-right');
-  const favoriteListBar=document.getElementById('favoriteListBar');
-  const favListMenu=document.getElementById('favListMenu');
-  if(!viewRow||!quickRow||!summaryRight)return;
-  if(document.body.classList.contains('favorite-mode')&&favoriteListBar){
-    if(viewRow.parentElement!==favoriteListBar){
-      favoriteListBar.insertBefore(viewRow, favListMenu||null);
-    }
-  }else if(window.matchMedia('(max-width:980px)').matches){
-    if(viewRow.parentElement!==summaryRight){
-      summaryRight.insertBefore(viewRow, summaryRight.firstChild);
-    }
-  }else{
-    if(viewRow.parentElement!==quickRow){
-      quickRow.appendChild(viewRow);
-    }
+function populateDiscountOptions(){const rates=[...new Set(state.items.flatMap(item=>parseHistory(item.history).map(entry=>getRateKey(entry.rate)).filter(Boolean)))].sort((a,b)=>Number(a)-Number(b));els.discountRate.innerHTML='<option value="">전체 할인율</option>'+rates.map(rate=>`<option value="${rate}">${rate}%</option>`).join('')}
+function openHistoryModal(item){const backdrop=document.getElementById('historyModalBackdrop'),title=document.getElementById('historyModalTitle'),meta=document.getElementById('historyModalMeta'),body=document.getElementById('historyModalBody');title.textContent=item.title||'과거 할인율';meta.textContent=(item.author||'작가 정보 없음')+' · 과거 마크다운 할인율';body.innerHTML='';const entries=item._historyCache||(item._historyCache=item._historyItems);if(!entries.length){const empty=document.createElement('div');empty.className='history-empty';empty.textContent='정리된 과거 할인율이 없습니다.';body.appendChild(empty)}else{entries.forEach(entry=>{const row=document.createElement('div');row.className='history-row';const date=document.createElement('span');date.className='history-date';date.textContent=entry.date;const rate=document.createElement('span');rate.className='history-rate';rate.textContent=entry.rate;row.append(date,rate);body.appendChild(row)})}backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+function closeHistoryModal(){const backdrop=document.getElementById('historyModalBackdrop');backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
+function getHistoryDateCounts(){const counts=new Map();state.items.forEach(item=>{new Set(item._historyItems.map(entry=>entry.date).filter(date=>date&&date!=='기록')).forEach(date=>counts.set(date,(counts.get(date)||0)+1))});return [...counts.entries()].sort((a,b)=>b[0].localeCompare(a[0],'ko-KR',{numeric:true}))}
+function getHistoryYears(){
+  return [...new Set(getHistoryDateCounts().map(([date])=>String(date).slice(0,4)).filter(Boolean))].sort((a,b)=>b.localeCompare(a,'ko-KR',{numeric:true}));
+}
+function populateDateYearFilter(){
+  const sel=document.getElementById('dateYearFilter');
+  if(!sel)return;
+  const current=sel.value;
+  const years=getHistoryYears();
+  sel.innerHTML='<option value="">전체 연도</option>'+years.map(y=>`<option value="${y}">${y}년</option>`).join('');
+  if(years.includes(current))sel.value=current;
+}
+function renderDateListInline(){
+  const wrap=document.getElementById('dateListInline');
+  const yearSel=document.getElementById('dateYearFilter');
+  const clearBtn=document.getElementById('dateListClearBtn');
+  if(!wrap)return;
+  if(clearBtn)clearBtn.disabled=!state.selectedHistoryDate;
+  const year=yearSel?yearSel.value:'';
+  const dates=getHistoryDateCounts().filter(([date])=>!year||String(date).startsWith(year));
+  wrap.innerHTML='';
+  if(!dates.length){
+    const empty=document.createElement('div');
+    empty.className='date-list-empty';
+    empty.textContent='정리된 출현연월이 없습니다.';
+    wrap.appendChild(empty);
+    return;
   }
+  dates.forEach(([date,count])=>{
+    const isSelected=state.selectedHistoryDate===date;
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='date-list-item'+(isSelected?' active':'');
+    btn.setAttribute('aria-pressed',String(isSelected));
+    btn.innerHTML=`<span>${isSelected?'✓ ':''}${date}</span>`;
+    btn.addEventListener('click',()=>{
+      if(isSelected){
+        state.selectedHistoryDate='';
+        state.showDateList=true;
+        state.showFavorites=false;
+        document.body.classList.add('date-list-mode');
+        document.body.classList.remove('favorite-mode');
+        applyFilters();
+        renderDateListInline();
+        updateBottomTabs();
+        return;
+      }
+      state.selectedHistoryDate=date;
+      state.showDateList=false;
+      state.showFavorites=false;
+      document.body.classList.remove('date-list-mode','favorite-mode');
+      applyFilters();
+      updateBottomTabs();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    wrap.appendChild(btn);
+  });
+}
+function setDateListMode(on){
+  state.showDateList=on;
+  if(on)state.showFavorites=false;
+  document.body.classList.toggle('date-list-mode',on);
+  document.body.classList.toggle('favorite-mode',state.showFavorites);
+  populateDateYearFilter();
+  renderDateListInline();
+  updateBottomTabs();
+  render(false);
 }
 
-function bindEvents(){relocateViewModeForViewport();window.addEventListener('resize',debounce(relocateViewModeForViewport,120));els.searchBtn.addEventListener('click',applyFilters);[els.q,els.titleOnly,els.authorOnly,els.exclude].forEach(input=>{input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyFilters();e.currentTarget.blur()}})});[els.sortBy,els.discountRate,els.pricePreset,els.typeFilter].forEach(el=>el.addEventListener('change',applyFilters));[els.favDiscountRate,els.favPricePreset].forEach(el=>{if(el)el.addEventListener('change',()=>{state.visibleCount=PAGE_SIZE;render(false)})});if(els.favListSelect)els.favListSelect.addEventListener('change',e=>switchFavoriteList(e.target.value));if(els.favListMenuBtn)els.favListMenuBtn.addEventListener('click',()=>{if(els.favListMenu)els.favListMenu.hidden=!els.favListMenu.hidden});if(els.favListAddBtn)els.favListAddBtn.addEventListener('click',addFavoriteList);if(els.favListDeleteBtn)els.favListDeleteBtn.addEventListener('click',deleteFavoriteList);if(els.favListRenameBtn)els.favListRenameBtn.addEventListener('click',renameFavoriteList);if(els.favListNameInput)els.favListNameInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renameFavoriteList()}});els.resetBtn.addEventListener('click',resetAll);if(els.detailToggleBtn)els.detailToggleBtn.addEventListener('click',toggleDetailPanel);els.loadMoreBtn.addEventListener('click',()=>{state.visibleCount+=PAGE_SIZE;render(false)});els.goTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));els.goBottomBtn.addEventListener('click',()=>els.bottomAnchor.scrollIntoView({behavior:'smooth'}));document.getElementById('historyModalClose')?.addEventListener('click',closeHistoryModal);document.getElementById('historyModalBackdrop')?.addEventListener('click',e=>{if(e.target.id==='historyModalBackdrop')closeHistoryModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeHistoryModal();closeFavoriteMoveMenu()}});document.getElementById('viewCardBtn')?.addEventListener('click',()=>setViewMode('card'));document.getElementById('viewListBtn')?.addEventListener('click',()=>setViewMode('list'));document.getElementById('tasteTopBtn')?.addEventListener('click',()=>setFavoriteMode(!state.showFavorites));document.getElementById('tabSearchBtn')?.addEventListener('click',()=>{state.showFavorites=false;document.body.classList.remove('favorite-mode');updateBottomTabs();applyFilters()});document.getElementById('tabFavBtn')?.addEventListener('click',()=>setFavoriteMode(true));const installDismiss=document.getElementById('installDismissBtn');const installBanner=document.getElementById('installBanner');if(installDismiss&&installBanner)installDismiss.addEventListener('click',()=>{installBanner.classList.remove('is-visible');installBanner.classList.add('is-dismissed')})}
-async function init(){bindEvents();if(window.matchMedia('(max-width:980px)').matches)setDetailCollapsed(true);try{const res=await fetch('./works.json',{cache:'no-store'});if(!res.ok)throw new Error('works.json 파일을 불러오지 못했습니다.');const data=await res.json();state.items=data.map(normalizeItem);populateFilters();refreshFavoriteListUI();setViewMode(state.viewMode);updateBottomTabs();applyFilters();}catch(err){els.error.textContent=err.message||String(err);els.error.classList.remove('hidden');els.empty.classList.add('hidden')}}
+function openDateIndex(){const backdrop=document.getElementById('dateIndexBackdrop'),body=document.getElementById('dateIndexBody');body.innerHTML='';const clearBtn=document.createElement('button');clearBtn.type='button';clearBtn.className='clear-date-btn';clearBtn.textContent=state.selectedHistoryDate?'선택 해제':'전체 목차';clearBtn.addEventListener('click',()=>{state.selectedHistoryDate='';closeDateIndex();applyFilters()});body.appendChild(clearBtn);getHistoryDateCounts().forEach(([date,count])=>{const isSelected=state.selectedHistoryDate===date;const btn=document.createElement('button');btn.type='button';btn.className='date-chip'+(isSelected?' active':'');btn.setAttribute('aria-pressed',String(isSelected));btn.textContent=(isSelected?'✓ ':'')+date;btn.addEventListener('click',()=>{state.selectedHistoryDate=isSelected?'':date;closeDateIndex();applyFilters()});body.appendChild(btn)});backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+function closeDateIndex(){const backdrop=document.getElementById('dateIndexBackdrop');backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
+function itemKey(item){return item.workId||item.link||`${item.title}__${item.author}`}
+function saveFavorites(){localStorage.setItem('dm_favorites',JSON.stringify([...state.favorites]))}
+function isFavorite(item){return state.favorites.has(itemKey(item))}
+function toggleFavorite(item){const key=itemKey(item);if(state.favorites.has(key))state.favorites.delete(key);else state.favorites.add(key);saveFavorites();render(false);updateBottomTabs()}
+function setViewMode(mode){state.viewMode=mode;localStorage.setItem('dm_view_mode',mode);document.body.classList.toggle('view-card',mode==='card');document.body.classList.toggle('view-list',mode!=='card');updateViewButtons();render(false)}
+function updateViewButtons(){const card=document.getElementById('viewCardBtn'),list=document.getElementById('viewListBtn');if(card)card.classList.toggle('active',state.viewMode==='card');if(list)list.classList.toggle('active',state.viewMode!=='card')}
+function setFavoriteMode(on){state.showFavorites=on;if(on)state.showDateList=false;document.body.classList.toggle("favorite-mode",on);document.body.classList.toggle("date-list-mode",state.showDateList);state.visibleCount=PAGE_SIZE;updateBottomTabs();render(false)}
+function updateBottomTabs(){const s=document.getElementById('tabSearchBtn'),l=document.getElementById('tabListBtn'),f=document.getElementById('tabFavBtn');if(s)s.classList.toggle('active',!state.showFavorites&&!state.showDateList);if(f)f.classList.toggle('active',state.showFavorites);if(l)l.classList.toggle('active',state.showDateList)}
+function render(isPrompt=false){const source=state.showFavorites?applySort(state.items.filter(item=>isFavorite(item))):state.filtered;const total=source.length,visible=source.slice(0,state.visibleCount);els.resultCount.textContent=total.toLocaleString('ko-KR');els.list.innerHTML='';if(state.showFavorites){els.empty.textContent=total?'':'찜한 작품이 없습니다.'}else{els.empty.textContent=isPrompt?'검색값을 입력하세요':'조건에 맞는 작품이 없습니다.'}els.empty.classList.toggle('prompt',isPrompt&&!state.showFavorites);els.empty.classList.toggle('hidden',state.showFavorites?total!==0:(isPrompt?false:total!==0));els.loadMoreWrap.classList.toggle('hidden',isPrompt||state.visibleCount>=total);if(isPrompt&&!state.showFavorites)return;const frag=document.createDocumentFragment();visible.forEach(item=>{const card=document.createElement('article');card.className='card'+(state.viewMode==='card'?' with-cover':'');if(state.viewMode==='card'){const cover=item.cover?document.createElement(item.link?'a':'div'):document.createElement('div');cover.className='book-cover'+(item.cover?'':' no-cover');if(item.cover&&item.link){cover.href=item.link;cover.target='_blank';cover.rel='noopener noreferrer'}if(item.cover){const img=document.createElement('img');img.src=item.cover;img.alt='';img.loading='lazy';img.decoding='async';cover.appendChild(img)}else{const noCover=document.createElement('span');noCover.textContent='이미지 없음';cover.appendChild(noCover)}card.appendChild(cover)}const fav=document.createElement('button');fav.className='favorite-toggle'+(isFavorite(item)?' is-on':'');fav.type='button';fav.textContent=isFavorite(item)?'♥':'♡';fav.setAttribute('aria-label',isFavorite(item)?'찜 해제':'찜하기');fav.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleFavorite(item)});const info=document.createElement('div');info.className='card-info';const title=document.createElement(item.link?'a':'span');title.className='book-title'+(item.link?'':' no-link');title.textContent=item.title||'(제목 없음)';if(item.link){title.href=item.link;title.target='_blank';title.rel='noopener noreferrer'}const meta=document.createElement('p');meta.className='book-meta';meta.textContent=item.author||'작가 정보 없음';info.append(title,meta);const middle=document.createElement('div');middle.className='card-middle';const hCount=historyCount(item.history);if(hCount){const recent=latestHistoryEntry(item.history);const historySummary=document.createElement('div');historySummary.className='book-history-inline';const countLine=document.createElement('span');countLine.className='history-pill';countLine.textContent=`출현 ${hCount}회`;historySummary.appendChild(countLine);if(recent){const recentLine=document.createElement('span');recentLine.className='history-pill recent';recentLine.textContent=`최근 ${recent.date} ${recent.rate}`;historySummary.appendChild(recentLine)}middle.appendChild(historySummary)}const actions=document.createElement('div');actions.className='card-actions';const historyBtn=document.createElement('button');historyBtn.className='history-btn'+(item.history?'':' disabled');historyBtn.type='button';historyBtn.textContent='과거';historyBtn.title=item.history?'과거 할인율 보기':'정리된 과거 할인율 없음';if(item.history)historyBtn.addEventListener('click',()=>openHistoryModal(item));const move=document.createElement('a');move.className='move-btn';move.textContent='이동';move.href=item.link||makeSearchLink(item)||'#';move.target='_blank';move.rel='noopener noreferrer';actions.append(historyBtn,move);card.append(fav,info,middle,actions);frag.appendChild(card)});els.list.appendChild(frag)}
+function setDetailCollapsed(collapsed){
+if(!els.detailToggleBtn||!els.detailRow)return;
+els.detailRow.classList.toggle('mobile-collapsed',collapsed);
+els.detailToggleBtn.classList.toggle('is-collapsed',collapsed);
+els.detailToggleBtn.title=collapsed?'상세검색 펼치기':'상세검색 접기';
+els.detailToggleBtn.setAttribute('aria-expanded',String(!collapsed));
+}
+function toggleDetailPanel(){
+if(!window.matchMedia('(max-width:980px)').matches)return;
+setDetailCollapsed(!els.detailRow.classList.contains('mobile-collapsed'));
+}
+function resetAll(){els.q.value='';els.sortBy.value='default';els.titleOnly.value='';els.authorOnly.value='';els.exclude.value='';els.discountRate.value='';state.selectedHistoryDate='';applyFilters()}
+function debounce(fn,delay){let timer;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),delay)}}
+function bindEvents(){els.searchBtn.addEventListener('click',applyFilters);[els.q,els.titleOnly,els.authorOnly,els.exclude].forEach(input=>{
+input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyFilters();e.currentTarget.blur()}});
+});els.sortBy.addEventListener('change',applyFilters);els.discountRate.addEventListener('change',applyFilters);els.resetBtn.addEventListener('click',resetAll);if(els.detailToggleBtn)els.detailToggleBtn.addEventListener('click',toggleDetailPanel);els.loadMoreBtn.addEventListener('click',()=>{state.visibleCount+=PAGE_SIZE;render()});els.goTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));els.goBottomBtn.addEventListener('click',()=>els.bottomAnchor.scrollIntoView({behavior:'smooth'}));document.getElementById('historyModalClose').addEventListener('click',closeHistoryModal);document.getElementById('historyModalBackdrop').addEventListener('click',e=>{if(e.target.id==='historyModalBackdrop')closeHistoryModal()});document.getElementById('dateIndexBtn').addEventListener('click',openDateIndex);document.getElementById('dateIndexClose').addEventListener('click',closeDateIndex);document.getElementById('dateIndexBackdrop').addEventListener('click',e=>{if(e.target.id==='dateIndexBackdrop')closeDateIndex()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeHistoryModal();closeDateIndex()}});const vc=document.getElementById('viewCardBtn'),vl=document.getElementById('viewListBtn');if(vc)vc.addEventListener('click',()=>setViewMode('card'));if(vl)vl.addEventListener('click',()=>setViewMode('list'));const ts=document.getElementById('tabSearchBtn'),tl=document.getElementById('tabListBtn'),tf=document.getElementById('tabFavBtn');if(ts)ts.addEventListener('click',()=>{state.showDateList=false;document.body.classList.remove('date-list-mode');setFavoriteMode(false);window.scrollTo({top:0,behavior:'smooth'})});if(tl)tl.addEventListener('click',()=>setDateListMode(!state.showDateList));if(tf)tf.addEventListener('click',()=>setFavoriteMode(!state.showFavorites));const dy=document.getElementById('dateYearFilter');if(dy)dy.addEventListener('change',renderDateListInline);const dc=document.getElementById('dateListClearBtn');if(dc)dc.addEventListener('click',()=>{state.selectedHistoryDate='';applyFilters();renderDateListInline();updateBottomTabs();window.scrollTo({top:0,behavior:'smooth'})});const ib=document.getElementById('installBanner'),ih=document.getElementById('installHowBtn'),id=document.getElementById('installDismissBtn');const isStandalone=((window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone);const dismissed=localStorage.getItem('dm_install_dismissed')==='1';if(ib){ib.classList.remove('hidden','is-visible','is-dismissed');ib.style.display='';if(!isStandalone&&!dismissed){ib.classList.add('is-visible')}else{ib.classList.add('is-dismissed')}}if(ih)ih.addEventListener('click',()=>alert('아이폰 Safari 하단 공유 버튼(□↑) → 홈 화면에 추가를 누르면 앱처럼 열 수 있습니다.'));if(id&&ib)id.addEventListener('click',()=>{localStorage.setItem('dm_install_dismissed','1');ib.classList.remove('is-visible');ib.classList.add('is-dismissed');ib.style.display='none'});}
+async function init(){bindEvents();document.body.classList.toggle('view-card',state.viewMode==='card');document.body.classList.toggle('view-list',state.viewMode!=='card');updateViewButtons();document.body.classList.toggle("favorite-mode",state.showFavorites);document.body.classList.toggle("date-list-mode",state.showDateList);updateBottomTabs();setDetailCollapsed(window.matchMedia('(max-width:980px)').matches);try{const res=await fetch('./works.json',{cache:'no-store'});if(!res.ok)throw new Error('works.json을 불러오지 못했습니다.');const data=await res.json();if(!Array.isArray(data))throw new Error('works.json 형식이 배열이 아닙니다.');state.items=data.map(normalizeItem);populateDiscountOptions();populateDateYearFilter();state.filtered=[...state.items];applyFilters()}catch(err){els.error.textContent='works.json을 불러오지 못했습니다. index.html과 같은 위치에 works.json을 올려주세요.';els.error.classList.remove('hidden');console.error(err)}}
 init();
+</script>
 
-</script></body></html>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('.back-to-main');
+  if(!a) return;
+  e.preventDefault();
+  if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+  window.location.href='https://dmnovel.github.io/events/';
+},true);
+</script>
+
+<script>
+(function(){
+  const tasteBtn=document.getElementById('tasteTopBtn');
+  const tasteBackdrop=document.getElementById('tasteModalBackdrop');
+  const tasteClose=document.getElementById('tasteModalClose');
+  function openTaste(){
+    if(!tasteBackdrop) return;
+    tasteBackdrop.classList.add('open');
+    tasteBackdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+  }
+  function closeTaste(){
+    if(!tasteBackdrop) return;
+    tasteBackdrop.classList.remove('open');
+    tasteBackdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+  if(tasteBtn) tasteBtn.addEventListener('click',openTaste);
+  if(tasteClose) tasteClose.addEventListener('click',closeTaste);
+  if(tasteBackdrop) tasteBackdrop.addEventListener('click',function(e){if(e.target===tasteBackdrop) closeTaste();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&tasteBackdrop&&tasteBackdrop.classList.contains('open')) closeTaste();});
+})();
+</script>
+
+<script>
+(function(){
+  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+    document.body.classList.add('standalone');
+  }
+})();
+</script>
+
+</body></html>
