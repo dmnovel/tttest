@@ -69,6 +69,7 @@ button.ghost{background:#F1E6E9;color:#6d5058;border-color:#DED6D2}
 }
 }
 
+
 .card{position:relative}
 .book-cover{display:none}.favorite-toggle{display:none}.view-mode-row{display:none}.install-banner{display:none}.mobile-tabbar{display:none}
 @media(max-width:980px){
@@ -221,6 +222,7 @@ button.secondary,
   }
 }
 
+
 /* compact view selector only: rollback color tweak, reduce height/size */
 @media(max-width:980px){
   .view-mode-row{
@@ -246,12 +248,14 @@ button.secondary,
   }
 }
 
+
 /* view selector symbol size tweak only */
 @media(max-width:980px){
   .view-mode-btn{
     font-size:16px !important;
   }
 }
+
 
 /* balance view selector icons only */
 @media(max-width:980px){
@@ -266,6 +270,7 @@ button.secondary,
   }
 }
 
+
 /* make list view icon wider only */
 @media(max-width:980px){
   .list-view-icon{
@@ -278,6 +283,7 @@ button.secondary,
       linear-gradient(currentColor,currentColor) left bottom / 100% 1.5px no-repeat;
   }
 }
+
 
 /* card view icon: 2x2 squares balanced with list icon */
 @media(max-width:980px){
@@ -303,6 +309,7 @@ button.secondary,
   }
 }
 
+
 /* mobile bottom tabbar: stick fully to bottom, device-safe */
 @media(max-width:980px){
   .page{
@@ -325,6 +332,7 @@ button.secondary,
     bottom:calc(78px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
+
 
 /* mobile quick buttons balance: reset + accordion */
 @media(max-width:980px){
@@ -358,6 +366,7 @@ button.secondary,
     border-bottom-width:3px !important;
   }
 }
+
 
 /* final mobile button balance */
 @media(max-width:980px){
@@ -394,6 +403,7 @@ button.secondary,
   }
 }
 
+
 /* align card/list view selector to the right */
 @media(max-width:980px){
   .view-mode-row{
@@ -403,6 +413,7 @@ button.secondary,
     margin-left:auto !important;
   }
 }
+
 
 /* ridi link + hide search panel on favorite tab */
 @media(max-width:980px){
@@ -433,6 +444,7 @@ button.secondary,
   }
 }
 
+
 /* standalone webapp only: lift bottom tabbar slightly */
 @media(max-width:980px) and (display-mode: standalone){
   .mobile-tabbar{
@@ -450,6 +462,7 @@ button.secondary,
     }
   }
 }
+
 
 /* standalone webapp only: slightly larger bottom tabbar */
 @media(max-width:980px) and (display-mode: standalone){
@@ -572,6 +585,7 @@ button.secondary,
   }
 }
 
+
 /* mobile search input + button balance */
 @media(max-width:980px){
   .search-row{
@@ -595,12 +609,14 @@ button.secondary,
   }
 }
 
+
 /* date list count removed */
 @media(max-width:980px){
   .date-list-item{
     justify-content:flex-start !important;
   }
 }
+
 
 /* install banner: state-separated visibility */
 #installBanner{
@@ -684,6 +700,7 @@ button.secondary,
   }
 }
 
+
 /* mobile: title and top buttons on the same line */
 @media(max-width:980px){
   .top-link-row{
@@ -709,6 +726,8 @@ button.secondary,
     align-items:center !important;
   }
 }
+
+
 
 /* PC card/list switch: default list stays unchanged, card mode shows manual covers */
 @media(min-width:981px){
@@ -863,6 +882,7 @@ button.secondary,
   }
 }
 
+
 /* PC: move card/list toggle beside reset; mobile keeps it under quick filters */
 .detail-toggle-cell{display:none}
 @media(min-width:981px){
@@ -878,6 +898,8 @@ button.secondary,
   .quick-row .view-mode-row{grid-column:1 / -1 !important}
   .quick-row .view-mode-row label{display:none !important}
 }
+
+
 
 /* date-list clear button: outside list box, on summary right */
 .summary-right{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;margin-left:auto}
