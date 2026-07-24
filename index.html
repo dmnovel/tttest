@@ -1178,12 +1178,159 @@ function populateKeywordCatalog(){const map=new Map();state.items.forEach(item=>
 function updateKeywordMessage(text){if(!els.keywordPickerMessage)return;els.keywordPickerMessage.textContent=text??(state.keywordCatalog.length?'분류별 드롭다운에서 선택하거나 위에서 키워드를 검색하세요.':'등록된 키워드가 없습니다.')}
 function toggleKeywordPanel(){const open=els.keywordPickerPanel.hidden;els.keywordPickerPanel.hidden=!open;els.keywordPickerBtn.setAttribute('aria-expanded',String(open));if(open)setTimeout(()=>els.keywordQuery.focus(),0)}
 function createKeywordRow(keyword){const row=document.createElement('div');row.className='keyword-result-row';const name=document.createElement('span');name.className='keyword-result-name';name.textContent=keyword;const include=document.createElement('button');include.type='button';include.className=state.keywordInclude.has(keyword)?'is-selected':'';include.textContent=state.keywordInclude.has(keyword)?'포함됨':'포함';include.addEventListener('click',()=>selectKeyword(keyword,'include'));const exclude=document.createElement('button');exclude.type='button';exclude.className=state.keywordExclude.has(keyword)?'is-selected secondary':'secondary';exclude.textContent=state.keywordExclude.has(keyword)?'제외됨':'제외';exclude.addEventListener('click',()=>selectKeyword(keyword,'exclude'));row.append(name,include,exclude);return row}
-function renderKeywordCategories(){const pairs=[{major:els.keywordIncludeMajor,detail:els.keywordIncludeDetail,mode:'include'},{major:els.keywordExcludeMajor,detail:els.keywordExcludeDetail,mode:'exclude'}];pairs.forEach(({major,detail,mode})=>{if(!major||!detail)return;major.innerHTML='<option value="">대분류 선택</option>';state.keywordGroups.forEach(group=>{const option=document.createElement('option');option.value=group.name;option.textContent=group.name;major.appendChild(option)});const fillDetails=()=>{const group=state.keywordGroups.find(item=>item.name===major.value);detail.innerHTML='<option value="">세부 키워드 선택</option>';if(!group){detail.disabled=true;return}group.keywords.forEach(keyword=>{const option=document.createElement('option');option.value=keyword;const selected=mode==='include'?state.keywordInclude.has(keyword):state.keywordExclude.has(keyword);option.textContent=(selected?'✓ ':'')+keyword;detail.appendChild(option)});detail.disabled=!group.keywords.length};major.onchange=fillDetails;detail.onchange=()=>{const keyword=detail.value;if(!keyword)return;selectKeyword(keyword,mode);detail.value=''};fillDetails()})}
-function findKeywords(){const q=normalizeText(els.keywordQuery.value);els.keywordResults.innerHTML='';if(els.keywordSearchResultsWrap)els.keywordSearchResultsWrap.hidden=true;if(!state.keywordCatalog.length){updateKeywordMessage('등록된 키워드가 없습니다.');return}if(!q){updateKeywordMessage('검색할 키워드를 입력하세요.');return}const matches=state.keywordCatalog.filter(keyword=>normalizeText(keyword).includes(q));if(!matches.length){updateKeywordMessage('일치하는 키워드가 없습니다.');return}updateKeywordMessage(`검색 결과 ${matches.length}개`);const frag=document.createDocumentFragment();matches.forEach(keyword=>frag.appendChild(createKeywordRow(keyword)));els.keywordResults.appendChild(frag);if(els.keywordSearchResultsWrap)els.keywordSearchResultsWrap.hidden=false}
-function selectKeyword(keyword,mode){const target=mode==='include'?state.keywordInclude:state.keywordExclude;const other=mode==='include'?state.keywordExclude:state.keywordInclude;if(target.has(keyword))target.delete(keyword);else{other.delete(keyword);target.add(keyword)}renderKeywordSelection();renderKeywordCategories();if(els.keywordQuery.value.trim())findKeywords()}
-function makeKeywordChip(keyword,mode){const chip=document.createElement('span');chip.className='keyword-chip'+(mode==='exclude'?' exclude':'');const text=document.createElement('span');text.textContent=keyword;const remove=document.createElement('button');remove.type='button';remove.setAttribute('aria-label',`${keyword} ${mode==='include'?'포함':'제외'} 해제`);remove.textContent='×';remove.addEventListener('click',()=>{(mode==='include'?state.keywordInclude:state.keywordExclude).delete(keyword);renderKeywordSelection();renderKeywordCategories();if(els.keywordQuery.value.trim())findKeywords()});chip.append(text,remove);return chip}
-function renderKeywordSelection(){if(!els.keywordPickerCount)return;const total=state.keywordInclude.size+state.keywordExclude.size;els.keywordPickerCount.textContent=`선택 ${total}개 ▼`;els.keywordSelectedWrap.hidden=total===0;els.keywordIncludeChips.innerHTML='';els.keywordExcludeChips.innerHTML='';if(state.keywordInclude.size){const label=document.createElement('span');label.className='keyword-selected-label';label.textContent='포함';els.keywordIncludeChips.appendChild(label);state.keywordInclude.forEach(k=>els.keywordIncludeChips.appendChild(makeKeywordChip(k,'include')))}if(state.keywordExclude.size){const label=document.createElement('span');label.className='keyword-selected-label';label.textContent='제외';els.keywordExcludeChips.appendChild(label);state.keywordExclude.forEach(k=>els.keywordExcludeChips.appendChild(makeKeywordChip(k,'exclude')))}updateSummary()}
-function clearKeywords(){state.keywordInclude.clear();state.keywordExclude.clear();renderKeywordSelection();renderKeywordCategories();findKeywords()}
+function renderKeywordCategories(){
+const pairs=[
+{major:els.keywordIncludeMajor,detail:els.keywordIncludeDetail,mode:'include'},
+{major:els.keywordExcludeMajor,detail:els.keywordExcludeDetail,mode:'exclude'}
+];
+pairs.forEach(({major,detail,mode})=>{
+if(!major||!detail)return;
+const savedMajor=major.value;
+major.innerHTML='<option value="">대분류 선택</option>';
+state.keywordGroups.forEach(group=>{
+const option=document.createElement('option');
+option.value=group.name;
+option.textContent=group.name;
+major.appendChild(option)
+});
+if(savedMajor&&state.keywordGroups.some(group=>group.name===savedMajor))major.value=savedMajor;
+const fillDetails=()=>{
+const savedDetail=detail.value;
+const group=state.keywordGroups.find(item=>item.name===major.value);
+detail.innerHTML='<option value="">세부 키워드 선택</option>';
+if(!group){detail.disabled=true;return}
+group.keywords.forEach(keyword=>{
+const option=document.createElement('option');
+option.value=keyword;
+const selected=mode==='include'?state.keywordInclude.has(keyword):state.keywordExclude.has(keyword);
+option.textContent=(selected?'✓ ':'')+keyword;
+detail.appendChild(option)
+});
+detail.disabled=!group.keywords.length;
+if(savedDetail&&group.keywords.includes(savedDetail))detail.value=savedDetail
+};
+major.onchange=()=>{
+detail.value='';
+fillDetails()
+};
+detail.onchange=()=>{
+const keyword=detail.value;
+if(!keyword)return;
+selectKeyword(keyword,mode);
+detail.value=''
+};
+fillDetails()
+})
+}
+function findKeywords(){
+const raw=String(els.keywordQuery?.value??'').trim();
+const q=normalizeText(raw);
+if(!els.keywordResults)return;
+els.keywordResults.innerHTML='';
+if(els.keywordSearchResultsWrap){
+els.keywordSearchResultsWrap.hidden=true;
+els.keywordSearchResultsWrap.style.display=''
+}
+if(!state.keywordCatalog.length){
+updateKeywordMessage('등록된 키워드가 없습니다.');
+return
+}
+if(!q){
+updateKeywordMessage('검색할 키워드를 입력하세요.');
+return
+}
+const matches=state.keywordCatalog.filter(keyword=>normalizeText(keyword).includes(q));
+if(!matches.length){
+updateKeywordMessage('일치하는 키워드가 없습니다.');
+return
+}
+const exact=matches.find(keyword=>normalizeText(keyword)===q);
+if(exact&&!state.keywordInclude.has(exact)){
+state.keywordExclude.delete(exact);
+state.keywordInclude.add(exact);
+renderKeywordSelection();
+renderKeywordCategories();
+applyFilters()
+}
+const frag=document.createDocumentFragment();
+matches.forEach(keyword=>frag.appendChild(createKeywordRow(keyword)));
+els.keywordResults.appendChild(frag);
+if(els.keywordSearchResultsWrap){
+els.keywordSearchResultsWrap.hidden=false;
+els.keywordSearchResultsWrap.style.display='block'
+}
+updateKeywordMessage(exact?`'${exact}' 포함 작품을 검색했습니다.`:`검색 결과 ${matches.length}개`)
+}
+function selectKeyword(keyword,mode){
+const target=mode==='include'?state.keywordInclude:state.keywordExclude;
+const other=mode==='include'?state.keywordExclude:state.keywordInclude;
+if(target.has(keyword))target.delete(keyword);
+else{
+other.delete(keyword);
+target.add(keyword)
+}
+renderKeywordSelection();
+renderKeywordCategories();
+applyFilters();
+if(els.keywordQuery?.value.trim())findKeywords()
+}
+function makeKeywordChip(keyword,mode){
+const chip=document.createElement('span');
+chip.className='keyword-chip'+(mode==='exclude'?' exclude':'');
+const text=document.createElement('span');
+text.textContent=keyword;
+const remove=document.createElement('button');
+remove.type='button';
+remove.className='keyword-chip-remove';
+remove.setAttribute('aria-label',`${keyword} ${mode==='include'?'포함':'제외'} 해제`);
+remove.textContent='×';
+remove.addEventListener('click',()=>{
+(mode==='include'?state.keywordInclude:state.keywordExclude).delete(keyword);
+renderKeywordSelection();
+renderKeywordCategories();
+applyFilters();
+if(els.keywordQuery?.value.trim())findKeywords()
+});
+chip.append(text,remove);
+return chip
+}
+function renderKeywordSelection(){
+if(!els.keywordPickerCount)return;
+const total=state.keywordInclude.size+state.keywordExclude.size;
+els.keywordPickerCount.textContent=`선택 ${total}개 ▼`;
+els.keywordSelectedWrap.hidden=total===0;
+els.keywordIncludeChips.innerHTML='';
+els.keywordExcludeChips.innerHTML='';
+if(state.keywordInclude.size){
+const label=document.createElement('span');
+label.className='keyword-selected-label';
+label.textContent='포함';
+els.keywordIncludeChips.appendChild(label);
+state.keywordInclude.forEach(k=>els.keywordIncludeChips.appendChild(makeKeywordChip(k,'include')))
+}
+if(state.keywordExclude.size){
+const label=document.createElement('span');
+label.className='keyword-selected-label';
+label.textContent='제외';
+els.keywordExcludeChips.appendChild(label);
+state.keywordExclude.forEach(k=>els.keywordExcludeChips.appendChild(makeKeywordChip(k,'exclude')))
+}
+updateSummary()
+}
+function clearKeywords(){
+state.keywordInclude.clear();
+state.keywordExclude.clear();
+if(els.keywordQuery)els.keywordQuery.value='';
+renderKeywordSelection();
+renderKeywordCategories();
+if(els.keywordResults)els.keywordResults.innerHTML='';
+if(els.keywordSearchResultsWrap){
+els.keywordSearchResultsWrap.hidden=true;
+els.keywordSearchResultsWrap.style.display=''
+}
+updateKeywordMessage();
+applyFilters()
+}
 function normalizeText(value){return String(value??'').trim().toLowerCase().replace(/\s+/g,'')}
 function toNumber(value){if(typeof value==='number')return value;const text=String(value??'').replace(/[^\d.-]/g,'');const num=Number(text);return Number.isFinite(num)?num:0}
 function historyCount(value){return String(value||'').split(',').map(v=>v.trim()).filter(Boolean).length}
@@ -1329,7 +1476,7 @@ function toggleDetailPanel(){
 if(!window.matchMedia('(max-width:980px)').matches)return;
 setDetailCollapsed(!els.detailRow.classList.contains('mobile-collapsed'));
 }
-function resetAll(){els.q.value='';els.sortBy.value='default';els.titleOnly.value='';els.authorOnly.value='';els.exclude.value='';els.discountRate.value='';state.selectedHistoryDate='';state.keywordInclude.clear();state.keywordExclude.clear();if(els.keywordIncludeMajor)els.keywordIncludeMajor.value='';if(els.keywordExcludeMajor)els.keywordExcludeMajor.value='';renderKeywordCategories();els.keywordQuery.value='';els.keywordResults.innerHTML='';if(els.keywordSearchResultsWrap)els.keywordSearchResultsWrap.hidden=true;renderKeywordSelection();renderKeywordCategories();updateKeywordMessage();applyFilters()}
+function resetAll(){els.q.value='';els.sortBy.value='default';els.titleOnly.value='';els.authorOnly.value='';els.exclude.value='';els.discountRate.value='';state.selectedHistoryDate='';state.keywordInclude.clear();state.keywordExclude.clear();if(els.keywordIncludeMajor)els.keywordIncludeMajor.value='';if(els.keywordExcludeMajor)els.keywordExcludeMajor.value='';renderKeywordCategories();els.keywordQuery.value='';els.keywordResults.innerHTML='';if(els.keywordSearchResultsWrap){els.keywordSearchResultsWrap.hidden=true;els.keywordSearchResultsWrap.style.display=''};renderKeywordSelection();renderKeywordCategories();updateKeywordMessage();applyFilters()}
 function debounce(fn,delay){let timer;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),delay)}}
 function bindEvents(){els.searchBtn.addEventListener('click',applyFilters);[els.q,els.titleOnly,els.authorOnly,els.exclude].forEach(input=>{
 input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyFilters();e.currentTarget.blur()}});
@@ -1448,3 +1595,60 @@ document.addEventListener('click',function(e){
 </script>
 
 </body></html>
+
+<style>
+.keyword-selected-group{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  align-items:center !important;
+}
+.keyword-selected-label{
+  flex:0 0 auto !important;
+  margin-right:2px !important;
+}
+.keyword-chip{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  width:auto !important;
+  min-width:0 !important;
+  min-height:36px !important;
+  height:36px !important;
+  padding:0 8px 0 12px !important;
+  border:1px solid #CFAEB7 !important;
+  border-radius:4px !important;
+  background:#FFFDFD !important;
+  color:#2B2927 !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+.keyword-chip.exclude{
+  border-color:#D8D1CC !important;
+  background:#FAF9F7 !important;
+}
+.keyword-chip-remove{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:24px !important;
+  min-width:24px !important;
+  height:24px !important;
+  min-height:24px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:4px !important;
+  background:transparent !important;
+  color:#6A625C !important;
+  font-size:19px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+}
+.keyword-chip-remove:hover{
+  background:#F1E6E9 !important;
+}
+</style>
