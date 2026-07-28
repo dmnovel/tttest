@@ -1424,7 +1424,8 @@ body.favorite-mode .favorite-card-move-btn{display:inline-flex}
   background:#F1E6E9 !important;
 }
 
-/* 2026-07 summary cleanup: list/favorite only */
-body:not(.date-list-mode) .summary .count{display:none!important}
+/* 2026-07 summary cleanup: date-list/favorite only */
+body.date-list-mode .summary .count,
+body.favorite-mode .summary .count{display:none!important}
 body.favorite-mode .summary-filter-line{display:none!important}
 </style>
