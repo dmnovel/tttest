@@ -1416,6 +1416,40 @@ body.favorite-mode.view-list .card-actions{
 
 
 
+
+<style>
+.history-max-badge{display:inline-flex;align-items:center;min-height:28px;padding:4px 10px;border:2px solid #1F883D;border-radius:8px;background:#EFF9F0;color:#1F883D;font-weight:800;line-height:1.2;box-shadow:0 1px 3px rgba(31,136,61,.12)}
+.history-rate.is-max-highlight{border-radius:8px!important;border:2px solid #7E5FC6!important;box-shadow:0 0 0 2px rgba(147,112,219,.16),0 2px 8px rgba(147,112,219,.18)!important}
+</style>
+<script>(function(){
+  function numFromRate(text){var m=String(text||'').match(/(\d+)\s*%/);return m?Number(m[1]):null;}
+  function makeSpan(cls,txt){var s=document.createElement('span');if(cls)s.className=cls;s.textContent=txt;return s;}
+  function decorateHistoryModal(){
+    var meta=document.getElementById('historyModalMeta');
+    var body=document.getElementById('historyModalBody');
+    if(!meta||!body)return;
+    var rates=Array.prototype.slice.call(body.querySelectorAll('.history-rate'));
+    if(!rates.length)return;
+    var vals=rates.map(function(el){return numFromRate(el.textContent)}).filter(function(v){return v!==null&&!Number.isNaN(v)});
+    if(!vals.length)return;
+    var max=Math.max.apply(null,vals);
+    rates.forEach(function(el){el.classList.toggle('is-max-highlight',numFromRate(el.textContent)===max);});
+    var author=(meta.dataset.authorName||String(meta.textContent||'').split('·')[0].trim()||'작가 정보 없음');
+    meta.dataset.authorName=author;
+    meta.innerHTML='';
+    meta.appendChild(makeSpan('',author));
+    meta.appendChild(makeSpan('history-meta-sep','·'));
+    meta.appendChild(makeSpan('history-max-badge','역대 최대 할인율 '+max+'%'));
+  }
+  function scheduleDecorate(){window.requestAnimationFrame(function(){window.requestAnimationFrame(decorateHistoryModal);});}
+  var bodyEl=document.getElementById('historyModalBody');
+  var backdrop=document.getElementById('historyModalBackdrop');
+  if(bodyEl){new MutationObserver(scheduleDecorate).observe(bodyEl,{childList:true,subtree:true,characterData:true});}
+  if(backdrop){new MutationObserver(scheduleDecorate).observe(backdrop,{attributes:true,attributeFilter:['class','aria-hidden']});}
+  document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('.history-btn')){setTimeout(scheduleDecorate,40);}});
+  document.addEventListener('keydown',function(e){if(e.key==='Enter'){setTimeout(scheduleDecorate,40);}});
+  setTimeout(scheduleDecorate,0);
+})();</script>
 </body></html>
 
 <style>
