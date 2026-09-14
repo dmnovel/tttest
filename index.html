@@ -1419,7 +1419,9 @@ body.favorite-mode.view-list .card-actions{
 
 <style>
 .history-max-badge{display:inline-flex;align-items:center;min-height:28px;padding:4px 10px;border:2px solid #1F883D;border-radius:8px;background:#EFF9F0;color:#1F883D;font-weight:800;line-height:1.2;box-shadow:0 1px 3px rgba(31,136,61,.12)}
-.history-rate.is-max-highlight{border-radius:8px!important;border:2px solid #7E5FC6!important;box-shadow:0 0 0 2px rgba(147,112,219,.16),0 2px 8px rgba(147,112,219,.18)!important}
+.history-row.is-max-highlight{border:2px solid #E9D77A!important;background:#FFFDF2!important;box-shadow:0 0 0 3px rgba(233,215,122,.20),0 4px 12px rgba(233,215,122,.18)!important}
+.history-row.is-max-highlight .history-date{color:#3F3F46!important}
+.history-row.is-max-highlight .history-rate{box-shadow:0 2px 8px rgba(147,112,219,.18)!important}
 </style>
 <script>(function(){
   function numFromRate(text){var m=String(text||'').match(/(\d+)\s*%/);return m?Number(m[1]):null;}
@@ -1433,7 +1435,10 @@ body.favorite-mode.view-list .card-actions{
     var vals=rates.map(function(el){return numFromRate(el.textContent)}).filter(function(v){return v!==null&&!Number.isNaN(v)});
     if(!vals.length)return;
     var max=Math.max.apply(null,vals);
-    rates.forEach(function(el){el.classList.toggle('is-max-highlight',numFromRate(el.textContent)===max);});
+    rates.forEach(function(el){
+      var row=el.closest('.history-row');
+      if(row) row.classList.toggle('is-max-highlight',numFromRate(el.textContent)===max);
+    });
     var author=(meta.dataset.authorName||String(meta.textContent||'').split('·')[0].trim()||'작가 정보 없음');
     meta.dataset.authorName=author;
     meta.innerHTML='';
