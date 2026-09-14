@@ -1426,6 +1426,12 @@ body.favorite-mode.view-list .card-actions{
 <script>(function(){
   function numFromRate(text){var m=String(text||'').match(/(\d+)\s*%/);return m?Number(m[1]):null;}
   function makeSpan(cls,txt){var s=document.createElement('span');if(cls)s.className=cls;s.textContent=txt;return s;}
+  function dateKeyFromRow(row){
+    if(!row)return -1;
+    var dateEl=row.querySelector('.history-date');
+    var m=String(dateEl&&dateEl.textContent||'').match(/^(\d{6})/);
+    return m?Number(m[1]):-1;
+  }
   function decorateHistoryModal(){
     var meta=document.getElementById('historyModalMeta');
     var body=document.getElementById('historyModalBody');
@@ -1435,10 +1441,18 @@ body.favorite-mode.view-list .card-actions{
     var vals=rates.map(function(el){return numFromRate(el.textContent)}).filter(function(v){return v!==null&&!Number.isNaN(v)});
     if(!vals.length)return;
     var max=Math.max.apply(null,vals);
+    var candidateRows=[];
     rates.forEach(function(el){
       var row=el.closest('.history-row');
-      if(row) row.classList.toggle('is-max-highlight',numFromRate(el.textContent)===max);
+      if(!row)return;
+      row.classList.remove('is-max-highlight');
+      if(numFromRate(el.textContent)===max) candidateRows.push(row);
     });
+    var targetRow=null;
+    candidateRows.forEach(function(row){
+      if(!targetRow||dateKeyFromRow(row)>dateKeyFromRow(targetRow)) targetRow=row;
+    });
+    if(targetRow) targetRow.classList.add('is-max-highlight');
     var author=(meta.dataset.authorName||String(meta.textContent||'').split('·')[0].trim()||'작가 정보 없음');
     meta.dataset.authorName=author;
     meta.innerHTML='';
