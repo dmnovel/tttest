@@ -1,1 +1,14 @@
-[]
+{
+  "eventId": "20260914_0918_chaepari_cheonghwajin_30",
+  "eventName": "202609 채팔이 청화진 30% 이벤트",
+  "startDate": "2026-09-14",
+  "endDate": "2026-09-18",
+  "works": [
+    {
+      "workId": "W10493",
+      "title": "청화진",
+      "author": "채팔이",
+      "discount": "30%"
+    }
+  ]
+}
